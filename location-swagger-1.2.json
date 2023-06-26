@@ -3,6 +3,11 @@
     "swaggerVersion": "1.2",
     "basePath": "https://localhost:1443/config",
     "resourcePath": "/location",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
     "apis": [
         {
             "path": "/locations",
@@ -59,6 +64,21 @@
                             "message": "The server encountered an unexpected error."
                         }
                     ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Location to the config",
+                    "nickname": "add-location",
+                    "type": "LocationResource",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Location to add",
+                            "name": "LocationResource",
+                            "type": "LocationResource"
+                        }
+                    ]
                 }
             ]
         }
@@ -92,10 +112,11 @@
         "LocationResource": {
             "id": "LocationResource",
             "description": "A Location resource",
-            "required": [
-                "id"
-            ],
             "properties": {
+                "locationName": {
+                    "type": "string",
+                    "description": "Name of the new location"
+                },
                 "schemas": {
                     "type": "array",
                     "items": {
@@ -112,6 +133,9 @@
                 },
                 "meta": {
                     "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
                 }
             }
         },
@@ -122,6 +146,41 @@
                     "type": "string"
                 },
                 "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
                     "type": "string"
                 }
             }
