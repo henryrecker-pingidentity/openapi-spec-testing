@@ -1,0 +1,1183 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/extended-operation-handlers",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Extended Operation Handler objects",
+                    "type": "extended-operation-handler-list-response",
+                    "nickname": "list-extended-operation-handlers",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Extended Operation Handler to the config",
+                    "nickname": "add-extended-operation-handler",
+                    "type": "extended-operation-handler-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Extended Operation Handler to add",
+                            "name": "add-extended-operation-handler-request",
+                            "type": "add-extended-operation-handler-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/extended-operation-handlers/{extended-operation-handler-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Extended Operation Handler",
+                    "type": "extended-operation-handler-response",
+                    "nickname": "get-extended-operation-handler",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "extended-operation-handler-name",
+                          "description": "Name of the Extended Operation Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Extended Operation Handler by name, replacing any attributes specified in the request body",
+                    "type": "extended-operation-handler-response",
+                    "nickname": "put-extended-operation-handler",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "extended-operation-handler-name",
+                          "description": "Name of the Extended Operation Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Extended Operation Handler attributes to update",
+                            "name": "extended-operation-handler-properties",
+                            "type": "extended-operation-handler-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Extended Operation Handler by name, using a SCIM patch request",
+                    "type": "extended-operation-handler-response",
+                    "nickname": "patch-extended-operation-handler",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "extended-operation-handler-name",
+                          "description": "Name of the Extended Operation Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Extended Operation Handler",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Extended Operation Handler",
+                    "nickname": "delete-extended-operation-handler",
+                    "parameters": [
+                        {
+                          "name": "extended-operation-handler-name",
+                          "description": "Name of the Extended Operation Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "extended-operation-handler-list-response": {
+            "id": "extended-operation-handler-list-response",
+            "description": "Extended Operation Handler list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "extended-operation-handler-response"
+                    }
+                }
+            }
+        },
+        "add-extended-operation-handler-request": {
+            "id": "add-extended-operation-handler-request",
+            "description": "A Extended Operation Handler resource request",
+            "required": [
+                "handlerName"
+            ],
+            "properties": {
+                "handlerName": {
+                    "type": "string",
+                    "description": "Name of the new Extended Operation Handler"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:cancel"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:validate-totp-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:replace-certificate"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-connection-id"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:multi-update"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:notification-subscription"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:password-modify"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:custom"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:collect-support-data"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:export-reversible-passwords"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:batched-transactions"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-changelog-batch"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-supported-otp-delivery-mechanisms"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:single-use-tokens"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:generate-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:who-am-i"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:start-tls"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:deliver-password-reset-token"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:password-policy-state"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-password-quality-requirements"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:deliver-otp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:third-party"
+                        ]
+                    }
+                },
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Extended Operation Handler.",
+                    "type": "string"
+                }
+                ,
+                "preventTOTPReuse": {
+                    "description": "Indicates whether to prevent clients from re-using TOTP passwords.",
+                    "type": "boolean"
+                }
+                ,
+                "requestCriteria": {
+                    "description": "A set of criteria that the extended requests must satisfy before they will be processed by the server.",
+                    "type": "string"
+                }
+                ,
+                "timeIntervalDuration": {
+                    "description": "The duration of the time interval used for TOTP processing.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Extended Operation Handler",
+                    "type": "string"
+                }
+                ,
+                "adjacentIntervalsToCheck": {
+                    "description": "The number of adjacent time intervals (both before and after the current time) that should be checked when performing authentication.",
+                    "type": "integer"
+                }
+                ,
+                "maximumPasswordsPerRequest": {
+                    "description": "The maximum number of passwords that may be generated and returned to the client for a single request.",
+                    "type": "integer"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Extended Operation Handler is enabled (that is, whether the types of extended operations are allowed in the server).",
+                    "type": "boolean"
+                }
+                ,
+                "connectionCriteria": {
+                    "description": "A set of criteria that client connections must satisfy before they will be allowed to request the associated extended operations.",
+                    "type": "string"
+                }
+                ,
+                "maximumValidationAttemptsPerPassword": {
+                    "description": "The maximum number of attempts that the server may use to generate a password that passes validation.",
+                    "type": "integer"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Extended Operation Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "defaultSingleUseTokenValidityDuration": {
+                    "description": "The default length of time that a single-use token will be considered valid by the server if the client doesn't specify a duration in the deliver single-use token request.",
+                    "type": "string"
+                }
+                ,
+                "defaultTokenDeliveryMechanism": {
+                    "description": "The set of delivery mechanisms that may be used to deliver password reset tokens to users for requests that do not specify one or more preferred delivery mechanisms.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "passwordGenerator": {
+                    "description": "The password generator that will be used to create the single-use token values to be delivered to the end user.",
+                    "type": "string"
+                }
+                ,
+                "allowRemotelyProvidedCertificates": {
+                    "description": "Indicates whether clients should be allowed to directly provide a new listener or inter-server certificate chain in the extended request.",
+                    "type": "boolean"
+                }
+                ,
+                "identityMapper": {
+                    "description": "Specifies the name of the identity mapper that should be used in conjunction with the password modify extended operation.",
+                    "type": "string"
+                }
+                ,
+                "defaultPasswordGenerator": {
+                    "description": "The default password generator that will be used if the selected password policy is not configured with a password generator.",
+                    "type": "string"
+                }
+                ,
+                "defaultOTPDeliveryMechanism": {
+                    "description": "The set of delivery mechanisms that may be used to deliver single-use tokens to users in requests that do not specify one or more preferred delivery mechanisms.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "allowedOperation": {
+                    "description": "The types of replace certificate operations that clients will be allowed to request.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "replace-listener-certificate"
+                            ,
+                            "replace-inter-server-certificate"
+                            ,
+                            "purge-retired-listener-certificates"
+                            ,
+                            "purge-retired-inter-server-certificates"
+                        ]
+                    }
+                }
+                ,
+                "sharedSecretAttributeType": {
+                    "description": "The name or OID of the attribute that will be used to hold the shared secret key used during TOTP processing.",
+                    "type": "string"
+                }
+                ,
+                "defaultPasswordPolicy": {
+                    "description": "The default password policy that should be used when generating and validating passwords if the request does not specify an alternate policy. If this is not provided, then this Generate Password Extended Operation Handler will use the default password policy defined in the global configuration.",
+                    "type": "string"
+                }
+                ,
+                "passwordResetTokenValidityDuration": {
+                    "description": "The maximum length of time that a password reset token should be considered valid.",
+                    "type": "string"
+                }
+            }
+        },
+        "extended-operation-handler-response": {
+            "id": "extended-operation-handler-response",
+            "description": "A Extended Operation Handler resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:cancel"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:validate-totp-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:replace-certificate"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-connection-id"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:multi-update"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:notification-subscription"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:password-modify"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:custom"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:collect-support-data"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:export-reversible-passwords"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:batched-transactions"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-changelog-batch"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-supported-otp-delivery-mechanisms"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:single-use-tokens"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:generate-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:who-am-i"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:start-tls"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:deliver-password-reset-token"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:password-policy-state"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-password-quality-requirements"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:deliver-otp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:third-party"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Extended Operation Handler"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Extended Operation Handler.",
+                    "type": "string"
+                }
+                ,
+                "preventTOTPReuse": {
+                    "description": "Indicates whether to prevent clients from re-using TOTP passwords.",
+                    "type": "boolean"
+                }
+                ,
+                "requestCriteria": {
+                    "description": "A set of criteria that the extended requests must satisfy before they will be processed by the server.",
+                    "type": "string"
+                }
+                ,
+                "timeIntervalDuration": {
+                    "description": "The duration of the time interval used for TOTP processing.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Extended Operation Handler",
+                    "type": "string"
+                }
+                ,
+                "adjacentIntervalsToCheck": {
+                    "description": "The number of adjacent time intervals (both before and after the current time) that should be checked when performing authentication.",
+                    "type": "integer"
+                }
+                ,
+                "maximumPasswordsPerRequest": {
+                    "description": "The maximum number of passwords that may be generated and returned to the client for a single request.",
+                    "type": "integer"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Extended Operation Handler is enabled (that is, whether the types of extended operations are allowed in the server).",
+                    "type": "boolean"
+                }
+                ,
+                "connectionCriteria": {
+                    "description": "A set of criteria that client connections must satisfy before they will be allowed to request the associated extended operations.",
+                    "type": "string"
+                }
+                ,
+                "maximumValidationAttemptsPerPassword": {
+                    "description": "The maximum number of attempts that the server may use to generate a password that passes validation.",
+                    "type": "integer"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Extended Operation Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "defaultSingleUseTokenValidityDuration": {
+                    "description": "The default length of time that a single-use token will be considered valid by the server if the client doesn't specify a duration in the deliver single-use token request.",
+                    "type": "string"
+                }
+                ,
+                "defaultTokenDeliveryMechanism": {
+                    "description": "The set of delivery mechanisms that may be used to deliver password reset tokens to users for requests that do not specify one or more preferred delivery mechanisms.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "passwordGenerator": {
+                    "description": "The password generator that will be used to create the single-use token values to be delivered to the end user.",
+                    "type": "string"
+                }
+                ,
+                "allowRemotelyProvidedCertificates": {
+                    "description": "Indicates whether clients should be allowed to directly provide a new listener or inter-server certificate chain in the extended request.",
+                    "type": "boolean"
+                }
+                ,
+                "identityMapper": {
+                    "description": "Specifies the name of the identity mapper that should be used in conjunction with the password modify extended operation.",
+                    "type": "string"
+                }
+                ,
+                "defaultPasswordGenerator": {
+                    "description": "The default password generator that will be used if the selected password policy is not configured with a password generator.",
+                    "type": "string"
+                }
+                ,
+                "defaultOTPDeliveryMechanism": {
+                    "description": "The set of delivery mechanisms that may be used to deliver single-use tokens to users in requests that do not specify one or more preferred delivery mechanisms.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "allowedOperation": {
+                    "description": "The types of replace certificate operations that clients will be allowed to request.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "replace-listener-certificate"
+                            ,
+                            "replace-inter-server-certificate"
+                            ,
+                            "purge-retired-listener-certificates"
+                            ,
+                            "purge-retired-inter-server-certificates"
+                        ]
+                    }
+                }
+                ,
+                "sharedSecretAttributeType": {
+                    "description": "The name or OID of the attribute that will be used to hold the shared secret key used during TOTP processing.",
+                    "type": "string"
+                }
+                ,
+                "defaultPasswordPolicy": {
+                    "description": "The default password policy that should be used when generating and validating passwords if the request does not specify an alternate policy. If this is not provided, then this Generate Password Extended Operation Handler will use the default password policy defined in the global configuration.",
+                    "type": "string"
+                }
+                ,
+                "passwordResetTokenValidityDuration": {
+                    "description": "The maximum length of time that a password reset token should be considered valid.",
+                    "type": "string"
+                }
+            }
+        },
+        "extended-operation-handler-properties": {
+            "id": "extended-operation-handler-properties",
+            "description": "Extended Operation Handler properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:cancel"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:validate-totp-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:replace-certificate"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-connection-id"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:multi-update"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:notification-subscription"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:password-modify"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:custom"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:collect-support-data"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:export-reversible-passwords"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:batched-transactions"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-changelog-batch"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-supported-otp-delivery-mechanisms"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:single-use-tokens"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:generate-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:who-am-i"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:start-tls"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:deliver-password-reset-token"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:password-policy-state"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:get-password-quality-requirements"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:deliver-otp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:extended-operation-handler:third-party"
+                        ]
+                    }
+                },
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Extended Operation Handler.",
+                    "type": "string"
+                }
+                ,
+                "preventTOTPReuse": {
+                    "description": "Indicates whether to prevent clients from re-using TOTP passwords.",
+                    "type": "boolean"
+                }
+                ,
+                "requestCriteria": {
+                    "description": "A set of criteria that the extended requests must satisfy before they will be processed by the server.",
+                    "type": "string"
+                }
+                ,
+                "timeIntervalDuration": {
+                    "description": "The duration of the time interval used for TOTP processing.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Extended Operation Handler",
+                    "type": "string"
+                }
+                ,
+                "adjacentIntervalsToCheck": {
+                    "description": "The number of adjacent time intervals (both before and after the current time) that should be checked when performing authentication.",
+                    "type": "integer"
+                }
+                ,
+                "maximumPasswordsPerRequest": {
+                    "description": "The maximum number of passwords that may be generated and returned to the client for a single request.",
+                    "type": "integer"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Extended Operation Handler is enabled (that is, whether the types of extended operations are allowed in the server).",
+                    "type": "boolean"
+                }
+                ,
+                "connectionCriteria": {
+                    "description": "A set of criteria that client connections must satisfy before they will be allowed to request the associated extended operations.",
+                    "type": "string"
+                }
+                ,
+                "maximumValidationAttemptsPerPassword": {
+                    "description": "The maximum number of attempts that the server may use to generate a password that passes validation.",
+                    "type": "integer"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Extended Operation Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "defaultSingleUseTokenValidityDuration": {
+                    "description": "The default length of time that a single-use token will be considered valid by the server if the client doesn't specify a duration in the deliver single-use token request.",
+                    "type": "string"
+                }
+                ,
+                "defaultTokenDeliveryMechanism": {
+                    "description": "The set of delivery mechanisms that may be used to deliver password reset tokens to users for requests that do not specify one or more preferred delivery mechanisms.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "passwordGenerator": {
+                    "description": "The password generator that will be used to create the single-use token values to be delivered to the end user.",
+                    "type": "string"
+                }
+                ,
+                "allowRemotelyProvidedCertificates": {
+                    "description": "Indicates whether clients should be allowed to directly provide a new listener or inter-server certificate chain in the extended request.",
+                    "type": "boolean"
+                }
+                ,
+                "identityMapper": {
+                    "description": "Specifies the name of the identity mapper that should be used in conjunction with the password modify extended operation.",
+                    "type": "string"
+                }
+                ,
+                "defaultPasswordGenerator": {
+                    "description": "The default password generator that will be used if the selected password policy is not configured with a password generator.",
+                    "type": "string"
+                }
+                ,
+                "defaultOTPDeliveryMechanism": {
+                    "description": "The set of delivery mechanisms that may be used to deliver single-use tokens to users in requests that do not specify one or more preferred delivery mechanisms.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "allowedOperation": {
+                    "description": "The types of replace certificate operations that clients will be allowed to request.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "replace-listener-certificate"
+                            ,
+                            "replace-inter-server-certificate"
+                            ,
+                            "purge-retired-listener-certificates"
+                            ,
+                            "purge-retired-inter-server-certificates"
+                        ]
+                    }
+                }
+                ,
+                "sharedSecretAttributeType": {
+                    "description": "The name or OID of the attribute that will be used to hold the shared secret key used during TOTP processing.",
+                    "type": "string"
+                }
+                ,
+                "defaultPasswordPolicy": {
+                    "description": "The default password policy that should be used when generating and validating passwords if the request does not specify an alternate policy. If this is not provided, then this Generate Password Extended Operation Handler will use the default password policy defined in the global configuration.",
+                    "type": "string"
+                }
+                ,
+                "passwordResetTokenValidityDuration": {
+                    "description": "The maximum length of time that a password reset token should be considered valid.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

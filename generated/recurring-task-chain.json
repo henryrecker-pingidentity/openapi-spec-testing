@@ -1,0 +1,1498 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/recurring-task-chains",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Recurring Task Chain objects",
+                    "type": "recurring-task-chain-list-response",
+                    "nickname": "list-recurring-task-chains",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Recurring Task Chain to the config",
+                    "nickname": "add-recurring-task-chain",
+                    "type": "recurring-task-chain-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Recurring Task Chain to add",
+                            "name": "add-recurring-task-chain-request",
+                            "type": "add-recurring-task-chain-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/recurring-task-chains/{recurring-task-chain-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Recurring Task Chain",
+                    "type": "recurring-task-chain-response",
+                    "nickname": "get-recurring-task-chain",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "recurring-task-chain-name",
+                          "description": "Name of the Recurring Task Chain",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Recurring Task Chain by name, replacing any attributes specified in the request body",
+                    "type": "recurring-task-chain-response",
+                    "nickname": "put-recurring-task-chain",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "recurring-task-chain-name",
+                          "description": "Name of the Recurring Task Chain",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Recurring Task Chain attributes to update",
+                            "name": "recurring-task-chain-properties",
+                            "type": "recurring-task-chain-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Recurring Task Chain by name, using a SCIM patch request",
+                    "type": "recurring-task-chain-response",
+                    "nickname": "patch-recurring-task-chain",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "recurring-task-chain-name",
+                          "description": "Name of the Recurring Task Chain",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Recurring Task Chain",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Recurring Task Chain",
+                    "nickname": "delete-recurring-task-chain",
+                    "parameters": [
+                        {
+                          "name": "recurring-task-chain-name",
+                          "description": "Name of the Recurring Task Chain",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "recurring-task-chain-list-response": {
+            "id": "recurring-task-chain-list-response",
+            "description": "Recurring Task Chain list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "recurring-task-chain-response"
+                    }
+                }
+            }
+        },
+        "add-recurring-task-chain-request": {
+            "id": "add-recurring-task-chain-request",
+            "description": "A Recurring Task Chain resource request",
+            "required": [
+                "chainName"
+            ],
+            "properties": {
+                "chainName": {
+                    "type": "string",
+                    "description": "Name of the new Recurring Task Chain"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task-chain"
+                        ]
+                    }
+                },
+                "scheduledMonth": {
+                    "description": "The months of the year in which instances of this Recurring Task Chain may be scheduled to start.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "january"
+                            ,
+                            "february"
+                            ,
+                            "march"
+                            ,
+                            "april"
+                            ,
+                            "may"
+                            ,
+                            "june"
+                            ,
+                            "july"
+                            ,
+                            "august"
+                            ,
+                            "september"
+                            ,
+                            "october"
+                            ,
+                            "november"
+                            ,
+                            "december"
+                        ]
+                    }
+                }
+                ,
+                "scheduledDayOfTheMonth": {
+                    "description": "The specific days of the month on which instances of this Recurring Task Chain may be scheduled to start. If the scheduled-day-selection-type property has a value of selected-days-of-the-month, then this property must have one or more values; otherwise, it must be left undefined.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "day-01"
+                            ,
+                            "day-02"
+                            ,
+                            "day-03"
+                            ,
+                            "day-04"
+                            ,
+                            "day-05"
+                            ,
+                            "day-06"
+                            ,
+                            "day-07"
+                            ,
+                            "day-08"
+                            ,
+                            "day-09"
+                            ,
+                            "day-10"
+                            ,
+                            "day-11"
+                            ,
+                            "day-12"
+                            ,
+                            "day-13"
+                            ,
+                            "day-14"
+                            ,
+                            "day-15"
+                            ,
+                            "day-16"
+                            ,
+                            "day-17"
+                            ,
+                            "day-18"
+                            ,
+                            "day-19"
+                            ,
+                            "day-20"
+                            ,
+                            "day-21"
+                            ,
+                            "day-22"
+                            ,
+                            "day-23"
+                            ,
+                            "day-24"
+                            ,
+                            "day-25"
+                            ,
+                            "day-26"
+                            ,
+                            "day-27"
+                            ,
+                            "day-28"
+                            ,
+                            "day-29"
+                            ,
+                            "day-30"
+                            ,
+                            "day-31"
+                            ,
+                            "next-to-last-day-of-the-month"
+                            ,
+                            "last-day-of-the-month"
+                        ]
+                    }
+                }
+                ,
+                "recurringTask": {
+                    "description": "The set of recurring tasks that make up this chain. At least one value must be provided. If multiple values are given, then the task instances will be invoked in the order in which they are listed.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "serverOfflineAtStartTimeBehavior": {
+                    "description": "Specifies the behavior that the server should exhibit if it is offline when the start time arrives for the tasks in this Recurring Task Chain.",
+                    "type": "string"
+                    , "enum": [
+                        "run-immediately-upon-server-startup"
+                        ,
+                        "cancel-iteration-and-wait-for-next-scheduled-start-time"
+                    ]
+                }
+                ,
+                "scheduledDayOfTheWeek": {
+                    "description": "The specific days of the week on which instances of this Recurring Task Chain may be scheduled to start. If the scheduled-day-selection-type property has a value of selected-days-of-the-week, then this property must have one or more values; otherwise, it must be left undefined.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "every-sunday"
+                            ,
+                            "every-monday"
+                            ,
+                            "every-tuesday"
+                            ,
+                            "every-wednesday"
+                            ,
+                            "every-thursday"
+                            ,
+                            "every-friday"
+                            ,
+                            "every-saturday"
+                            ,
+                            "first-sunday-of-the-month"
+                            ,
+                            "first-monday-of-the-month"
+                            ,
+                            "first-tuesday-of-the-month"
+                            ,
+                            "first-wednesday-of-the-month"
+                            ,
+                            "first-thursday-of-the-month"
+                            ,
+                            "first-friday-of-the-month"
+                            ,
+                            "first-saturday-of-the-month"
+                            ,
+                            "second-sunday-of-the-month"
+                            ,
+                            "second-monday-of-the-month"
+                            ,
+                            "second-tuesday-of-the-month"
+                            ,
+                            "second-wednesday-of-the-month"
+                            ,
+                            "second-thursday-of-the-month"
+                            ,
+                            "second-friday-of-the-month"
+                            ,
+                            "second-saturday-of-the-month"
+                            ,
+                            "third-sunday-of-the-month"
+                            ,
+                            "third-monday-of-the-month"
+                            ,
+                            "third-tuesday-of-the-month"
+                            ,
+                            "third-wednesday-of-the-month"
+                            ,
+                            "third-thursday-of-the-month"
+                            ,
+                            "third-friday-of-the-month"
+                            ,
+                            "third-saturday-of-the-month"
+                            ,
+                            "fourth-sunday-of-the-month"
+                            ,
+                            "fourth-monday-of-the-month"
+                            ,
+                            "fourth-tuesday-of-the-month"
+                            ,
+                            "fourth-wednesday-of-the-month"
+                            ,
+                            "fourth-thursday-of-the-month"
+                            ,
+                            "fourth-friday-of-the-month"
+                            ,
+                            "fourth-saturday-of-the-month"
+                            ,
+                            "fifth-sunday-of-the-month"
+                            ,
+                            "fifth-monday-of-the-month"
+                            ,
+                            "fifth-tuesday-of-the-month"
+                            ,
+                            "fifth-wednesday-of-the-month"
+                            ,
+                            "fifth-thursday-of-the-month"
+                            ,
+                            "fifth-friday-of-the-month"
+                            ,
+                            "fifth-saturday-of-the-month"
+                            ,
+                            "last-sunday-of-the-month"
+                            ,
+                            "last-monday-of-the-month"
+                            ,
+                            "last-tuesday-of-the-month"
+                            ,
+                            "last-wednesday-of-the-month"
+                            ,
+                            "last-thursday-of-the-month"
+                            ,
+                            "last-friday-of-the-month"
+                            ,
+                            "last-saturday-of-the-month"
+                        ]
+                    }
+                }
+                ,
+                "interruptedByShutdownBehavior": {
+                    "description": "Specifies the behavior that the server should exhibit if it is shut down or abnormally terminated while an instance of this Recurring Task Chain is running.",
+                    "type": "string"
+                    , "enum": [
+                        "cancel-interrupted-task-and-dependencies"
+                        ,
+                        "cancel-only-interrupted-task-but-preserve-dependencies"
+                    ]
+                }
+                ,
+                "description": {
+                    "description": "A description for this Recurring Task Chain",
+                    "type": "string"
+                }
+                ,
+                "timeZone": {
+                    "description": "The time zone that will be used to interpret the scheduled-time-of-day values. If no value is provided, then the JVM's default time zone will be used.",
+                    "type": "string"
+                }
+                ,
+                "scheduledDateSelectionType": {
+                    "description": "The mechanism used to determine the dates on which instances of this Recurring Task Chain may be scheduled to start.",
+                    "type": "string"
+                    , "enum": [
+                        "every-day"
+                        ,
+                        "selected-days-of-the-week"
+                        ,
+                        "selected-days-of-the-month"
+                    ]
+                }
+                ,
+                "scheduledTimeOfDay": {
+                    "description": "The time of day at which instances of the Recurring Task Chain should be eligible to start running. Values should be in the format HH:MM (where HH is a two-digit representation of the hour of the day, between 00 and 23, inclusive), and MM is a two-digit representation of the minute of the hour (between 00 and 59, inclusive). Alternately, the value can be in the form *:MM, which indicates that the task should be eligible to start at the specified minute of every hour. At least one value must be provided, but multiple values may be given to indicate multiple start times within the same day.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Recurring Task Chain is enabled for use. Recurring Task Chains that are disabled will not have any new instances scheduled, but instances that are already scheduled will be preserved. Those instances may be manually canceled if desired.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "recurring-task-chain-response": {
+            "id": "recurring-task-chain-response",
+            "description": "A Recurring Task Chain resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task-chain"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Recurring Task Chain"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "scheduledMonth": {
+                    "description": "The months of the year in which instances of this Recurring Task Chain may be scheduled to start.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "january"
+                            ,
+                            "february"
+                            ,
+                            "march"
+                            ,
+                            "april"
+                            ,
+                            "may"
+                            ,
+                            "june"
+                            ,
+                            "july"
+                            ,
+                            "august"
+                            ,
+                            "september"
+                            ,
+                            "october"
+                            ,
+                            "november"
+                            ,
+                            "december"
+                        ]
+                    }
+                }
+                ,
+                "scheduledDayOfTheMonth": {
+                    "description": "The specific days of the month on which instances of this Recurring Task Chain may be scheduled to start. If the scheduled-day-selection-type property has a value of selected-days-of-the-month, then this property must have one or more values; otherwise, it must be left undefined.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "day-01"
+                            ,
+                            "day-02"
+                            ,
+                            "day-03"
+                            ,
+                            "day-04"
+                            ,
+                            "day-05"
+                            ,
+                            "day-06"
+                            ,
+                            "day-07"
+                            ,
+                            "day-08"
+                            ,
+                            "day-09"
+                            ,
+                            "day-10"
+                            ,
+                            "day-11"
+                            ,
+                            "day-12"
+                            ,
+                            "day-13"
+                            ,
+                            "day-14"
+                            ,
+                            "day-15"
+                            ,
+                            "day-16"
+                            ,
+                            "day-17"
+                            ,
+                            "day-18"
+                            ,
+                            "day-19"
+                            ,
+                            "day-20"
+                            ,
+                            "day-21"
+                            ,
+                            "day-22"
+                            ,
+                            "day-23"
+                            ,
+                            "day-24"
+                            ,
+                            "day-25"
+                            ,
+                            "day-26"
+                            ,
+                            "day-27"
+                            ,
+                            "day-28"
+                            ,
+                            "day-29"
+                            ,
+                            "day-30"
+                            ,
+                            "day-31"
+                            ,
+                            "next-to-last-day-of-the-month"
+                            ,
+                            "last-day-of-the-month"
+                        ]
+                    }
+                }
+                ,
+                "recurringTask": {
+                    "description": "The set of recurring tasks that make up this chain. At least one value must be provided. If multiple values are given, then the task instances will be invoked in the order in which they are listed.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "serverOfflineAtStartTimeBehavior": {
+                    "description": "Specifies the behavior that the server should exhibit if it is offline when the start time arrives for the tasks in this Recurring Task Chain.",
+                    "type": "string"
+                    , "enum": [
+                        "run-immediately-upon-server-startup"
+                        ,
+                        "cancel-iteration-and-wait-for-next-scheduled-start-time"
+                    ]
+                }
+                ,
+                "scheduledDayOfTheWeek": {
+                    "description": "The specific days of the week on which instances of this Recurring Task Chain may be scheduled to start. If the scheduled-day-selection-type property has a value of selected-days-of-the-week, then this property must have one or more values; otherwise, it must be left undefined.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "every-sunday"
+                            ,
+                            "every-monday"
+                            ,
+                            "every-tuesday"
+                            ,
+                            "every-wednesday"
+                            ,
+                            "every-thursday"
+                            ,
+                            "every-friday"
+                            ,
+                            "every-saturday"
+                            ,
+                            "first-sunday-of-the-month"
+                            ,
+                            "first-monday-of-the-month"
+                            ,
+                            "first-tuesday-of-the-month"
+                            ,
+                            "first-wednesday-of-the-month"
+                            ,
+                            "first-thursday-of-the-month"
+                            ,
+                            "first-friday-of-the-month"
+                            ,
+                            "first-saturday-of-the-month"
+                            ,
+                            "second-sunday-of-the-month"
+                            ,
+                            "second-monday-of-the-month"
+                            ,
+                            "second-tuesday-of-the-month"
+                            ,
+                            "second-wednesday-of-the-month"
+                            ,
+                            "second-thursday-of-the-month"
+                            ,
+                            "second-friday-of-the-month"
+                            ,
+                            "second-saturday-of-the-month"
+                            ,
+                            "third-sunday-of-the-month"
+                            ,
+                            "third-monday-of-the-month"
+                            ,
+                            "third-tuesday-of-the-month"
+                            ,
+                            "third-wednesday-of-the-month"
+                            ,
+                            "third-thursday-of-the-month"
+                            ,
+                            "third-friday-of-the-month"
+                            ,
+                            "third-saturday-of-the-month"
+                            ,
+                            "fourth-sunday-of-the-month"
+                            ,
+                            "fourth-monday-of-the-month"
+                            ,
+                            "fourth-tuesday-of-the-month"
+                            ,
+                            "fourth-wednesday-of-the-month"
+                            ,
+                            "fourth-thursday-of-the-month"
+                            ,
+                            "fourth-friday-of-the-month"
+                            ,
+                            "fourth-saturday-of-the-month"
+                            ,
+                            "fifth-sunday-of-the-month"
+                            ,
+                            "fifth-monday-of-the-month"
+                            ,
+                            "fifth-tuesday-of-the-month"
+                            ,
+                            "fifth-wednesday-of-the-month"
+                            ,
+                            "fifth-thursday-of-the-month"
+                            ,
+                            "fifth-friday-of-the-month"
+                            ,
+                            "fifth-saturday-of-the-month"
+                            ,
+                            "last-sunday-of-the-month"
+                            ,
+                            "last-monday-of-the-month"
+                            ,
+                            "last-tuesday-of-the-month"
+                            ,
+                            "last-wednesday-of-the-month"
+                            ,
+                            "last-thursday-of-the-month"
+                            ,
+                            "last-friday-of-the-month"
+                            ,
+                            "last-saturday-of-the-month"
+                        ]
+                    }
+                }
+                ,
+                "interruptedByShutdownBehavior": {
+                    "description": "Specifies the behavior that the server should exhibit if it is shut down or abnormally terminated while an instance of this Recurring Task Chain is running.",
+                    "type": "string"
+                    , "enum": [
+                        "cancel-interrupted-task-and-dependencies"
+                        ,
+                        "cancel-only-interrupted-task-but-preserve-dependencies"
+                    ]
+                }
+                ,
+                "description": {
+                    "description": "A description for this Recurring Task Chain",
+                    "type": "string"
+                }
+                ,
+                "timeZone": {
+                    "description": "The time zone that will be used to interpret the scheduled-time-of-day values. If no value is provided, then the JVM's default time zone will be used.",
+                    "type": "string"
+                }
+                ,
+                "scheduledDateSelectionType": {
+                    "description": "The mechanism used to determine the dates on which instances of this Recurring Task Chain may be scheduled to start.",
+                    "type": "string"
+                    , "enum": [
+                        "every-day"
+                        ,
+                        "selected-days-of-the-week"
+                        ,
+                        "selected-days-of-the-month"
+                    ]
+                }
+                ,
+                "scheduledTimeOfDay": {
+                    "description": "The time of day at which instances of the Recurring Task Chain should be eligible to start running. Values should be in the format HH:MM (where HH is a two-digit representation of the hour of the day, between 00 and 23, inclusive), and MM is a two-digit representation of the minute of the hour (between 00 and 59, inclusive). Alternately, the value can be in the form *:MM, which indicates that the task should be eligible to start at the specified minute of every hour. At least one value must be provided, but multiple values may be given to indicate multiple start times within the same day.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Recurring Task Chain is enabled for use. Recurring Task Chains that are disabled will not have any new instances scheduled, but instances that are already scheduled will be preserved. Those instances may be manually canceled if desired.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "recurring-task-chain-properties": {
+            "id": "recurring-task-chain-properties",
+            "description": "Recurring Task Chain properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task-chain"
+                        ]
+                    }
+                },
+                "scheduledMonth": {
+                    "description": "The months of the year in which instances of this Recurring Task Chain may be scheduled to start.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "january"
+                            ,
+                            "february"
+                            ,
+                            "march"
+                            ,
+                            "april"
+                            ,
+                            "may"
+                            ,
+                            "june"
+                            ,
+                            "july"
+                            ,
+                            "august"
+                            ,
+                            "september"
+                            ,
+                            "october"
+                            ,
+                            "november"
+                            ,
+                            "december"
+                        ]
+                    }
+                }
+                ,
+                "scheduledDayOfTheMonth": {
+                    "description": "The specific days of the month on which instances of this Recurring Task Chain may be scheduled to start. If the scheduled-day-selection-type property has a value of selected-days-of-the-month, then this property must have one or more values; otherwise, it must be left undefined.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "day-01"
+                            ,
+                            "day-02"
+                            ,
+                            "day-03"
+                            ,
+                            "day-04"
+                            ,
+                            "day-05"
+                            ,
+                            "day-06"
+                            ,
+                            "day-07"
+                            ,
+                            "day-08"
+                            ,
+                            "day-09"
+                            ,
+                            "day-10"
+                            ,
+                            "day-11"
+                            ,
+                            "day-12"
+                            ,
+                            "day-13"
+                            ,
+                            "day-14"
+                            ,
+                            "day-15"
+                            ,
+                            "day-16"
+                            ,
+                            "day-17"
+                            ,
+                            "day-18"
+                            ,
+                            "day-19"
+                            ,
+                            "day-20"
+                            ,
+                            "day-21"
+                            ,
+                            "day-22"
+                            ,
+                            "day-23"
+                            ,
+                            "day-24"
+                            ,
+                            "day-25"
+                            ,
+                            "day-26"
+                            ,
+                            "day-27"
+                            ,
+                            "day-28"
+                            ,
+                            "day-29"
+                            ,
+                            "day-30"
+                            ,
+                            "day-31"
+                            ,
+                            "next-to-last-day-of-the-month"
+                            ,
+                            "last-day-of-the-month"
+                        ]
+                    }
+                }
+                ,
+                "recurringTask": {
+                    "description": "The set of recurring tasks that make up this chain. At least one value must be provided. If multiple values are given, then the task instances will be invoked in the order in which they are listed.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "serverOfflineAtStartTimeBehavior": {
+                    "description": "Specifies the behavior that the server should exhibit if it is offline when the start time arrives for the tasks in this Recurring Task Chain.",
+                    "type": "string"
+                    , "enum": [
+                        "run-immediately-upon-server-startup"
+                        ,
+                        "cancel-iteration-and-wait-for-next-scheduled-start-time"
+                    ]
+                }
+                ,
+                "scheduledDayOfTheWeek": {
+                    "description": "The specific days of the week on which instances of this Recurring Task Chain may be scheduled to start. If the scheduled-day-selection-type property has a value of selected-days-of-the-week, then this property must have one or more values; otherwise, it must be left undefined.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "every-sunday"
+                            ,
+                            "every-monday"
+                            ,
+                            "every-tuesday"
+                            ,
+                            "every-wednesday"
+                            ,
+                            "every-thursday"
+                            ,
+                            "every-friday"
+                            ,
+                            "every-saturday"
+                            ,
+                            "first-sunday-of-the-month"
+                            ,
+                            "first-monday-of-the-month"
+                            ,
+                            "first-tuesday-of-the-month"
+                            ,
+                            "first-wednesday-of-the-month"
+                            ,
+                            "first-thursday-of-the-month"
+                            ,
+                            "first-friday-of-the-month"
+                            ,
+                            "first-saturday-of-the-month"
+                            ,
+                            "second-sunday-of-the-month"
+                            ,
+                            "second-monday-of-the-month"
+                            ,
+                            "second-tuesday-of-the-month"
+                            ,
+                            "second-wednesday-of-the-month"
+                            ,
+                            "second-thursday-of-the-month"
+                            ,
+                            "second-friday-of-the-month"
+                            ,
+                            "second-saturday-of-the-month"
+                            ,
+                            "third-sunday-of-the-month"
+                            ,
+                            "third-monday-of-the-month"
+                            ,
+                            "third-tuesday-of-the-month"
+                            ,
+                            "third-wednesday-of-the-month"
+                            ,
+                            "third-thursday-of-the-month"
+                            ,
+                            "third-friday-of-the-month"
+                            ,
+                            "third-saturday-of-the-month"
+                            ,
+                            "fourth-sunday-of-the-month"
+                            ,
+                            "fourth-monday-of-the-month"
+                            ,
+                            "fourth-tuesday-of-the-month"
+                            ,
+                            "fourth-wednesday-of-the-month"
+                            ,
+                            "fourth-thursday-of-the-month"
+                            ,
+                            "fourth-friday-of-the-month"
+                            ,
+                            "fourth-saturday-of-the-month"
+                            ,
+                            "fifth-sunday-of-the-month"
+                            ,
+                            "fifth-monday-of-the-month"
+                            ,
+                            "fifth-tuesday-of-the-month"
+                            ,
+                            "fifth-wednesday-of-the-month"
+                            ,
+                            "fifth-thursday-of-the-month"
+                            ,
+                            "fifth-friday-of-the-month"
+                            ,
+                            "fifth-saturday-of-the-month"
+                            ,
+                            "last-sunday-of-the-month"
+                            ,
+                            "last-monday-of-the-month"
+                            ,
+                            "last-tuesday-of-the-month"
+                            ,
+                            "last-wednesday-of-the-month"
+                            ,
+                            "last-thursday-of-the-month"
+                            ,
+                            "last-friday-of-the-month"
+                            ,
+                            "last-saturday-of-the-month"
+                        ]
+                    }
+                }
+                ,
+                "interruptedByShutdownBehavior": {
+                    "description": "Specifies the behavior that the server should exhibit if it is shut down or abnormally terminated while an instance of this Recurring Task Chain is running.",
+                    "type": "string"
+                    , "enum": [
+                        "cancel-interrupted-task-and-dependencies"
+                        ,
+                        "cancel-only-interrupted-task-but-preserve-dependencies"
+                    ]
+                }
+                ,
+                "description": {
+                    "description": "A description for this Recurring Task Chain",
+                    "type": "string"
+                }
+                ,
+                "timeZone": {
+                    "description": "The time zone that will be used to interpret the scheduled-time-of-day values. If no value is provided, then the JVM's default time zone will be used.",
+                    "type": "string"
+                }
+                ,
+                "scheduledDateSelectionType": {
+                    "description": "The mechanism used to determine the dates on which instances of this Recurring Task Chain may be scheduled to start.",
+                    "type": "string"
+                    , "enum": [
+                        "every-day"
+                        ,
+                        "selected-days-of-the-week"
+                        ,
+                        "selected-days-of-the-month"
+                    ]
+                }
+                ,
+                "scheduledTimeOfDay": {
+                    "description": "The time of day at which instances of the Recurring Task Chain should be eligible to start running. Values should be in the format HH:MM (where HH is a two-digit representation of the hour of the day, between 00 and 23, inclusive), and MM is a two-digit representation of the minute of the hour (between 00 and 59, inclusive). Alternately, the value can be in the form *:MM, which indicates that the task should be eligible to start at the specified minute of every hour. At least one value must be provided, but multiple values may be given to indicate multiple start times within the same day.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Recurring Task Chain is enabled for use. Recurring Task Chains that are disabled will not have any new instances scheduled, but instances that are already scheduled will be preserved. Those instances may be manually canceled if desired.",
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

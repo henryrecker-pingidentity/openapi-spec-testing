@@ -1,0 +1,841 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/uncached-entry-criteria",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Uncached Entry Criteria objects",
+                    "type": "uncached-entry-criteria-list-response",
+                    "nickname": "list-uncached-entry-criteria",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Uncached Entry Criteria to the config",
+                    "nickname": "add-uncached-entry-criteria",
+                    "type": "uncached-entry-criteria-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Uncached Entry Criteria to add",
+                            "name": "add-uncached-entry-criteria-request",
+                            "type": "add-uncached-entry-criteria-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/uncached-entry-criteria/{uncached-entry-criteria-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Uncached Entry Criteria",
+                    "type": "uncached-entry-criteria-response",
+                    "nickname": "get-uncached-entry-criteria",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "uncached-entry-criteria-name",
+                          "description": "Name of the Uncached Entry Criteria",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Uncached Entry Criteria by name, replacing any attributes specified in the request body",
+                    "type": "uncached-entry-criteria-response",
+                    "nickname": "put-uncached-entry-criteria",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "uncached-entry-criteria-name",
+                          "description": "Name of the Uncached Entry Criteria",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Uncached Entry Criteria attributes to update",
+                            "name": "uncached-entry-criteria-properties",
+                            "type": "uncached-entry-criteria-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Uncached Entry Criteria by name, using a SCIM patch request",
+                    "type": "uncached-entry-criteria-response",
+                    "nickname": "patch-uncached-entry-criteria",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "uncached-entry-criteria-name",
+                          "description": "Name of the Uncached Entry Criteria",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Uncached Entry Criteria",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Uncached Entry Criteria",
+                    "nickname": "delete-uncached-entry-criteria",
+                    "parameters": [
+                        {
+                          "name": "uncached-entry-criteria-name",
+                          "description": "Name of the Uncached Entry Criteria",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uncached-entry-criteria-list-response": {
+            "id": "uncached-entry-criteria-list-response",
+            "description": "Uncached Entry Criteria list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "uncached-entry-criteria-response"
+                    }
+                }
+            }
+        },
+        "add-uncached-entry-criteria-request": {
+            "id": "add-uncached-entry-criteria-request",
+            "description": "A Uncached Entry Criteria resource request",
+            "required": [
+                "criteriaName"
+            ],
+            "properties": {
+                "criteriaName": {
+                    "type": "string",
+                    "description": "Name of the new Uncached Entry Criteria"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:default"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:last-access-time"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:filter-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:groovy-scripted"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:third-party"
+                        ]
+                    }
+                },
+                "filter": {
+                    "description": "Specifies the search filter that should be used to differentiate entries into cached and uncached sets.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Uncached Entry Criteria.",
+                    "type": "string"
+                }
+                ,
+                "filterIdentifiesUncachedEntries": {
+                    "description": "Indicates whether the associated filter identifies those entries which should be stored in the uncached-id2entry database (if true) or entries which should be stored in the id2entry database (if false).",
+                    "type": "boolean"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Uncached Entry Criteria",
+                    "type": "string"
+                }
+                ,
+                "accessTimeThreshold": {
+                    "description": "Specifies the maximum length of time that has passed since an entry was last accessed that it should still be included in the id2entry database. Entries that have not been accessed in more than this length of time may be written into the uncached-id2entry database.",
+                    "type": "string"
+                }
+                ,
+                "scriptClass": {
+                    "description": "The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted Uncached Entry Criteria.",
+                    "type": "string"
+                }
+                ,
+                "scriptArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Scripted Uncached Entry Criteria. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Uncached Entry Criteria is enabled for use in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Uncached Entry Criteria. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "uncached-entry-criteria-response": {
+            "id": "uncached-entry-criteria-response",
+            "description": "A Uncached Entry Criteria resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:default"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:last-access-time"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:filter-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:groovy-scripted"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:third-party"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Uncached Entry Criteria"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "filter": {
+                    "description": "Specifies the search filter that should be used to differentiate entries into cached and uncached sets.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Uncached Entry Criteria.",
+                    "type": "string"
+                }
+                ,
+                "filterIdentifiesUncachedEntries": {
+                    "description": "Indicates whether the associated filter identifies those entries which should be stored in the uncached-id2entry database (if true) or entries which should be stored in the id2entry database (if false).",
+                    "type": "boolean"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Uncached Entry Criteria",
+                    "type": "string"
+                }
+                ,
+                "accessTimeThreshold": {
+                    "description": "Specifies the maximum length of time that has passed since an entry was last accessed that it should still be included in the id2entry database. Entries that have not been accessed in more than this length of time may be written into the uncached-id2entry database.",
+                    "type": "string"
+                }
+                ,
+                "scriptClass": {
+                    "description": "The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted Uncached Entry Criteria.",
+                    "type": "string"
+                }
+                ,
+                "scriptArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Scripted Uncached Entry Criteria. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Uncached Entry Criteria is enabled for use in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Uncached Entry Criteria. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "uncached-entry-criteria-properties": {
+            "id": "uncached-entry-criteria-properties",
+            "description": "Uncached Entry Criteria properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:default"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:last-access-time"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:filter-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:groovy-scripted"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:uncached-entry-criteria:third-party"
+                        ]
+                    }
+                },
+                "filter": {
+                    "description": "Specifies the search filter that should be used to differentiate entries into cached and uncached sets.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Uncached Entry Criteria.",
+                    "type": "string"
+                }
+                ,
+                "filterIdentifiesUncachedEntries": {
+                    "description": "Indicates whether the associated filter identifies those entries which should be stored in the uncached-id2entry database (if true) or entries which should be stored in the id2entry database (if false).",
+                    "type": "boolean"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Uncached Entry Criteria",
+                    "type": "string"
+                }
+                ,
+                "accessTimeThreshold": {
+                    "description": "Specifies the maximum length of time that has passed since an entry was last accessed that it should still be included in the id2entry database. Entries that have not been accessed in more than this length of time may be written into the uncached-id2entry database.",
+                    "type": "string"
+                }
+                ,
+                "scriptClass": {
+                    "description": "The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted Uncached Entry Criteria.",
+                    "type": "string"
+                }
+                ,
+                "scriptArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Scripted Uncached Entry Criteria. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Uncached Entry Criteria is enabled for use in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Uncached Entry Criteria. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

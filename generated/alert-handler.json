@@ -1,0 +1,3502 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/alert-handlers",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Alert Handler objects",
+                    "type": "alert-handler-list-response",
+                    "nickname": "list-alert-handlers",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Alert Handler to the config",
+                    "nickname": "add-alert-handler",
+                    "type": "alert-handler-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Alert Handler to add",
+                            "name": "add-alert-handler-request",
+                            "type": "add-alert-handler-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/alert-handlers/{alert-handler-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Alert Handler",
+                    "type": "alert-handler-response",
+                    "nickname": "get-alert-handler",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "alert-handler-name",
+                          "description": "Name of the Alert Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Alert Handler by name, replacing any attributes specified in the request body",
+                    "type": "alert-handler-response",
+                    "nickname": "put-alert-handler",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "alert-handler-name",
+                          "description": "Name of the Alert Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Alert Handler attributes to update",
+                            "name": "alert-handler-properties",
+                            "type": "alert-handler-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Alert Handler by name, using a SCIM patch request",
+                    "type": "alert-handler-response",
+                    "nickname": "patch-alert-handler",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "alert-handler-name",
+                          "description": "Name of the Alert Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Alert Handler",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Alert Handler",
+                    "nickname": "delete-alert-handler",
+                    "parameters": [
+                        {
+                          "name": "alert-handler-name",
+                          "description": "Name of the Alert Handler",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "alert-handler-list-response": {
+            "id": "alert-handler-list-response",
+            "description": "Alert Handler list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "alert-handler-response"
+                    }
+                }
+            }
+        },
+        "add-alert-handler-request": {
+            "id": "add-alert-handler-request",
+            "description": "A Alert Handler resource request",
+            "required": [
+                "handlerName"
+            ],
+            "properties": {
+                "handlerName": {
+                    "type": "string",
+                    "description": "Name of the new Alert Handler"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:output"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:smtp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:jmx"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:groovy-scripted"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:custom"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:snmp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:twilio"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:error-log"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:snmp-sub-agent"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:exec"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:third-party"
+                        ]
+                    }
+                },
+                "outputLocation": {
+                    "description": "The location to which alert messages will be written.",
+                    "type": "string"
+                    , "enum": [
+                        "server-out-file"
+                        ,
+                        "standard-output"
+                        ,
+                        "standard-error"
+                    ]
+                }
+                ,
+                "enabledAlertSeverity": {
+                    "description": "Specifies the alert severities for which this alert handler should be used. If no values are provided, then this alert handler will be enabled for alerts with any severity.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "info"
+                            ,
+                            "warning"
+                            ,
+                            "error"
+                            ,
+                            "fatal"
+                        ]
+                    }
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Alert Handler.",
+                    "type": "string"
+                }
+                ,
+                "senderAddress": {
+                    "description": "Specifies the email address to use as the sender for messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "senderPhoneNumber": {
+                    "description": "The outgoing phone number to use for the messages. Values must be phone numbers you have obtained for use with your Twilio account.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "twilioAccountSID": {
+                    "description": "The unique identifier assigned to the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "twilioAuthToken": {
+                    "description": "The auth token for the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "longMessageBehavior": {
+                    "description": "The behavior to use for alert messages that are longer than the 160-character size limit for SMS messages.",
+                    "type": "string"
+                    , "enum": [
+                        "truncate"
+                        ,
+                        "send-as-multiple-messages"
+                    ]
+                }
+                ,
+                "description": {
+                    "description": "A description for this Alert Handler",
+                    "type": "string"
+                }
+                ,
+                "serverPort": {
+                    "description": "Specifies the port number of the SNMP agent to which traps will be sent.",
+                    "type": "integer"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Alert Handler is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Alert Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "disabledAlertType": {
+                    "description": "Specifies the names of the alert types that are disabled for this alert handler.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "access-control-change"
+                            ,
+                            "access-control-disabled"
+                            ,
+                            "access-control-enabled"
+                            ,
+                            "access-control-parse-failure"
+                            ,
+                            "access-log-criteria-matched"
+                            ,
+                            "alarm-cleared"
+                            ,
+                            "alarm-critical"
+                            ,
+                            "alarm-major"
+                            ,
+                            "alarm-minor"
+                            ,
+                            "alarm-warning"
+                            ,
+                            "backend-disabled"
+                            ,
+                            "backend-initialization-failed"
+                            ,
+                            "backup-failed"
+                            ,
+                            "cannot-acquire-shared-backend-lock"
+                            ,
+                            "cannot-copy-schema-files"
+                            ,
+                            "cannot-decode-entry"
+                            ,
+                            "cannot-find-recurring-task"
+                            ,
+                            "cannot-register-backend"
+                            ,
+                            "cannot-release-shared-backend-lock"
+                            ,
+                            "cannot-rename-current-task-file"
+                            ,
+                            "cannot-rename-new-task-file"
+                            ,
+                            "cannot-restore-backup"
+                            ,
+                            "cannot-schedule-recurring-task-iteration"
+                            ,
+                            "cannot-write-configuration"
+                            ,
+                            "cannot-write-new-schema-files"
+                            ,
+                            "cannot-write-server-state-file"
+                            ,
+                            "cannot-write-task-backing-file"
+                            ,
+                            "config-change"
+                            ,
+                            "console-logger-without-no-detach"
+                            ,
+                            "crypto-manager-error"
+                            ,
+                            "continuous-garbage-collection-detected"
+                            ,
+                            "deadlock-detected"
+                            ,
+                            "debug-logging-enabled"
+                            ,
+                            "delegated-admin-configuration-errors"
+                            ,
+                            "duplicate-alerts-suppressed"
+                            ,
+                            "duplicate-error-alerts-suppressed"
+                            ,
+                            "duplicate-fatal-alerts-suppressed"
+                            ,
+                            "duplicate-info-alerts-suppressed"
+                            ,
+                            "duplicate-warning-alerts-suppressed"
+                            ,
+                            "embedded-postgresql-unavailable"
+                            ,
+                            "entering-lockdown-mode"
+                            ,
+                            "entry-references-removed-attribute-type"
+                            ,
+                            "exec-task-launching-command"
+                            ,
+                            "exploded-index-background-delete-cleanup-failed"
+                            ,
+                            "exploded-index-background-delete-failed"
+                            ,
+                            "external-config-file-edit-handled"
+                            ,
+                            "external-config-file-edit-lost"
+                            ,
+                            "external-server-initialization-failed"
+                            ,
+                            "failed-to-apply-mirrored-configuration"
+                            ,
+                            "file-retention-task-delete-failure"
+                            ,
+                            "force-gc-complete"
+                            ,
+                            "force-gc-starting"
+                            ,
+                            "global-index-insufficient-disk-space-error"
+                            ,
+                            "global-index-persistence-error"
+                            ,
+                            "global-index-read-error"
+                            ,
+                            "global-referential-integrity-update-failure"
+                            ,
+                            "globally-unique-attribute-conflict"
+                            ,
+                            "health-check-available-to-degraded"
+                            ,
+                            "health-check-available-to-unavailable"
+                            ,
+                            "health-check-degraded-to-available"
+                            ,
+                            "health-check-degraded-to-unavailable"
+                            ,
+                            "health-check-unavailable-to-available"
+                            ,
+                            "health-check-unavailable-to-degraded"
+                            ,
+                            "http-connection-handler-duplicate-context-path"
+                            ,
+                            "http-connection-handler-duplicate-servlet-extension"
+                            ,
+                            "index-corrupt"
+                            ,
+                            "index-degraded"
+                            ,
+                            "index-rebuild-completed"
+                            ,
+                            "index-rebuild-in-progress"
+                            ,
+                            "insecure-access-token-validator-enabled"
+                            ,
+                            "invalid-privilege"
+                            ,
+                            "je-background-sync-failed"
+                            ,
+                            "je-cleaner-disabled"
+                            ,
+                            "je-daemon-thread-exception"
+                            ,
+                            "je-environment-not-closed-cleanly"
+                            ,
+                            "je-recovery-required"
+                            ,
+                            "jvm-misconfiguration"
+                            ,
+                            "large-attribute-update-failure"
+                            ,
+                            "lba-no-available-servers"
+                            ,
+                            "ldap-connection-handler-cannot-listen"
+                            ,
+                            "ldap-connection-handler-consecutive-failures"
+                            ,
+                            "ldap-connection-handler-uncaught-error"
+                            ,
+                            "ldif-backend-cannot-write"
+                            ,
+                            "ldif-connection-handler-parse-error"
+                            ,
+                            "ldif-connection-handler-io-error"
+                            ,
+                            "leaving-lockdown-mode"
+                            ,
+                            "log-file-rotation-listener-invoke-error"
+                            ,
+                            "log-file-rotation-listener-processing-takes-too-long"
+                            ,
+                            "logging-error"
+                            ,
+                            "low-disk-space-error"
+                            ,
+                            "low-disk-space-warning"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-error"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-warning"
+                            ,
+                            "mirrored-subtree-manager-no-master-found"
+                            ,
+                            "mirrored-subtree-server-not-in-topology"
+                            ,
+                            "mirrored-subtree-manager-operation-error"
+                            ,
+                            "mirrored-subtree-manager-failed-outbound-connection"
+                            ,
+                            "mirrored-subtree-manager-connection-asymmetry"
+                            ,
+                            "missing-schema-elements-referenced-by-backend"
+                            ,
+                            "monitoring-endpoint-unable-to-connect"
+                            ,
+                            "no-enabled-alert-handlers"
+                            ,
+                            "offline-config-change-detected"
+                            ,
+                            "out-of-disk-space-error"
+                            ,
+                            "pdp-unavailable"
+                            ,
+                            "pdp-trust-framework-version-deprecated"
+                            ,
+                            "proxy-entry-balancing-operation-failure"
+                            ,
+                            "proxy-entry-balancing-error-multiple-operations-succeeded"
+                            ,
+                            "proxy-entry-rebalancing-admin-action-required"
+                            ,
+                            "replication-backlogged"
+                            ,
+                            "replication-metadata-decode-failure"
+                            ,
+                            "replication-missing-changes"
+                            ,
+                            "replication-monitor-data-unavailable"
+                            ,
+                            "replication-plugin-message-serialization-failure"
+                            ,
+                            "replication-server-changelog-failure"
+                            ,
+                            "replication-server-listen-failure"
+                            ,
+                            "replication-unresolved-conflict"
+                            ,
+                            "replication-unsent-changes"
+                            ,
+                            "replication-replay-failed"
+                            ,
+                            "restart-required"
+                            ,
+                            "schema-checking-disabled"
+                            ,
+                            "scim-lookthrough-limit-exceeded"
+                            ,
+                            "restricted-subtree-accessibility"
+                            ,
+                            "server-shutting-down"
+                            ,
+                            "server-starting"
+                            ,
+                            "server-started"
+                            ,
+                            "subtree-delete-interrupted"
+                            ,
+                            "sync-resource-connection-error"
+                            ,
+                            "sync-resource-operation-error"
+                            ,
+                            "sync-pipe-initialization-error"
+                            ,
+                            "sync-pipe-backlog-above-threshold"
+                            ,
+                            "sync-pipe-backlog-below-threshold"
+                            ,
+                            "system-nanotime-stopped"
+                            ,
+                            "system-current-time-shifted"
+                            ,
+                            "task-started"
+                            ,
+                            "task-completed"
+                            ,
+                            "task-failed"
+                            ,
+                            "third-party-extension-exception"
+                            ,
+                            "thread-exit-holding-lock"
+                            ,
+                            "threshold-warning-entry"
+                            ,
+                            "threshold-warning-exit"
+                            ,
+                            "threshold-critical-entry"
+                            ,
+                            "threshold-critical-exit"
+                            ,
+                            "topology-registry-secret-key-deleted"
+                            ,
+                            "uncaught-exception"
+                            ,
+                            "unindexed-internal-search"
+                            ,
+                            "unique-attribute-sync-conflict"
+                            ,
+                            "unique-attribute-sync-error"
+                            ,
+                            "uniqueness-control-post-commit-conflict"
+                            ,
+                            "unlicensed-product"
+                            ,
+                            "unrecognized-alert-type"
+                            ,
+                            "user-defined-error"
+                            ,
+                            "user-defined-fatal"
+                            ,
+                            "user-defined-info"
+                            ,
+                            "user-defined-warning"
+                            ,
+                            "worker-thread-caught-error"
+                            ,
+                            "work-queue-backlogged"
+                            ,
+                            "work-queue-full"
+                            ,
+                            "work-queue-no-threads-remaining"
+                            ,
+                            "server-jvm-paused"
+                            ,
+                            "sensitive-trace-data-logged-warning"
+                            ,
+                            "replication-generation-id-mismatch"
+                            ,
+                            "account-temporarily-locked-account-status-notification"
+                            ,
+                            "account-permanently-locked-account-status-notification"
+                            ,
+                            "account-unlocked-account-status-notification"
+                            ,
+                            "account-idle-locked-account-status-notification"
+                            ,
+                            "account-reset-locked-account-status-notification"
+                            ,
+                            "account-disabled-account-status-notification"
+                            ,
+                            "account-enabled-account-status-notification"
+                            ,
+                            "account-not-yet-active-account-status-notification"
+                            ,
+                            "account-expired-account-status-notification"
+                            ,
+                            "password-expired-account-status-notification"
+                            ,
+                            "password-expiring-account-status-notification"
+                            ,
+                            "password-reset-account-status-notification"
+                            ,
+                            "password-changed-account-status-notification"
+                            ,
+                            "account-created-account-status-notification"
+                            ,
+                            "account-updated-account-status-notification"
+                            ,
+                            "bind-password-failed-validation-account-status-notification"
+                            ,
+                            "must-change-password-account-status-notification"
+                            ,
+                            "privilege-assigned"
+                            ,
+                            "insecure-request-rejected"
+                            ,
+                            "incremental-backups-deprecated"
+                            ,
+                            "replace-certificate-succeeded"
+                            ,
+                            "replace-certificate-failed"
+                        ]
+                    }
+                }
+                ,
+                "includeMonitorDataFilter": {
+                    "description": "Include monitor entries that match this filter.",
+                    "type": "string"
+                }
+                ,
+                "serverHostName": {
+                    "description": "Specifies the address of the SNMP agent to which traps will be sent.",
+                    "type": "string"
+                }
+                ,
+                "asynchronous": {
+                    "description": "Indicates whether the server should attempt to invoke this Alert Handler in a background thread so that any potentially-expensive processing (e.g., performing network communication to deliver the alert notification) will not delay whatever processing the server was performing when the alert was generated.",
+                    "type": "boolean"
+                }
+                ,
+                "communityName": {
+                    "description": "Specifies the name of the community to which the traps will be sent.",
+                    "type": "string"
+                }
+                ,
+                "scriptArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Scripted Alert Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "recipientAddress": {
+                    "description": "Specifies an email address to which the messages should be sent.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "outputFormat": {
+                    "description": "The format to use when writing the alert messages.",
+                    "type": "string"
+                    , "enum": [
+                        "legacy-text"
+                        ,
+                        "single-line-json"
+                        ,
+                        "multi-line-json"
+                    ]
+                }
+                ,
+                "enabledAlertType": {
+                    "description": "Specifies the names of the alert types that are enabled for this alert handler.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "access-control-change"
+                            ,
+                            "access-control-disabled"
+                            ,
+                            "access-control-enabled"
+                            ,
+                            "access-control-parse-failure"
+                            ,
+                            "access-log-criteria-matched"
+                            ,
+                            "alarm-cleared"
+                            ,
+                            "alarm-critical"
+                            ,
+                            "alarm-major"
+                            ,
+                            "alarm-minor"
+                            ,
+                            "alarm-warning"
+                            ,
+                            "backend-disabled"
+                            ,
+                            "backend-initialization-failed"
+                            ,
+                            "backup-failed"
+                            ,
+                            "cannot-acquire-shared-backend-lock"
+                            ,
+                            "cannot-copy-schema-files"
+                            ,
+                            "cannot-decode-entry"
+                            ,
+                            "cannot-find-recurring-task"
+                            ,
+                            "cannot-register-backend"
+                            ,
+                            "cannot-release-shared-backend-lock"
+                            ,
+                            "cannot-rename-current-task-file"
+                            ,
+                            "cannot-rename-new-task-file"
+                            ,
+                            "cannot-restore-backup"
+                            ,
+                            "cannot-schedule-recurring-task-iteration"
+                            ,
+                            "cannot-write-configuration"
+                            ,
+                            "cannot-write-new-schema-files"
+                            ,
+                            "cannot-write-server-state-file"
+                            ,
+                            "cannot-write-task-backing-file"
+                            ,
+                            "config-change"
+                            ,
+                            "console-logger-without-no-detach"
+                            ,
+                            "crypto-manager-error"
+                            ,
+                            "continuous-garbage-collection-detected"
+                            ,
+                            "deadlock-detected"
+                            ,
+                            "debug-logging-enabled"
+                            ,
+                            "delegated-admin-configuration-errors"
+                            ,
+                            "duplicate-alerts-suppressed"
+                            ,
+                            "duplicate-error-alerts-suppressed"
+                            ,
+                            "duplicate-fatal-alerts-suppressed"
+                            ,
+                            "duplicate-info-alerts-suppressed"
+                            ,
+                            "duplicate-warning-alerts-suppressed"
+                            ,
+                            "embedded-postgresql-unavailable"
+                            ,
+                            "entering-lockdown-mode"
+                            ,
+                            "entry-references-removed-attribute-type"
+                            ,
+                            "exec-task-launching-command"
+                            ,
+                            "exploded-index-background-delete-cleanup-failed"
+                            ,
+                            "exploded-index-background-delete-failed"
+                            ,
+                            "external-config-file-edit-handled"
+                            ,
+                            "external-config-file-edit-lost"
+                            ,
+                            "external-server-initialization-failed"
+                            ,
+                            "failed-to-apply-mirrored-configuration"
+                            ,
+                            "file-retention-task-delete-failure"
+                            ,
+                            "force-gc-complete"
+                            ,
+                            "force-gc-starting"
+                            ,
+                            "global-index-insufficient-disk-space-error"
+                            ,
+                            "global-index-persistence-error"
+                            ,
+                            "global-index-read-error"
+                            ,
+                            "global-referential-integrity-update-failure"
+                            ,
+                            "globally-unique-attribute-conflict"
+                            ,
+                            "health-check-available-to-degraded"
+                            ,
+                            "health-check-available-to-unavailable"
+                            ,
+                            "health-check-degraded-to-available"
+                            ,
+                            "health-check-degraded-to-unavailable"
+                            ,
+                            "health-check-unavailable-to-available"
+                            ,
+                            "health-check-unavailable-to-degraded"
+                            ,
+                            "http-connection-handler-duplicate-context-path"
+                            ,
+                            "http-connection-handler-duplicate-servlet-extension"
+                            ,
+                            "index-corrupt"
+                            ,
+                            "index-degraded"
+                            ,
+                            "index-rebuild-completed"
+                            ,
+                            "index-rebuild-in-progress"
+                            ,
+                            "insecure-access-token-validator-enabled"
+                            ,
+                            "invalid-privilege"
+                            ,
+                            "je-background-sync-failed"
+                            ,
+                            "je-cleaner-disabled"
+                            ,
+                            "je-daemon-thread-exception"
+                            ,
+                            "je-environment-not-closed-cleanly"
+                            ,
+                            "je-recovery-required"
+                            ,
+                            "jvm-misconfiguration"
+                            ,
+                            "large-attribute-update-failure"
+                            ,
+                            "lba-no-available-servers"
+                            ,
+                            "ldap-connection-handler-cannot-listen"
+                            ,
+                            "ldap-connection-handler-consecutive-failures"
+                            ,
+                            "ldap-connection-handler-uncaught-error"
+                            ,
+                            "ldif-backend-cannot-write"
+                            ,
+                            "ldif-connection-handler-parse-error"
+                            ,
+                            "ldif-connection-handler-io-error"
+                            ,
+                            "leaving-lockdown-mode"
+                            ,
+                            "log-file-rotation-listener-invoke-error"
+                            ,
+                            "log-file-rotation-listener-processing-takes-too-long"
+                            ,
+                            "logging-error"
+                            ,
+                            "low-disk-space-error"
+                            ,
+                            "low-disk-space-warning"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-error"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-warning"
+                            ,
+                            "mirrored-subtree-manager-no-master-found"
+                            ,
+                            "mirrored-subtree-server-not-in-topology"
+                            ,
+                            "mirrored-subtree-manager-operation-error"
+                            ,
+                            "mirrored-subtree-manager-failed-outbound-connection"
+                            ,
+                            "mirrored-subtree-manager-connection-asymmetry"
+                            ,
+                            "missing-schema-elements-referenced-by-backend"
+                            ,
+                            "monitoring-endpoint-unable-to-connect"
+                            ,
+                            "no-enabled-alert-handlers"
+                            ,
+                            "offline-config-change-detected"
+                            ,
+                            "out-of-disk-space-error"
+                            ,
+                            "pdp-unavailable"
+                            ,
+                            "pdp-trust-framework-version-deprecated"
+                            ,
+                            "proxy-entry-balancing-operation-failure"
+                            ,
+                            "proxy-entry-balancing-error-multiple-operations-succeeded"
+                            ,
+                            "proxy-entry-rebalancing-admin-action-required"
+                            ,
+                            "replication-backlogged"
+                            ,
+                            "replication-metadata-decode-failure"
+                            ,
+                            "replication-missing-changes"
+                            ,
+                            "replication-monitor-data-unavailable"
+                            ,
+                            "replication-plugin-message-serialization-failure"
+                            ,
+                            "replication-server-changelog-failure"
+                            ,
+                            "replication-server-listen-failure"
+                            ,
+                            "replication-unresolved-conflict"
+                            ,
+                            "replication-unsent-changes"
+                            ,
+                            "replication-replay-failed"
+                            ,
+                            "restart-required"
+                            ,
+                            "schema-checking-disabled"
+                            ,
+                            "scim-lookthrough-limit-exceeded"
+                            ,
+                            "restricted-subtree-accessibility"
+                            ,
+                            "server-shutting-down"
+                            ,
+                            "server-starting"
+                            ,
+                            "server-started"
+                            ,
+                            "subtree-delete-interrupted"
+                            ,
+                            "sync-resource-connection-error"
+                            ,
+                            "sync-resource-operation-error"
+                            ,
+                            "sync-pipe-initialization-error"
+                            ,
+                            "sync-pipe-backlog-above-threshold"
+                            ,
+                            "sync-pipe-backlog-below-threshold"
+                            ,
+                            "system-nanotime-stopped"
+                            ,
+                            "system-current-time-shifted"
+                            ,
+                            "task-started"
+                            ,
+                            "task-completed"
+                            ,
+                            "task-failed"
+                            ,
+                            "third-party-extension-exception"
+                            ,
+                            "thread-exit-holding-lock"
+                            ,
+                            "threshold-warning-entry"
+                            ,
+                            "threshold-warning-exit"
+                            ,
+                            "threshold-critical-entry"
+                            ,
+                            "threshold-critical-exit"
+                            ,
+                            "topology-registry-secret-key-deleted"
+                            ,
+                            "uncaught-exception"
+                            ,
+                            "unindexed-internal-search"
+                            ,
+                            "unique-attribute-sync-conflict"
+                            ,
+                            "unique-attribute-sync-error"
+                            ,
+                            "uniqueness-control-post-commit-conflict"
+                            ,
+                            "unlicensed-product"
+                            ,
+                            "unrecognized-alert-type"
+                            ,
+                            "user-defined-error"
+                            ,
+                            "user-defined-fatal"
+                            ,
+                            "user-defined-info"
+                            ,
+                            "user-defined-warning"
+                            ,
+                            "worker-thread-caught-error"
+                            ,
+                            "work-queue-backlogged"
+                            ,
+                            "work-queue-full"
+                            ,
+                            "work-queue-no-threads-remaining"
+                            ,
+                            "server-jvm-paused"
+                            ,
+                            "sensitive-trace-data-logged-warning"
+                            ,
+                            "replication-generation-id-mismatch"
+                            ,
+                            "account-temporarily-locked-account-status-notification"
+                            ,
+                            "account-permanently-locked-account-status-notification"
+                            ,
+                            "account-unlocked-account-status-notification"
+                            ,
+                            "account-idle-locked-account-status-notification"
+                            ,
+                            "account-reset-locked-account-status-notification"
+                            ,
+                            "account-disabled-account-status-notification"
+                            ,
+                            "account-enabled-account-status-notification"
+                            ,
+                            "account-not-yet-active-account-status-notification"
+                            ,
+                            "account-expired-account-status-notification"
+                            ,
+                            "password-expired-account-status-notification"
+                            ,
+                            "password-expiring-account-status-notification"
+                            ,
+                            "password-reset-account-status-notification"
+                            ,
+                            "password-changed-account-status-notification"
+                            ,
+                            "account-created-account-status-notification"
+                            ,
+                            "account-updated-account-status-notification"
+                            ,
+                            "bind-password-failed-validation-account-status-notification"
+                            ,
+                            "must-change-password-account-status-notification"
+                            ,
+                            "privilege-assigned"
+                            ,
+                            "insecure-request-rejected"
+                            ,
+                            "incremental-backups-deprecated"
+                            ,
+                            "replace-certificate-succeeded"
+                            ,
+                            "replace-certificate-failed"
+                        ]
+                    }
+                }
+                ,
+                "twilioAuthTokenPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the auth token for the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "messageBody": {
+                    "description": "Specifies the body that should be used for email messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "messageSubject": {
+                    "description": "Specifies the subject that should be used for email messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "scriptClass": {
+                    "description": "The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted Alert Handler.",
+                    "type": "string"
+                }
+                ,
+                "command": {
+                    "description": "Specifies the path of the command to execute, without any arguments. It must be an absolute path for reasons of security and reliability.",
+                    "type": "string"
+                }
+                ,
+                "recipientPhoneNumber": {
+                    "description": "The phone number to which alert notifications should be delivered.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Twilio service.",
+                    "type": "string"
+                }
+            }
+        },
+        "alert-handler-response": {
+            "id": "alert-handler-response",
+            "description": "A Alert Handler resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:output"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:smtp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:jmx"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:groovy-scripted"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:custom"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:snmp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:twilio"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:error-log"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:snmp-sub-agent"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:exec"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:third-party"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Alert Handler"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "outputLocation": {
+                    "description": "The location to which alert messages will be written.",
+                    "type": "string"
+                    , "enum": [
+                        "server-out-file"
+                        ,
+                        "standard-output"
+                        ,
+                        "standard-error"
+                    ]
+                }
+                ,
+                "enabledAlertSeverity": {
+                    "description": "Specifies the alert severities for which this alert handler should be used. If no values are provided, then this alert handler will be enabled for alerts with any severity.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "info"
+                            ,
+                            "warning"
+                            ,
+                            "error"
+                            ,
+                            "fatal"
+                        ]
+                    }
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Alert Handler.",
+                    "type": "string"
+                }
+                ,
+                "senderAddress": {
+                    "description": "Specifies the email address to use as the sender for messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "senderPhoneNumber": {
+                    "description": "The outgoing phone number to use for the messages. Values must be phone numbers you have obtained for use with your Twilio account.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "twilioAccountSID": {
+                    "description": "The unique identifier assigned to the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "twilioAuthToken": {
+                    "description": "The auth token for the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "longMessageBehavior": {
+                    "description": "The behavior to use for alert messages that are longer than the 160-character size limit for SMS messages.",
+                    "type": "string"
+                    , "enum": [
+                        "truncate"
+                        ,
+                        "send-as-multiple-messages"
+                    ]
+                }
+                ,
+                "description": {
+                    "description": "A description for this Alert Handler",
+                    "type": "string"
+                }
+                ,
+                "serverPort": {
+                    "description": "Specifies the port number of the SNMP agent to which traps will be sent.",
+                    "type": "integer"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Alert Handler is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Alert Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "disabledAlertType": {
+                    "description": "Specifies the names of the alert types that are disabled for this alert handler.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "access-control-change"
+                            ,
+                            "access-control-disabled"
+                            ,
+                            "access-control-enabled"
+                            ,
+                            "access-control-parse-failure"
+                            ,
+                            "access-log-criteria-matched"
+                            ,
+                            "alarm-cleared"
+                            ,
+                            "alarm-critical"
+                            ,
+                            "alarm-major"
+                            ,
+                            "alarm-minor"
+                            ,
+                            "alarm-warning"
+                            ,
+                            "backend-disabled"
+                            ,
+                            "backend-initialization-failed"
+                            ,
+                            "backup-failed"
+                            ,
+                            "cannot-acquire-shared-backend-lock"
+                            ,
+                            "cannot-copy-schema-files"
+                            ,
+                            "cannot-decode-entry"
+                            ,
+                            "cannot-find-recurring-task"
+                            ,
+                            "cannot-register-backend"
+                            ,
+                            "cannot-release-shared-backend-lock"
+                            ,
+                            "cannot-rename-current-task-file"
+                            ,
+                            "cannot-rename-new-task-file"
+                            ,
+                            "cannot-restore-backup"
+                            ,
+                            "cannot-schedule-recurring-task-iteration"
+                            ,
+                            "cannot-write-configuration"
+                            ,
+                            "cannot-write-new-schema-files"
+                            ,
+                            "cannot-write-server-state-file"
+                            ,
+                            "cannot-write-task-backing-file"
+                            ,
+                            "config-change"
+                            ,
+                            "console-logger-without-no-detach"
+                            ,
+                            "crypto-manager-error"
+                            ,
+                            "continuous-garbage-collection-detected"
+                            ,
+                            "deadlock-detected"
+                            ,
+                            "debug-logging-enabled"
+                            ,
+                            "delegated-admin-configuration-errors"
+                            ,
+                            "duplicate-alerts-suppressed"
+                            ,
+                            "duplicate-error-alerts-suppressed"
+                            ,
+                            "duplicate-fatal-alerts-suppressed"
+                            ,
+                            "duplicate-info-alerts-suppressed"
+                            ,
+                            "duplicate-warning-alerts-suppressed"
+                            ,
+                            "embedded-postgresql-unavailable"
+                            ,
+                            "entering-lockdown-mode"
+                            ,
+                            "entry-references-removed-attribute-type"
+                            ,
+                            "exec-task-launching-command"
+                            ,
+                            "exploded-index-background-delete-cleanup-failed"
+                            ,
+                            "exploded-index-background-delete-failed"
+                            ,
+                            "external-config-file-edit-handled"
+                            ,
+                            "external-config-file-edit-lost"
+                            ,
+                            "external-server-initialization-failed"
+                            ,
+                            "failed-to-apply-mirrored-configuration"
+                            ,
+                            "file-retention-task-delete-failure"
+                            ,
+                            "force-gc-complete"
+                            ,
+                            "force-gc-starting"
+                            ,
+                            "global-index-insufficient-disk-space-error"
+                            ,
+                            "global-index-persistence-error"
+                            ,
+                            "global-index-read-error"
+                            ,
+                            "global-referential-integrity-update-failure"
+                            ,
+                            "globally-unique-attribute-conflict"
+                            ,
+                            "health-check-available-to-degraded"
+                            ,
+                            "health-check-available-to-unavailable"
+                            ,
+                            "health-check-degraded-to-available"
+                            ,
+                            "health-check-degraded-to-unavailable"
+                            ,
+                            "health-check-unavailable-to-available"
+                            ,
+                            "health-check-unavailable-to-degraded"
+                            ,
+                            "http-connection-handler-duplicate-context-path"
+                            ,
+                            "http-connection-handler-duplicate-servlet-extension"
+                            ,
+                            "index-corrupt"
+                            ,
+                            "index-degraded"
+                            ,
+                            "index-rebuild-completed"
+                            ,
+                            "index-rebuild-in-progress"
+                            ,
+                            "insecure-access-token-validator-enabled"
+                            ,
+                            "invalid-privilege"
+                            ,
+                            "je-background-sync-failed"
+                            ,
+                            "je-cleaner-disabled"
+                            ,
+                            "je-daemon-thread-exception"
+                            ,
+                            "je-environment-not-closed-cleanly"
+                            ,
+                            "je-recovery-required"
+                            ,
+                            "jvm-misconfiguration"
+                            ,
+                            "large-attribute-update-failure"
+                            ,
+                            "lba-no-available-servers"
+                            ,
+                            "ldap-connection-handler-cannot-listen"
+                            ,
+                            "ldap-connection-handler-consecutive-failures"
+                            ,
+                            "ldap-connection-handler-uncaught-error"
+                            ,
+                            "ldif-backend-cannot-write"
+                            ,
+                            "ldif-connection-handler-parse-error"
+                            ,
+                            "ldif-connection-handler-io-error"
+                            ,
+                            "leaving-lockdown-mode"
+                            ,
+                            "log-file-rotation-listener-invoke-error"
+                            ,
+                            "log-file-rotation-listener-processing-takes-too-long"
+                            ,
+                            "logging-error"
+                            ,
+                            "low-disk-space-error"
+                            ,
+                            "low-disk-space-warning"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-error"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-warning"
+                            ,
+                            "mirrored-subtree-manager-no-master-found"
+                            ,
+                            "mirrored-subtree-server-not-in-topology"
+                            ,
+                            "mirrored-subtree-manager-operation-error"
+                            ,
+                            "mirrored-subtree-manager-failed-outbound-connection"
+                            ,
+                            "mirrored-subtree-manager-connection-asymmetry"
+                            ,
+                            "missing-schema-elements-referenced-by-backend"
+                            ,
+                            "monitoring-endpoint-unable-to-connect"
+                            ,
+                            "no-enabled-alert-handlers"
+                            ,
+                            "offline-config-change-detected"
+                            ,
+                            "out-of-disk-space-error"
+                            ,
+                            "pdp-unavailable"
+                            ,
+                            "pdp-trust-framework-version-deprecated"
+                            ,
+                            "proxy-entry-balancing-operation-failure"
+                            ,
+                            "proxy-entry-balancing-error-multiple-operations-succeeded"
+                            ,
+                            "proxy-entry-rebalancing-admin-action-required"
+                            ,
+                            "replication-backlogged"
+                            ,
+                            "replication-metadata-decode-failure"
+                            ,
+                            "replication-missing-changes"
+                            ,
+                            "replication-monitor-data-unavailable"
+                            ,
+                            "replication-plugin-message-serialization-failure"
+                            ,
+                            "replication-server-changelog-failure"
+                            ,
+                            "replication-server-listen-failure"
+                            ,
+                            "replication-unresolved-conflict"
+                            ,
+                            "replication-unsent-changes"
+                            ,
+                            "replication-replay-failed"
+                            ,
+                            "restart-required"
+                            ,
+                            "schema-checking-disabled"
+                            ,
+                            "scim-lookthrough-limit-exceeded"
+                            ,
+                            "restricted-subtree-accessibility"
+                            ,
+                            "server-shutting-down"
+                            ,
+                            "server-starting"
+                            ,
+                            "server-started"
+                            ,
+                            "subtree-delete-interrupted"
+                            ,
+                            "sync-resource-connection-error"
+                            ,
+                            "sync-resource-operation-error"
+                            ,
+                            "sync-pipe-initialization-error"
+                            ,
+                            "sync-pipe-backlog-above-threshold"
+                            ,
+                            "sync-pipe-backlog-below-threshold"
+                            ,
+                            "system-nanotime-stopped"
+                            ,
+                            "system-current-time-shifted"
+                            ,
+                            "task-started"
+                            ,
+                            "task-completed"
+                            ,
+                            "task-failed"
+                            ,
+                            "third-party-extension-exception"
+                            ,
+                            "thread-exit-holding-lock"
+                            ,
+                            "threshold-warning-entry"
+                            ,
+                            "threshold-warning-exit"
+                            ,
+                            "threshold-critical-entry"
+                            ,
+                            "threshold-critical-exit"
+                            ,
+                            "topology-registry-secret-key-deleted"
+                            ,
+                            "uncaught-exception"
+                            ,
+                            "unindexed-internal-search"
+                            ,
+                            "unique-attribute-sync-conflict"
+                            ,
+                            "unique-attribute-sync-error"
+                            ,
+                            "uniqueness-control-post-commit-conflict"
+                            ,
+                            "unlicensed-product"
+                            ,
+                            "unrecognized-alert-type"
+                            ,
+                            "user-defined-error"
+                            ,
+                            "user-defined-fatal"
+                            ,
+                            "user-defined-info"
+                            ,
+                            "user-defined-warning"
+                            ,
+                            "worker-thread-caught-error"
+                            ,
+                            "work-queue-backlogged"
+                            ,
+                            "work-queue-full"
+                            ,
+                            "work-queue-no-threads-remaining"
+                            ,
+                            "server-jvm-paused"
+                            ,
+                            "sensitive-trace-data-logged-warning"
+                            ,
+                            "replication-generation-id-mismatch"
+                            ,
+                            "account-temporarily-locked-account-status-notification"
+                            ,
+                            "account-permanently-locked-account-status-notification"
+                            ,
+                            "account-unlocked-account-status-notification"
+                            ,
+                            "account-idle-locked-account-status-notification"
+                            ,
+                            "account-reset-locked-account-status-notification"
+                            ,
+                            "account-disabled-account-status-notification"
+                            ,
+                            "account-enabled-account-status-notification"
+                            ,
+                            "account-not-yet-active-account-status-notification"
+                            ,
+                            "account-expired-account-status-notification"
+                            ,
+                            "password-expired-account-status-notification"
+                            ,
+                            "password-expiring-account-status-notification"
+                            ,
+                            "password-reset-account-status-notification"
+                            ,
+                            "password-changed-account-status-notification"
+                            ,
+                            "account-created-account-status-notification"
+                            ,
+                            "account-updated-account-status-notification"
+                            ,
+                            "bind-password-failed-validation-account-status-notification"
+                            ,
+                            "must-change-password-account-status-notification"
+                            ,
+                            "privilege-assigned"
+                            ,
+                            "insecure-request-rejected"
+                            ,
+                            "incremental-backups-deprecated"
+                            ,
+                            "replace-certificate-succeeded"
+                            ,
+                            "replace-certificate-failed"
+                        ]
+                    }
+                }
+                ,
+                "includeMonitorDataFilter": {
+                    "description": "Include monitor entries that match this filter.",
+                    "type": "string"
+                }
+                ,
+                "serverHostName": {
+                    "description": "Specifies the address of the SNMP agent to which traps will be sent.",
+                    "type": "string"
+                }
+                ,
+                "asynchronous": {
+                    "description": "Indicates whether the server should attempt to invoke this Alert Handler in a background thread so that any potentially-expensive processing (e.g., performing network communication to deliver the alert notification) will not delay whatever processing the server was performing when the alert was generated.",
+                    "type": "boolean"
+                }
+                ,
+                "communityName": {
+                    "description": "Specifies the name of the community to which the traps will be sent.",
+                    "type": "string"
+                }
+                ,
+                "scriptArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Scripted Alert Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "recipientAddress": {
+                    "description": "Specifies an email address to which the messages should be sent.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "outputFormat": {
+                    "description": "The format to use when writing the alert messages.",
+                    "type": "string"
+                    , "enum": [
+                        "legacy-text"
+                        ,
+                        "single-line-json"
+                        ,
+                        "multi-line-json"
+                    ]
+                }
+                ,
+                "enabledAlertType": {
+                    "description": "Specifies the names of the alert types that are enabled for this alert handler.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "access-control-change"
+                            ,
+                            "access-control-disabled"
+                            ,
+                            "access-control-enabled"
+                            ,
+                            "access-control-parse-failure"
+                            ,
+                            "access-log-criteria-matched"
+                            ,
+                            "alarm-cleared"
+                            ,
+                            "alarm-critical"
+                            ,
+                            "alarm-major"
+                            ,
+                            "alarm-minor"
+                            ,
+                            "alarm-warning"
+                            ,
+                            "backend-disabled"
+                            ,
+                            "backend-initialization-failed"
+                            ,
+                            "backup-failed"
+                            ,
+                            "cannot-acquire-shared-backend-lock"
+                            ,
+                            "cannot-copy-schema-files"
+                            ,
+                            "cannot-decode-entry"
+                            ,
+                            "cannot-find-recurring-task"
+                            ,
+                            "cannot-register-backend"
+                            ,
+                            "cannot-release-shared-backend-lock"
+                            ,
+                            "cannot-rename-current-task-file"
+                            ,
+                            "cannot-rename-new-task-file"
+                            ,
+                            "cannot-restore-backup"
+                            ,
+                            "cannot-schedule-recurring-task-iteration"
+                            ,
+                            "cannot-write-configuration"
+                            ,
+                            "cannot-write-new-schema-files"
+                            ,
+                            "cannot-write-server-state-file"
+                            ,
+                            "cannot-write-task-backing-file"
+                            ,
+                            "config-change"
+                            ,
+                            "console-logger-without-no-detach"
+                            ,
+                            "crypto-manager-error"
+                            ,
+                            "continuous-garbage-collection-detected"
+                            ,
+                            "deadlock-detected"
+                            ,
+                            "debug-logging-enabled"
+                            ,
+                            "delegated-admin-configuration-errors"
+                            ,
+                            "duplicate-alerts-suppressed"
+                            ,
+                            "duplicate-error-alerts-suppressed"
+                            ,
+                            "duplicate-fatal-alerts-suppressed"
+                            ,
+                            "duplicate-info-alerts-suppressed"
+                            ,
+                            "duplicate-warning-alerts-suppressed"
+                            ,
+                            "embedded-postgresql-unavailable"
+                            ,
+                            "entering-lockdown-mode"
+                            ,
+                            "entry-references-removed-attribute-type"
+                            ,
+                            "exec-task-launching-command"
+                            ,
+                            "exploded-index-background-delete-cleanup-failed"
+                            ,
+                            "exploded-index-background-delete-failed"
+                            ,
+                            "external-config-file-edit-handled"
+                            ,
+                            "external-config-file-edit-lost"
+                            ,
+                            "external-server-initialization-failed"
+                            ,
+                            "failed-to-apply-mirrored-configuration"
+                            ,
+                            "file-retention-task-delete-failure"
+                            ,
+                            "force-gc-complete"
+                            ,
+                            "force-gc-starting"
+                            ,
+                            "global-index-insufficient-disk-space-error"
+                            ,
+                            "global-index-persistence-error"
+                            ,
+                            "global-index-read-error"
+                            ,
+                            "global-referential-integrity-update-failure"
+                            ,
+                            "globally-unique-attribute-conflict"
+                            ,
+                            "health-check-available-to-degraded"
+                            ,
+                            "health-check-available-to-unavailable"
+                            ,
+                            "health-check-degraded-to-available"
+                            ,
+                            "health-check-degraded-to-unavailable"
+                            ,
+                            "health-check-unavailable-to-available"
+                            ,
+                            "health-check-unavailable-to-degraded"
+                            ,
+                            "http-connection-handler-duplicate-context-path"
+                            ,
+                            "http-connection-handler-duplicate-servlet-extension"
+                            ,
+                            "index-corrupt"
+                            ,
+                            "index-degraded"
+                            ,
+                            "index-rebuild-completed"
+                            ,
+                            "index-rebuild-in-progress"
+                            ,
+                            "insecure-access-token-validator-enabled"
+                            ,
+                            "invalid-privilege"
+                            ,
+                            "je-background-sync-failed"
+                            ,
+                            "je-cleaner-disabled"
+                            ,
+                            "je-daemon-thread-exception"
+                            ,
+                            "je-environment-not-closed-cleanly"
+                            ,
+                            "je-recovery-required"
+                            ,
+                            "jvm-misconfiguration"
+                            ,
+                            "large-attribute-update-failure"
+                            ,
+                            "lba-no-available-servers"
+                            ,
+                            "ldap-connection-handler-cannot-listen"
+                            ,
+                            "ldap-connection-handler-consecutive-failures"
+                            ,
+                            "ldap-connection-handler-uncaught-error"
+                            ,
+                            "ldif-backend-cannot-write"
+                            ,
+                            "ldif-connection-handler-parse-error"
+                            ,
+                            "ldif-connection-handler-io-error"
+                            ,
+                            "leaving-lockdown-mode"
+                            ,
+                            "log-file-rotation-listener-invoke-error"
+                            ,
+                            "log-file-rotation-listener-processing-takes-too-long"
+                            ,
+                            "logging-error"
+                            ,
+                            "low-disk-space-error"
+                            ,
+                            "low-disk-space-warning"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-error"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-warning"
+                            ,
+                            "mirrored-subtree-manager-no-master-found"
+                            ,
+                            "mirrored-subtree-server-not-in-topology"
+                            ,
+                            "mirrored-subtree-manager-operation-error"
+                            ,
+                            "mirrored-subtree-manager-failed-outbound-connection"
+                            ,
+                            "mirrored-subtree-manager-connection-asymmetry"
+                            ,
+                            "missing-schema-elements-referenced-by-backend"
+                            ,
+                            "monitoring-endpoint-unable-to-connect"
+                            ,
+                            "no-enabled-alert-handlers"
+                            ,
+                            "offline-config-change-detected"
+                            ,
+                            "out-of-disk-space-error"
+                            ,
+                            "pdp-unavailable"
+                            ,
+                            "pdp-trust-framework-version-deprecated"
+                            ,
+                            "proxy-entry-balancing-operation-failure"
+                            ,
+                            "proxy-entry-balancing-error-multiple-operations-succeeded"
+                            ,
+                            "proxy-entry-rebalancing-admin-action-required"
+                            ,
+                            "replication-backlogged"
+                            ,
+                            "replication-metadata-decode-failure"
+                            ,
+                            "replication-missing-changes"
+                            ,
+                            "replication-monitor-data-unavailable"
+                            ,
+                            "replication-plugin-message-serialization-failure"
+                            ,
+                            "replication-server-changelog-failure"
+                            ,
+                            "replication-server-listen-failure"
+                            ,
+                            "replication-unresolved-conflict"
+                            ,
+                            "replication-unsent-changes"
+                            ,
+                            "replication-replay-failed"
+                            ,
+                            "restart-required"
+                            ,
+                            "schema-checking-disabled"
+                            ,
+                            "scim-lookthrough-limit-exceeded"
+                            ,
+                            "restricted-subtree-accessibility"
+                            ,
+                            "server-shutting-down"
+                            ,
+                            "server-starting"
+                            ,
+                            "server-started"
+                            ,
+                            "subtree-delete-interrupted"
+                            ,
+                            "sync-resource-connection-error"
+                            ,
+                            "sync-resource-operation-error"
+                            ,
+                            "sync-pipe-initialization-error"
+                            ,
+                            "sync-pipe-backlog-above-threshold"
+                            ,
+                            "sync-pipe-backlog-below-threshold"
+                            ,
+                            "system-nanotime-stopped"
+                            ,
+                            "system-current-time-shifted"
+                            ,
+                            "task-started"
+                            ,
+                            "task-completed"
+                            ,
+                            "task-failed"
+                            ,
+                            "third-party-extension-exception"
+                            ,
+                            "thread-exit-holding-lock"
+                            ,
+                            "threshold-warning-entry"
+                            ,
+                            "threshold-warning-exit"
+                            ,
+                            "threshold-critical-entry"
+                            ,
+                            "threshold-critical-exit"
+                            ,
+                            "topology-registry-secret-key-deleted"
+                            ,
+                            "uncaught-exception"
+                            ,
+                            "unindexed-internal-search"
+                            ,
+                            "unique-attribute-sync-conflict"
+                            ,
+                            "unique-attribute-sync-error"
+                            ,
+                            "uniqueness-control-post-commit-conflict"
+                            ,
+                            "unlicensed-product"
+                            ,
+                            "unrecognized-alert-type"
+                            ,
+                            "user-defined-error"
+                            ,
+                            "user-defined-fatal"
+                            ,
+                            "user-defined-info"
+                            ,
+                            "user-defined-warning"
+                            ,
+                            "worker-thread-caught-error"
+                            ,
+                            "work-queue-backlogged"
+                            ,
+                            "work-queue-full"
+                            ,
+                            "work-queue-no-threads-remaining"
+                            ,
+                            "server-jvm-paused"
+                            ,
+                            "sensitive-trace-data-logged-warning"
+                            ,
+                            "replication-generation-id-mismatch"
+                            ,
+                            "account-temporarily-locked-account-status-notification"
+                            ,
+                            "account-permanently-locked-account-status-notification"
+                            ,
+                            "account-unlocked-account-status-notification"
+                            ,
+                            "account-idle-locked-account-status-notification"
+                            ,
+                            "account-reset-locked-account-status-notification"
+                            ,
+                            "account-disabled-account-status-notification"
+                            ,
+                            "account-enabled-account-status-notification"
+                            ,
+                            "account-not-yet-active-account-status-notification"
+                            ,
+                            "account-expired-account-status-notification"
+                            ,
+                            "password-expired-account-status-notification"
+                            ,
+                            "password-expiring-account-status-notification"
+                            ,
+                            "password-reset-account-status-notification"
+                            ,
+                            "password-changed-account-status-notification"
+                            ,
+                            "account-created-account-status-notification"
+                            ,
+                            "account-updated-account-status-notification"
+                            ,
+                            "bind-password-failed-validation-account-status-notification"
+                            ,
+                            "must-change-password-account-status-notification"
+                            ,
+                            "privilege-assigned"
+                            ,
+                            "insecure-request-rejected"
+                            ,
+                            "incremental-backups-deprecated"
+                            ,
+                            "replace-certificate-succeeded"
+                            ,
+                            "replace-certificate-failed"
+                        ]
+                    }
+                }
+                ,
+                "twilioAuthTokenPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the auth token for the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "messageBody": {
+                    "description": "Specifies the body that should be used for email messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "messageSubject": {
+                    "description": "Specifies the subject that should be used for email messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "scriptClass": {
+                    "description": "The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted Alert Handler.",
+                    "type": "string"
+                }
+                ,
+                "command": {
+                    "description": "Specifies the path of the command to execute, without any arguments. It must be an absolute path for reasons of security and reliability.",
+                    "type": "string"
+                }
+                ,
+                "recipientPhoneNumber": {
+                    "description": "The phone number to which alert notifications should be delivered.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Twilio service.",
+                    "type": "string"
+                }
+            }
+        },
+        "alert-handler-properties": {
+            "id": "alert-handler-properties",
+            "description": "Alert Handler properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:output"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:smtp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:jmx"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:groovy-scripted"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:custom"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:snmp"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:twilio"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:error-log"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:snmp-sub-agent"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:exec"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:alert-handler:third-party"
+                        ]
+                    }
+                },
+                "outputLocation": {
+                    "description": "The location to which alert messages will be written.",
+                    "type": "string"
+                    , "enum": [
+                        "server-out-file"
+                        ,
+                        "standard-output"
+                        ,
+                        "standard-error"
+                    ]
+                }
+                ,
+                "enabledAlertSeverity": {
+                    "description": "Specifies the alert severities for which this alert handler should be used. If no values are provided, then this alert handler will be enabled for alerts with any severity.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "info"
+                            ,
+                            "warning"
+                            ,
+                            "error"
+                            ,
+                            "fatal"
+                        ]
+                    }
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Alert Handler.",
+                    "type": "string"
+                }
+                ,
+                "senderAddress": {
+                    "description": "Specifies the email address to use as the sender for messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "senderPhoneNumber": {
+                    "description": "The outgoing phone number to use for the messages. Values must be phone numbers you have obtained for use with your Twilio account.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "twilioAccountSID": {
+                    "description": "The unique identifier assigned to the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "twilioAuthToken": {
+                    "description": "The auth token for the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "longMessageBehavior": {
+                    "description": "The behavior to use for alert messages that are longer than the 160-character size limit for SMS messages.",
+                    "type": "string"
+                    , "enum": [
+                        "truncate"
+                        ,
+                        "send-as-multiple-messages"
+                    ]
+                }
+                ,
+                "description": {
+                    "description": "A description for this Alert Handler",
+                    "type": "string"
+                }
+                ,
+                "serverPort": {
+                    "description": "Specifies the port number of the SNMP agent to which traps will be sent.",
+                    "type": "integer"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Alert Handler is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Alert Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "disabledAlertType": {
+                    "description": "Specifies the names of the alert types that are disabled for this alert handler.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "access-control-change"
+                            ,
+                            "access-control-disabled"
+                            ,
+                            "access-control-enabled"
+                            ,
+                            "access-control-parse-failure"
+                            ,
+                            "access-log-criteria-matched"
+                            ,
+                            "alarm-cleared"
+                            ,
+                            "alarm-critical"
+                            ,
+                            "alarm-major"
+                            ,
+                            "alarm-minor"
+                            ,
+                            "alarm-warning"
+                            ,
+                            "backend-disabled"
+                            ,
+                            "backend-initialization-failed"
+                            ,
+                            "backup-failed"
+                            ,
+                            "cannot-acquire-shared-backend-lock"
+                            ,
+                            "cannot-copy-schema-files"
+                            ,
+                            "cannot-decode-entry"
+                            ,
+                            "cannot-find-recurring-task"
+                            ,
+                            "cannot-register-backend"
+                            ,
+                            "cannot-release-shared-backend-lock"
+                            ,
+                            "cannot-rename-current-task-file"
+                            ,
+                            "cannot-rename-new-task-file"
+                            ,
+                            "cannot-restore-backup"
+                            ,
+                            "cannot-schedule-recurring-task-iteration"
+                            ,
+                            "cannot-write-configuration"
+                            ,
+                            "cannot-write-new-schema-files"
+                            ,
+                            "cannot-write-server-state-file"
+                            ,
+                            "cannot-write-task-backing-file"
+                            ,
+                            "config-change"
+                            ,
+                            "console-logger-without-no-detach"
+                            ,
+                            "crypto-manager-error"
+                            ,
+                            "continuous-garbage-collection-detected"
+                            ,
+                            "deadlock-detected"
+                            ,
+                            "debug-logging-enabled"
+                            ,
+                            "delegated-admin-configuration-errors"
+                            ,
+                            "duplicate-alerts-suppressed"
+                            ,
+                            "duplicate-error-alerts-suppressed"
+                            ,
+                            "duplicate-fatal-alerts-suppressed"
+                            ,
+                            "duplicate-info-alerts-suppressed"
+                            ,
+                            "duplicate-warning-alerts-suppressed"
+                            ,
+                            "embedded-postgresql-unavailable"
+                            ,
+                            "entering-lockdown-mode"
+                            ,
+                            "entry-references-removed-attribute-type"
+                            ,
+                            "exec-task-launching-command"
+                            ,
+                            "exploded-index-background-delete-cleanup-failed"
+                            ,
+                            "exploded-index-background-delete-failed"
+                            ,
+                            "external-config-file-edit-handled"
+                            ,
+                            "external-config-file-edit-lost"
+                            ,
+                            "external-server-initialization-failed"
+                            ,
+                            "failed-to-apply-mirrored-configuration"
+                            ,
+                            "file-retention-task-delete-failure"
+                            ,
+                            "force-gc-complete"
+                            ,
+                            "force-gc-starting"
+                            ,
+                            "global-index-insufficient-disk-space-error"
+                            ,
+                            "global-index-persistence-error"
+                            ,
+                            "global-index-read-error"
+                            ,
+                            "global-referential-integrity-update-failure"
+                            ,
+                            "globally-unique-attribute-conflict"
+                            ,
+                            "health-check-available-to-degraded"
+                            ,
+                            "health-check-available-to-unavailable"
+                            ,
+                            "health-check-degraded-to-available"
+                            ,
+                            "health-check-degraded-to-unavailable"
+                            ,
+                            "health-check-unavailable-to-available"
+                            ,
+                            "health-check-unavailable-to-degraded"
+                            ,
+                            "http-connection-handler-duplicate-context-path"
+                            ,
+                            "http-connection-handler-duplicate-servlet-extension"
+                            ,
+                            "index-corrupt"
+                            ,
+                            "index-degraded"
+                            ,
+                            "index-rebuild-completed"
+                            ,
+                            "index-rebuild-in-progress"
+                            ,
+                            "insecure-access-token-validator-enabled"
+                            ,
+                            "invalid-privilege"
+                            ,
+                            "je-background-sync-failed"
+                            ,
+                            "je-cleaner-disabled"
+                            ,
+                            "je-daemon-thread-exception"
+                            ,
+                            "je-environment-not-closed-cleanly"
+                            ,
+                            "je-recovery-required"
+                            ,
+                            "jvm-misconfiguration"
+                            ,
+                            "large-attribute-update-failure"
+                            ,
+                            "lba-no-available-servers"
+                            ,
+                            "ldap-connection-handler-cannot-listen"
+                            ,
+                            "ldap-connection-handler-consecutive-failures"
+                            ,
+                            "ldap-connection-handler-uncaught-error"
+                            ,
+                            "ldif-backend-cannot-write"
+                            ,
+                            "ldif-connection-handler-parse-error"
+                            ,
+                            "ldif-connection-handler-io-error"
+                            ,
+                            "leaving-lockdown-mode"
+                            ,
+                            "log-file-rotation-listener-invoke-error"
+                            ,
+                            "log-file-rotation-listener-processing-takes-too-long"
+                            ,
+                            "logging-error"
+                            ,
+                            "low-disk-space-error"
+                            ,
+                            "low-disk-space-warning"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-error"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-warning"
+                            ,
+                            "mirrored-subtree-manager-no-master-found"
+                            ,
+                            "mirrored-subtree-server-not-in-topology"
+                            ,
+                            "mirrored-subtree-manager-operation-error"
+                            ,
+                            "mirrored-subtree-manager-failed-outbound-connection"
+                            ,
+                            "mirrored-subtree-manager-connection-asymmetry"
+                            ,
+                            "missing-schema-elements-referenced-by-backend"
+                            ,
+                            "monitoring-endpoint-unable-to-connect"
+                            ,
+                            "no-enabled-alert-handlers"
+                            ,
+                            "offline-config-change-detected"
+                            ,
+                            "out-of-disk-space-error"
+                            ,
+                            "pdp-unavailable"
+                            ,
+                            "pdp-trust-framework-version-deprecated"
+                            ,
+                            "proxy-entry-balancing-operation-failure"
+                            ,
+                            "proxy-entry-balancing-error-multiple-operations-succeeded"
+                            ,
+                            "proxy-entry-rebalancing-admin-action-required"
+                            ,
+                            "replication-backlogged"
+                            ,
+                            "replication-metadata-decode-failure"
+                            ,
+                            "replication-missing-changes"
+                            ,
+                            "replication-monitor-data-unavailable"
+                            ,
+                            "replication-plugin-message-serialization-failure"
+                            ,
+                            "replication-server-changelog-failure"
+                            ,
+                            "replication-server-listen-failure"
+                            ,
+                            "replication-unresolved-conflict"
+                            ,
+                            "replication-unsent-changes"
+                            ,
+                            "replication-replay-failed"
+                            ,
+                            "restart-required"
+                            ,
+                            "schema-checking-disabled"
+                            ,
+                            "scim-lookthrough-limit-exceeded"
+                            ,
+                            "restricted-subtree-accessibility"
+                            ,
+                            "server-shutting-down"
+                            ,
+                            "server-starting"
+                            ,
+                            "server-started"
+                            ,
+                            "subtree-delete-interrupted"
+                            ,
+                            "sync-resource-connection-error"
+                            ,
+                            "sync-resource-operation-error"
+                            ,
+                            "sync-pipe-initialization-error"
+                            ,
+                            "sync-pipe-backlog-above-threshold"
+                            ,
+                            "sync-pipe-backlog-below-threshold"
+                            ,
+                            "system-nanotime-stopped"
+                            ,
+                            "system-current-time-shifted"
+                            ,
+                            "task-started"
+                            ,
+                            "task-completed"
+                            ,
+                            "task-failed"
+                            ,
+                            "third-party-extension-exception"
+                            ,
+                            "thread-exit-holding-lock"
+                            ,
+                            "threshold-warning-entry"
+                            ,
+                            "threshold-warning-exit"
+                            ,
+                            "threshold-critical-entry"
+                            ,
+                            "threshold-critical-exit"
+                            ,
+                            "topology-registry-secret-key-deleted"
+                            ,
+                            "uncaught-exception"
+                            ,
+                            "unindexed-internal-search"
+                            ,
+                            "unique-attribute-sync-conflict"
+                            ,
+                            "unique-attribute-sync-error"
+                            ,
+                            "uniqueness-control-post-commit-conflict"
+                            ,
+                            "unlicensed-product"
+                            ,
+                            "unrecognized-alert-type"
+                            ,
+                            "user-defined-error"
+                            ,
+                            "user-defined-fatal"
+                            ,
+                            "user-defined-info"
+                            ,
+                            "user-defined-warning"
+                            ,
+                            "worker-thread-caught-error"
+                            ,
+                            "work-queue-backlogged"
+                            ,
+                            "work-queue-full"
+                            ,
+                            "work-queue-no-threads-remaining"
+                            ,
+                            "server-jvm-paused"
+                            ,
+                            "sensitive-trace-data-logged-warning"
+                            ,
+                            "replication-generation-id-mismatch"
+                            ,
+                            "account-temporarily-locked-account-status-notification"
+                            ,
+                            "account-permanently-locked-account-status-notification"
+                            ,
+                            "account-unlocked-account-status-notification"
+                            ,
+                            "account-idle-locked-account-status-notification"
+                            ,
+                            "account-reset-locked-account-status-notification"
+                            ,
+                            "account-disabled-account-status-notification"
+                            ,
+                            "account-enabled-account-status-notification"
+                            ,
+                            "account-not-yet-active-account-status-notification"
+                            ,
+                            "account-expired-account-status-notification"
+                            ,
+                            "password-expired-account-status-notification"
+                            ,
+                            "password-expiring-account-status-notification"
+                            ,
+                            "password-reset-account-status-notification"
+                            ,
+                            "password-changed-account-status-notification"
+                            ,
+                            "account-created-account-status-notification"
+                            ,
+                            "account-updated-account-status-notification"
+                            ,
+                            "bind-password-failed-validation-account-status-notification"
+                            ,
+                            "must-change-password-account-status-notification"
+                            ,
+                            "privilege-assigned"
+                            ,
+                            "insecure-request-rejected"
+                            ,
+                            "incremental-backups-deprecated"
+                            ,
+                            "replace-certificate-succeeded"
+                            ,
+                            "replace-certificate-failed"
+                        ]
+                    }
+                }
+                ,
+                "includeMonitorDataFilter": {
+                    "description": "Include monitor entries that match this filter.",
+                    "type": "string"
+                }
+                ,
+                "serverHostName": {
+                    "description": "Specifies the address of the SNMP agent to which traps will be sent.",
+                    "type": "string"
+                }
+                ,
+                "asynchronous": {
+                    "description": "Indicates whether the server should attempt to invoke this Alert Handler in a background thread so that any potentially-expensive processing (e.g., performing network communication to deliver the alert notification) will not delay whatever processing the server was performing when the alert was generated.",
+                    "type": "boolean"
+                }
+                ,
+                "communityName": {
+                    "description": "Specifies the name of the community to which the traps will be sent.",
+                    "type": "string"
+                }
+                ,
+                "scriptArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Scripted Alert Handler. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "recipientAddress": {
+                    "description": "Specifies an email address to which the messages should be sent.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "outputFormat": {
+                    "description": "The format to use when writing the alert messages.",
+                    "type": "string"
+                    , "enum": [
+                        "legacy-text"
+                        ,
+                        "single-line-json"
+                        ,
+                        "multi-line-json"
+                    ]
+                }
+                ,
+                "enabledAlertType": {
+                    "description": "Specifies the names of the alert types that are enabled for this alert handler.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "access-control-change"
+                            ,
+                            "access-control-disabled"
+                            ,
+                            "access-control-enabled"
+                            ,
+                            "access-control-parse-failure"
+                            ,
+                            "access-log-criteria-matched"
+                            ,
+                            "alarm-cleared"
+                            ,
+                            "alarm-critical"
+                            ,
+                            "alarm-major"
+                            ,
+                            "alarm-minor"
+                            ,
+                            "alarm-warning"
+                            ,
+                            "backend-disabled"
+                            ,
+                            "backend-initialization-failed"
+                            ,
+                            "backup-failed"
+                            ,
+                            "cannot-acquire-shared-backend-lock"
+                            ,
+                            "cannot-copy-schema-files"
+                            ,
+                            "cannot-decode-entry"
+                            ,
+                            "cannot-find-recurring-task"
+                            ,
+                            "cannot-register-backend"
+                            ,
+                            "cannot-release-shared-backend-lock"
+                            ,
+                            "cannot-rename-current-task-file"
+                            ,
+                            "cannot-rename-new-task-file"
+                            ,
+                            "cannot-restore-backup"
+                            ,
+                            "cannot-schedule-recurring-task-iteration"
+                            ,
+                            "cannot-write-configuration"
+                            ,
+                            "cannot-write-new-schema-files"
+                            ,
+                            "cannot-write-server-state-file"
+                            ,
+                            "cannot-write-task-backing-file"
+                            ,
+                            "config-change"
+                            ,
+                            "console-logger-without-no-detach"
+                            ,
+                            "crypto-manager-error"
+                            ,
+                            "continuous-garbage-collection-detected"
+                            ,
+                            "deadlock-detected"
+                            ,
+                            "debug-logging-enabled"
+                            ,
+                            "delegated-admin-configuration-errors"
+                            ,
+                            "duplicate-alerts-suppressed"
+                            ,
+                            "duplicate-error-alerts-suppressed"
+                            ,
+                            "duplicate-fatal-alerts-suppressed"
+                            ,
+                            "duplicate-info-alerts-suppressed"
+                            ,
+                            "duplicate-warning-alerts-suppressed"
+                            ,
+                            "embedded-postgresql-unavailable"
+                            ,
+                            "entering-lockdown-mode"
+                            ,
+                            "entry-references-removed-attribute-type"
+                            ,
+                            "exec-task-launching-command"
+                            ,
+                            "exploded-index-background-delete-cleanup-failed"
+                            ,
+                            "exploded-index-background-delete-failed"
+                            ,
+                            "external-config-file-edit-handled"
+                            ,
+                            "external-config-file-edit-lost"
+                            ,
+                            "external-server-initialization-failed"
+                            ,
+                            "failed-to-apply-mirrored-configuration"
+                            ,
+                            "file-retention-task-delete-failure"
+                            ,
+                            "force-gc-complete"
+                            ,
+                            "force-gc-starting"
+                            ,
+                            "global-index-insufficient-disk-space-error"
+                            ,
+                            "global-index-persistence-error"
+                            ,
+                            "global-index-read-error"
+                            ,
+                            "global-referential-integrity-update-failure"
+                            ,
+                            "globally-unique-attribute-conflict"
+                            ,
+                            "health-check-available-to-degraded"
+                            ,
+                            "health-check-available-to-unavailable"
+                            ,
+                            "health-check-degraded-to-available"
+                            ,
+                            "health-check-degraded-to-unavailable"
+                            ,
+                            "health-check-unavailable-to-available"
+                            ,
+                            "health-check-unavailable-to-degraded"
+                            ,
+                            "http-connection-handler-duplicate-context-path"
+                            ,
+                            "http-connection-handler-duplicate-servlet-extension"
+                            ,
+                            "index-corrupt"
+                            ,
+                            "index-degraded"
+                            ,
+                            "index-rebuild-completed"
+                            ,
+                            "index-rebuild-in-progress"
+                            ,
+                            "insecure-access-token-validator-enabled"
+                            ,
+                            "invalid-privilege"
+                            ,
+                            "je-background-sync-failed"
+                            ,
+                            "je-cleaner-disabled"
+                            ,
+                            "je-daemon-thread-exception"
+                            ,
+                            "je-environment-not-closed-cleanly"
+                            ,
+                            "je-recovery-required"
+                            ,
+                            "jvm-misconfiguration"
+                            ,
+                            "large-attribute-update-failure"
+                            ,
+                            "lba-no-available-servers"
+                            ,
+                            "ldap-connection-handler-cannot-listen"
+                            ,
+                            "ldap-connection-handler-consecutive-failures"
+                            ,
+                            "ldap-connection-handler-uncaught-error"
+                            ,
+                            "ldif-backend-cannot-write"
+                            ,
+                            "ldif-connection-handler-parse-error"
+                            ,
+                            "ldif-connection-handler-io-error"
+                            ,
+                            "leaving-lockdown-mode"
+                            ,
+                            "log-file-rotation-listener-invoke-error"
+                            ,
+                            "log-file-rotation-listener-processing-takes-too-long"
+                            ,
+                            "logging-error"
+                            ,
+                            "low-disk-space-error"
+                            ,
+                            "low-disk-space-warning"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-error"
+                            ,
+                            "mirrored-subtree-manager-forced-as-master-warning"
+                            ,
+                            "mirrored-subtree-manager-no-master-found"
+                            ,
+                            "mirrored-subtree-server-not-in-topology"
+                            ,
+                            "mirrored-subtree-manager-operation-error"
+                            ,
+                            "mirrored-subtree-manager-failed-outbound-connection"
+                            ,
+                            "mirrored-subtree-manager-connection-asymmetry"
+                            ,
+                            "missing-schema-elements-referenced-by-backend"
+                            ,
+                            "monitoring-endpoint-unable-to-connect"
+                            ,
+                            "no-enabled-alert-handlers"
+                            ,
+                            "offline-config-change-detected"
+                            ,
+                            "out-of-disk-space-error"
+                            ,
+                            "pdp-unavailable"
+                            ,
+                            "pdp-trust-framework-version-deprecated"
+                            ,
+                            "proxy-entry-balancing-operation-failure"
+                            ,
+                            "proxy-entry-balancing-error-multiple-operations-succeeded"
+                            ,
+                            "proxy-entry-rebalancing-admin-action-required"
+                            ,
+                            "replication-backlogged"
+                            ,
+                            "replication-metadata-decode-failure"
+                            ,
+                            "replication-missing-changes"
+                            ,
+                            "replication-monitor-data-unavailable"
+                            ,
+                            "replication-plugin-message-serialization-failure"
+                            ,
+                            "replication-server-changelog-failure"
+                            ,
+                            "replication-server-listen-failure"
+                            ,
+                            "replication-unresolved-conflict"
+                            ,
+                            "replication-unsent-changes"
+                            ,
+                            "replication-replay-failed"
+                            ,
+                            "restart-required"
+                            ,
+                            "schema-checking-disabled"
+                            ,
+                            "scim-lookthrough-limit-exceeded"
+                            ,
+                            "restricted-subtree-accessibility"
+                            ,
+                            "server-shutting-down"
+                            ,
+                            "server-starting"
+                            ,
+                            "server-started"
+                            ,
+                            "subtree-delete-interrupted"
+                            ,
+                            "sync-resource-connection-error"
+                            ,
+                            "sync-resource-operation-error"
+                            ,
+                            "sync-pipe-initialization-error"
+                            ,
+                            "sync-pipe-backlog-above-threshold"
+                            ,
+                            "sync-pipe-backlog-below-threshold"
+                            ,
+                            "system-nanotime-stopped"
+                            ,
+                            "system-current-time-shifted"
+                            ,
+                            "task-started"
+                            ,
+                            "task-completed"
+                            ,
+                            "task-failed"
+                            ,
+                            "third-party-extension-exception"
+                            ,
+                            "thread-exit-holding-lock"
+                            ,
+                            "threshold-warning-entry"
+                            ,
+                            "threshold-warning-exit"
+                            ,
+                            "threshold-critical-entry"
+                            ,
+                            "threshold-critical-exit"
+                            ,
+                            "topology-registry-secret-key-deleted"
+                            ,
+                            "uncaught-exception"
+                            ,
+                            "unindexed-internal-search"
+                            ,
+                            "unique-attribute-sync-conflict"
+                            ,
+                            "unique-attribute-sync-error"
+                            ,
+                            "uniqueness-control-post-commit-conflict"
+                            ,
+                            "unlicensed-product"
+                            ,
+                            "unrecognized-alert-type"
+                            ,
+                            "user-defined-error"
+                            ,
+                            "user-defined-fatal"
+                            ,
+                            "user-defined-info"
+                            ,
+                            "user-defined-warning"
+                            ,
+                            "worker-thread-caught-error"
+                            ,
+                            "work-queue-backlogged"
+                            ,
+                            "work-queue-full"
+                            ,
+                            "work-queue-no-threads-remaining"
+                            ,
+                            "server-jvm-paused"
+                            ,
+                            "sensitive-trace-data-logged-warning"
+                            ,
+                            "replication-generation-id-mismatch"
+                            ,
+                            "account-temporarily-locked-account-status-notification"
+                            ,
+                            "account-permanently-locked-account-status-notification"
+                            ,
+                            "account-unlocked-account-status-notification"
+                            ,
+                            "account-idle-locked-account-status-notification"
+                            ,
+                            "account-reset-locked-account-status-notification"
+                            ,
+                            "account-disabled-account-status-notification"
+                            ,
+                            "account-enabled-account-status-notification"
+                            ,
+                            "account-not-yet-active-account-status-notification"
+                            ,
+                            "account-expired-account-status-notification"
+                            ,
+                            "password-expired-account-status-notification"
+                            ,
+                            "password-expiring-account-status-notification"
+                            ,
+                            "password-reset-account-status-notification"
+                            ,
+                            "password-changed-account-status-notification"
+                            ,
+                            "account-created-account-status-notification"
+                            ,
+                            "account-updated-account-status-notification"
+                            ,
+                            "bind-password-failed-validation-account-status-notification"
+                            ,
+                            "must-change-password-account-status-notification"
+                            ,
+                            "privilege-assigned"
+                            ,
+                            "insecure-request-rejected"
+                            ,
+                            "incremental-backups-deprecated"
+                            ,
+                            "replace-certificate-succeeded"
+                            ,
+                            "replace-certificate-failed"
+                        ]
+                    }
+                }
+                ,
+                "twilioAuthTokenPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the auth token for the Twilio account that will be used.",
+                    "type": "string"
+                }
+                ,
+                "messageBody": {
+                    "description": "Specifies the body that should be used for email messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "messageSubject": {
+                    "description": "Specifies the subject that should be used for email messages generated by this alert handler.",
+                    "type": "string"
+                }
+                ,
+                "scriptClass": {
+                    "description": "The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted Alert Handler.",
+                    "type": "string"
+                }
+                ,
+                "command": {
+                    "description": "Specifies the path of the command to execute, without any arguments. It must be an absolute path for reasons of security and reliability.",
+                    "type": "string"
+                }
+                ,
+                "recipientPhoneNumber": {
+                    "description": "The phone number to which alert notifications should be delivered.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Twilio service.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

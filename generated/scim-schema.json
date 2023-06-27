@@ -1,0 +1,2480 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/scim-schemas",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all SCIM Schema objects",
+                    "type": "scim-schema-list-response",
+                    "nickname": "list-scim-schemas",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new SCIM Schema to the config",
+                    "nickname": "add-scim-schema",
+                    "type": "scim-schema-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Schema to add",
+                            "name": "add-scim-schema-request",
+                            "type": "add-scim-schema-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/scim-schemas/{scim-schema-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single SCIM Schema",
+                    "type": "scim-schema-response",
+                    "nickname": "get-scim-schema",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-schema-name",
+                          "description": "Name of the SCIM Schema",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing SCIM Schema by name, replacing any attributes specified in the request body",
+                    "type": "scim-schema-response",
+                    "nickname": "put-scim-schema",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-schema-name",
+                          "description": "Name of the SCIM Schema",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Schema attributes to update",
+                            "name": "scim-schema-properties",
+                            "type": "scim-schema-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing SCIM Schema by name, using a SCIM patch request",
+                    "type": "scim-schema-response",
+                    "nickname": "patch-scim-schema",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-schema-name",
+                          "description": "Name of the SCIM Schema",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the SCIM Schema",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a SCIM Schema",
+                    "nickname": "delete-scim-schema",
+                    "parameters": [
+                        {
+                          "name": "scim-schema-name",
+                          "description": "Name of the SCIM Schema",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "path": "/scim-schemas/{scim-schema-name}/scim-attributes",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all SCIM Attribute objects",
+                    "type": "scim-attribute-list-response",
+                    "nickname": "list-scim-attributes",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new SCIM Attribute to the config",
+                    "nickname": "add-scim-attribute",
+                    "type": "scim-attribute-response",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Attribute to add",
+                            "name": "add-scim-attribute-request",
+                            "type": "add-scim-attribute-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/scim-schemas/{scim-schema-name}/scim-attributes/{scim-attribute-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single SCIM Attribute",
+                    "type": "scim-attribute-response",
+                    "nickname": "get-scim-attribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-attribute-name",
+                          "description": "Name of the SCIM Attribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing SCIM Attribute by name, replacing any attributes specified in the request body",
+                    "type": "scim-attribute-response",
+                    "nickname": "put-scim-attribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-attribute-name",
+                          "description": "Name of the SCIM Attribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Attribute attributes to update",
+                            "name": "scim-attribute-properties",
+                            "type": "scim-attribute-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing SCIM Attribute by name, using a SCIM patch request",
+                    "type": "scim-attribute-response",
+                    "nickname": "patch-scim-attribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-attribute-name",
+                          "description": "Name of the SCIM Attribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the SCIM Attribute",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a SCIM Attribute",
+                    "nickname": "delete-scim-attribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-attribute-name",
+                          "description": "Name of the SCIM Attribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "path": "/scim-schemas/{scim-schema-name}/scim-attributes/{scim-attribute-name}/scim-subattributes",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all SCIM Subattribute objects",
+                    "type": "scim-subattribute-list-response",
+                    "nickname": "list-scim-subattributes",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-attribute-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new SCIM Subattribute to the config",
+                    "nickname": "add-scim-subattribute",
+                    "type": "scim-subattribute-response",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-attribute-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Subattribute to add",
+                            "name": "add-scim-subattribute-request",
+                            "type": "add-scim-subattribute-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/scim-schemas/{scim-schema-name}/scim-attributes/{scim-attribute-name}/scim-subattributes/{scim-subattribute-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single SCIM Subattribute",
+                    "type": "scim-subattribute-response",
+                    "nickname": "get-scim-subattribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-attribute-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-subattribute-name",
+                          "description": "Name of the SCIM Subattribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing SCIM Subattribute by name, replacing any attributes specified in the request body",
+                    "type": "scim-subattribute-response",
+                    "nickname": "put-scim-subattribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-attribute-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-subattribute-name",
+                          "description": "Name of the SCIM Subattribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Subattribute attributes to update",
+                            "name": "scim-subattribute-properties",
+                            "type": "scim-subattribute-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing SCIM Subattribute by name, using a SCIM patch request",
+                    "type": "scim-subattribute-response",
+                    "nickname": "patch-scim-subattribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-attribute-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-subattribute-name",
+                          "description": "Name of the SCIM Subattribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the SCIM Subattribute",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a SCIM Subattribute",
+                    "nickname": "delete-scim-subattribute",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-schema-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-attribute-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-subattribute-name",
+                          "description": "Name of the SCIM Subattribute",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scim-schema-list-response": {
+            "id": "scim-schema-list-response",
+            "description": "SCIM Schema list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "scim-schema-response"
+                    }
+                }
+            }
+        },
+        "add-scim-schema-request": {
+            "id": "add-scim-schema-request",
+            "description": "A SCIM Schema resource request",
+            "required": [
+                "schemaName"
+            ],
+            "properties": {
+                "schemaName": {
+                    "type": "string",
+                    "description": "Name of the new SCIM Schema"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-schema"
+                        ]
+                    }
+                },
+                "schemaURN": {
+                    "description": "The URN which identifies this SCIM Schema.",
+                    "type": "string"
+                }
+                ,
+                "displayName": {
+                    "description": "The human readable name for this SCIM Schema.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Schema",
+                    "type": "string"
+                }
+            }
+        },
+        "scim-schema-response": {
+            "id": "scim-schema-response",
+            "description": "A SCIM Schema resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-schema"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the SCIM Schema"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "schemaURN": {
+                    "description": "The URN which identifies this SCIM Schema.",
+                    "type": "string"
+                }
+                ,
+                "displayName": {
+                    "description": "The human readable name for this SCIM Schema.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Schema",
+                    "type": "string"
+                }
+            }
+        },
+        "scim-schema-properties": {
+            "id": "scim-schema-properties",
+            "description": "SCIM Schema properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-schema"
+                        ]
+                    }
+                },
+                "schemaURN": {
+                    "description": "The URN which identifies this SCIM Schema.",
+                    "type": "string"
+                }
+                ,
+                "displayName": {
+                    "description": "The human readable name for this SCIM Schema.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Schema",
+                    "type": "string"
+                }
+            }
+        }
+        ,
+        "scim-attribute-list-response": {
+            "id": "scim-attribute-list-response",
+            "description": "SCIM Attribute list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "scim-attribute-response"
+                    }
+                }
+            }
+        },
+        "add-scim-attribute-request": {
+            "id": "add-scim-attribute-request",
+            "description": "A SCIM Attribute resource request",
+            "required": [
+                "attributeName"
+            ],
+            "properties": {
+                "attributeName": {
+                    "type": "string",
+                    "description": "Name of the new SCIM Attribute"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-attribute"
+                        ]
+                    }
+                },
+                "canonicalValue": {
+                    "description": "Specifies the suggested canonical type values for the attribute.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "name": {
+                    "description": "The name of the attribute.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Attribute",
+                    "type": "string"
+                }
+                ,
+                "referenceType": {
+                    "description": "Specifies the SCIM resource types that may be referenced. This property is only applicable for attributes that are of type 'reference'. Valid values are: A SCIM resource type (e.g., 'User' or 'Group'), 'external' - indicating the resource is an external resource (e.g., such as a photo), or 'uri' - indicating that the reference is to a service endpoint or an identifier (such as a schema urn).",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "mutability": {
+                    "description": "Specifies the circumstances under which the values of the attribute can be written.",
+                    "type": "string"
+                    , "enum": [
+                        "read-only"
+                        ,
+                        "read-write"
+                        ,
+                        "immutable"
+                        ,
+                        "write-only"
+                    ]
+                }
+                ,
+                "type": {
+                    "description": "Specifies the data type for this attribute.",
+                    "type": "string"
+                    , "enum": [
+                        "string"
+                        ,
+                        "boolean"
+                        ,
+                        "datetime"
+                        ,
+                        "decimal"
+                        ,
+                        "integer"
+                        ,
+                        "binary"
+                        ,
+                        "reference"
+                        ,
+                        "complex"
+                    ]
+                }
+                ,
+                "caseExact": {
+                    "description": "Specifies whether the attribute values are case sensitive.",
+                    "type": "boolean"
+                }
+                ,
+                "multiValued": {
+                    "description": "Specifies whether this attribute may have multiple values.",
+                    "type": "boolean"
+                }
+                ,
+                "returned": {
+                    "description": "Specifies the circumstances under which the values of the attribute are returned in response to a request.",
+                    "type": "string"
+                    , "enum": [
+                        "by-default"
+                        ,
+                        "upon-request"
+                        ,
+                        "always"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "required": {
+                    "description": "Specifies whether this attribute is required.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "scim-attribute-response": {
+            "id": "scim-attribute-response",
+            "description": "A SCIM Attribute resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-attribute"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the SCIM Attribute"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "canonicalValue": {
+                    "description": "Specifies the suggested canonical type values for the attribute.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "name": {
+                    "description": "The name of the attribute.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Attribute",
+                    "type": "string"
+                }
+                ,
+                "referenceType": {
+                    "description": "Specifies the SCIM resource types that may be referenced. This property is only applicable for attributes that are of type 'reference'. Valid values are: A SCIM resource type (e.g., 'User' or 'Group'), 'external' - indicating the resource is an external resource (e.g., such as a photo), or 'uri' - indicating that the reference is to a service endpoint or an identifier (such as a schema urn).",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "mutability": {
+                    "description": "Specifies the circumstances under which the values of the attribute can be written.",
+                    "type": "string"
+                    , "enum": [
+                        "read-only"
+                        ,
+                        "read-write"
+                        ,
+                        "immutable"
+                        ,
+                        "write-only"
+                    ]
+                }
+                ,
+                "type": {
+                    "description": "Specifies the data type for this attribute.",
+                    "type": "string"
+                    , "enum": [
+                        "string"
+                        ,
+                        "boolean"
+                        ,
+                        "datetime"
+                        ,
+                        "decimal"
+                        ,
+                        "integer"
+                        ,
+                        "binary"
+                        ,
+                        "reference"
+                        ,
+                        "complex"
+                    ]
+                }
+                ,
+                "caseExact": {
+                    "description": "Specifies whether the attribute values are case sensitive.",
+                    "type": "boolean"
+                }
+                ,
+                "multiValued": {
+                    "description": "Specifies whether this attribute may have multiple values.",
+                    "type": "boolean"
+                }
+                ,
+                "returned": {
+                    "description": "Specifies the circumstances under which the values of the attribute are returned in response to a request.",
+                    "type": "string"
+                    , "enum": [
+                        "by-default"
+                        ,
+                        "upon-request"
+                        ,
+                        "always"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "required": {
+                    "description": "Specifies whether this attribute is required.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "scim-attribute-properties": {
+            "id": "scim-attribute-properties",
+            "description": "SCIM Attribute properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-attribute"
+                        ]
+                    }
+                },
+                "canonicalValue": {
+                    "description": "Specifies the suggested canonical type values for the attribute.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "name": {
+                    "description": "The name of the attribute.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Attribute",
+                    "type": "string"
+                }
+                ,
+                "referenceType": {
+                    "description": "Specifies the SCIM resource types that may be referenced. This property is only applicable for attributes that are of type 'reference'. Valid values are: A SCIM resource type (e.g., 'User' or 'Group'), 'external' - indicating the resource is an external resource (e.g., such as a photo), or 'uri' - indicating that the reference is to a service endpoint or an identifier (such as a schema urn).",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "mutability": {
+                    "description": "Specifies the circumstances under which the values of the attribute can be written.",
+                    "type": "string"
+                    , "enum": [
+                        "read-only"
+                        ,
+                        "read-write"
+                        ,
+                        "immutable"
+                        ,
+                        "write-only"
+                    ]
+                }
+                ,
+                "type": {
+                    "description": "Specifies the data type for this attribute.",
+                    "type": "string"
+                    , "enum": [
+                        "string"
+                        ,
+                        "boolean"
+                        ,
+                        "datetime"
+                        ,
+                        "decimal"
+                        ,
+                        "integer"
+                        ,
+                        "binary"
+                        ,
+                        "reference"
+                        ,
+                        "complex"
+                    ]
+                }
+                ,
+                "caseExact": {
+                    "description": "Specifies whether the attribute values are case sensitive.",
+                    "type": "boolean"
+                }
+                ,
+                "multiValued": {
+                    "description": "Specifies whether this attribute may have multiple values.",
+                    "type": "boolean"
+                }
+                ,
+                "returned": {
+                    "description": "Specifies the circumstances under which the values of the attribute are returned in response to a request.",
+                    "type": "string"
+                    , "enum": [
+                        "by-default"
+                        ,
+                        "upon-request"
+                        ,
+                        "always"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "required": {
+                    "description": "Specifies whether this attribute is required.",
+                    "type": "boolean"
+                }
+            }
+        }
+        ,
+        "scim-subattribute-list-response": {
+            "id": "scim-subattribute-list-response",
+            "description": "SCIM Subattribute list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "scim-subattribute-response"
+                    }
+                }
+            }
+        },
+        "add-scim-subattribute-request": {
+            "id": "add-scim-subattribute-request",
+            "description": "A SCIM Subattribute resource request",
+            "required": [
+                "subattributeName"
+            ],
+            "properties": {
+                "subattributeName": {
+                    "type": "string",
+                    "description": "Name of the new SCIM Subattribute"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-subattribute"
+                        ]
+                    }
+                },
+                "canonicalValue": {
+                    "description": "Specifies the suggested canonical type values for the sub-attribute.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Subattribute",
+                    "type": "string"
+                }
+                ,
+                "referenceType": {
+                    "description": "Specifies the SCIM resource types that may be referenced. This property is only applicable for sub-attributes that are of type 'reference'. Valid values are: A SCIM resource type (e.g., 'User' or 'Group'), 'external' - indicating the resource is an external resource (e.g., such as a photo), or 'uri' - indicating that the reference is to a service endpoint or an identifier (such as a schema urn).",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "mutability": {
+                    "description": "Specifies the circumstances under which the values of the sub-attribute can be written.",
+                    "type": "string"
+                    , "enum": [
+                        "read-only"
+                        ,
+                        "read-write"
+                        ,
+                        "immutable"
+                        ,
+                        "write-only"
+                    ]
+                }
+                ,
+                "type": {
+                    "description": "Specifies the data type for this sub-attribute.",
+                    "type": "string"
+                    , "enum": [
+                        "string"
+                        ,
+                        "boolean"
+                        ,
+                        "datetime"
+                        ,
+                        "decimal"
+                        ,
+                        "integer"
+                        ,
+                        "binary"
+                        ,
+                        "reference"
+                    ]
+                }
+                ,
+                "caseExact": {
+                    "description": "Specifies whether the sub-attribute values are case sensitive.",
+                    "type": "boolean"
+                }
+                ,
+                "multiValued": {
+                    "description": "Specifies whether this attribute may have multiple values.",
+                    "type": "boolean"
+                }
+                ,
+                "returned": {
+                    "description": "Specifies the circumstances under which the values of the sub-attribute are returned in response to a request.",
+                    "type": "string"
+                    , "enum": [
+                        "by-default"
+                        ,
+                        "upon-request"
+                        ,
+                        "always"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "required": {
+                    "description": "Specifies whether this sub-attribute is required.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "scim-subattribute-response": {
+            "id": "scim-subattribute-response",
+            "description": "A SCIM Subattribute resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-subattribute"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the SCIM Subattribute"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "canonicalValue": {
+                    "description": "Specifies the suggested canonical type values for the sub-attribute.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Subattribute",
+                    "type": "string"
+                }
+                ,
+                "referenceType": {
+                    "description": "Specifies the SCIM resource types that may be referenced. This property is only applicable for sub-attributes that are of type 'reference'. Valid values are: A SCIM resource type (e.g., 'User' or 'Group'), 'external' - indicating the resource is an external resource (e.g., such as a photo), or 'uri' - indicating that the reference is to a service endpoint or an identifier (such as a schema urn).",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "mutability": {
+                    "description": "Specifies the circumstances under which the values of the sub-attribute can be written.",
+                    "type": "string"
+                    , "enum": [
+                        "read-only"
+                        ,
+                        "read-write"
+                        ,
+                        "immutable"
+                        ,
+                        "write-only"
+                    ]
+                }
+                ,
+                "type": {
+                    "description": "Specifies the data type for this sub-attribute.",
+                    "type": "string"
+                    , "enum": [
+                        "string"
+                        ,
+                        "boolean"
+                        ,
+                        "datetime"
+                        ,
+                        "decimal"
+                        ,
+                        "integer"
+                        ,
+                        "binary"
+                        ,
+                        "reference"
+                    ]
+                }
+                ,
+                "caseExact": {
+                    "description": "Specifies whether the sub-attribute values are case sensitive.",
+                    "type": "boolean"
+                }
+                ,
+                "multiValued": {
+                    "description": "Specifies whether this attribute may have multiple values.",
+                    "type": "boolean"
+                }
+                ,
+                "returned": {
+                    "description": "Specifies the circumstances under which the values of the sub-attribute are returned in response to a request.",
+                    "type": "string"
+                    , "enum": [
+                        "by-default"
+                        ,
+                        "upon-request"
+                        ,
+                        "always"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "required": {
+                    "description": "Specifies whether this sub-attribute is required.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "scim-subattribute-properties": {
+            "id": "scim-subattribute-properties",
+            "description": "SCIM Subattribute properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-subattribute"
+                        ]
+                    }
+                },
+                "canonicalValue": {
+                    "description": "Specifies the suggested canonical type values for the sub-attribute.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Subattribute",
+                    "type": "string"
+                }
+                ,
+                "referenceType": {
+                    "description": "Specifies the SCIM resource types that may be referenced. This property is only applicable for sub-attributes that are of type 'reference'. Valid values are: A SCIM resource type (e.g., 'User' or 'Group'), 'external' - indicating the resource is an external resource (e.g., such as a photo), or 'uri' - indicating that the reference is to a service endpoint or an identifier (such as a schema urn).",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "mutability": {
+                    "description": "Specifies the circumstances under which the values of the sub-attribute can be written.",
+                    "type": "string"
+                    , "enum": [
+                        "read-only"
+                        ,
+                        "read-write"
+                        ,
+                        "immutable"
+                        ,
+                        "write-only"
+                    ]
+                }
+                ,
+                "type": {
+                    "description": "Specifies the data type for this sub-attribute.",
+                    "type": "string"
+                    , "enum": [
+                        "string"
+                        ,
+                        "boolean"
+                        ,
+                        "datetime"
+                        ,
+                        "decimal"
+                        ,
+                        "integer"
+                        ,
+                        "binary"
+                        ,
+                        "reference"
+                    ]
+                }
+                ,
+                "caseExact": {
+                    "description": "Specifies whether the sub-attribute values are case sensitive.",
+                    "type": "boolean"
+                }
+                ,
+                "multiValued": {
+                    "description": "Specifies whether this attribute may have multiple values.",
+                    "type": "boolean"
+                }
+                ,
+                "returned": {
+                    "description": "Specifies the circumstances under which the values of the sub-attribute are returned in response to a request.",
+                    "type": "string"
+                    , "enum": [
+                        "by-default"
+                        ,
+                        "upon-request"
+                        ,
+                        "always"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "required": {
+                    "description": "Specifies whether this sub-attribute is required.",
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

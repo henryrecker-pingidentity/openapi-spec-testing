@@ -1,0 +1,2128 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/recurring-tasks",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Recurring Task objects",
+                    "type": "recurring-task-list-response",
+                    "nickname": "list-recurring-tasks",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Recurring Task to the config",
+                    "nickname": "add-recurring-task",
+                    "type": "recurring-task-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Recurring Task to add",
+                            "name": "add-recurring-task-request",
+                            "type": "add-recurring-task-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/recurring-tasks/{recurring-task-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Recurring Task",
+                    "type": "recurring-task-response",
+                    "nickname": "get-recurring-task",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "recurring-task-name",
+                          "description": "Name of the Recurring Task",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Recurring Task by name, replacing any attributes specified in the request body",
+                    "type": "recurring-task-response",
+                    "nickname": "put-recurring-task",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "recurring-task-name",
+                          "description": "Name of the Recurring Task",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Recurring Task attributes to update",
+                            "name": "recurring-task-properties",
+                            "type": "recurring-task-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Recurring Task by name, using a SCIM patch request",
+                    "type": "recurring-task-response",
+                    "nickname": "patch-recurring-task",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "recurring-task-name",
+                          "description": "Name of the Recurring Task",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Recurring Task",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Recurring Task",
+                    "nickname": "delete-recurring-task",
+                    "parameters": [
+                        {
+                          "name": "recurring-task-name",
+                          "description": "Name of the Recurring Task",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "recurring-task-list-response": {
+            "id": "recurring-task-list-response",
+            "description": "Recurring Task list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "recurring-task-response"
+                    }
+                }
+            }
+        },
+        "add-recurring-task-request": {
+            "id": "add-recurring-task-request",
+            "description": "A Recurring Task resource request",
+            "required": [
+                "taskName"
+            ],
+            "properties": {
+                "taskName": {
+                    "type": "string",
+                    "description": "Name of the new Recurring Task"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:generate-server-profile"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:leave-lockdown-mode"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:backup"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:delay"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:statically-defined"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:collect-support-data"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:ldif-export"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:enter-lockdown-mode"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:audit-data-security"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:exec"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:file-retention"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:third-party"
+                        ]
+                    }
+                },
+                "reason": {
+                    "description": "The reason that the server is being taken out of in lockdown mode.",
+                    "type": "string"
+                }
+                ,
+                "logDuration": {
+                    "description": "The maximum age (leading up to the time the collect-support-data tool was invoked) for log content to include in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "searchInterval": {
+                    "description": "The length of time the server should sleep between searches performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "workingDirectory": {
+                    "description": "The absolute path to a working directory where the command should be executed. It must be an absolute path and the corresponding directory must exist.",
+                    "type": "string"
+                }
+                ,
+                "includeReplicationStateDump": {
+                    "description": "Indicates whether the support data archive should include a replication state dump, which may be several megabytes in size.",
+                    "type": "boolean"
+                }
+                ,
+                "targetDirectory": {
+                    "description": "The path to the directory containing the files to examine. The directory must exist.",
+                    "type": "string"
+                }
+                ,
+                "alertOnStart": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task starts running.",
+                    "type": "boolean"
+                }
+                ,
+                "sign": {
+                    "description": "Indicates whether to cryptographically sign backups, which will make it possible to detect whether the backup has been altered since it was created.",
+                    "type": "boolean"
+                }
+                ,
+                "includePath": {
+                    "description": "An optional set of additional paths to files within the instance root that should be included in the generated server profile. All paths must be within the instance root, and relative paths will be relative to the instance root.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "maxMegabytesPerSecond": {
+                    "description": "The maximum rate, in megabytes per second, at which backups should be written.",
+                    "type": "integer"
+                }
+                ,
+                "searchTimeLimit": {
+                    "description": "The length of time that the server will wait for a response to each internal search performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "profileDirectory": {
+                    "description": "The directory in which the generated server profiles will be placed. The files will be named with the pattern "server-profile-{timestamp}.zip", where "{timestamp}" represents the time that the profile was generated.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Recurring Task. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "taskAttributeValue": {
+                    "description": "The set of attribute values that should be included in the tasks that are scheduled from this Statically Defined Recurring Task. Each value must be in the form {attribute-type}={value}, where {attribute-type} is the name or OID of an attribute type that is defined in the schema and permitted with the configured set of object classes, and {value} is a value to assign to an attribute with that type. A multivalued attribute can be created by providing multiple name-value pairs with the same name and different values.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "useSequentialMode": {
+                    "description": "Indicates whether to capture support data information sequentially rather than in parallel. Capturing data in sequential mode may reduce the amount of memory that the tool requires to operate, at the cost of taking longer to run.",
+                    "type": "boolean"
+                }
+                ,
+                "logFileTailCollectionSize": {
+                    "description": "The amount of data to collect from the end of each log file included in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "ldifDirectory": {
+                    "description": "The directory in which LDIF export files will be placed. The directory must already exist.",
+                    "type": "string"
+                }
+                ,
+                "taskReturnStateIfTimeoutIsEncountered": {
+                    "description": "The return state to use if a timeout is encountered while waiting for the server work queue to become idle (if the duration-to-wait-for-work-queue-idle property has a value), or if the time specified by the duration-to-wait-for-search-to-return-entries elapses without the associated search returning any entries.",
+                    "type": "string"
+                    , "enum": [
+                        "stopped-by-error"
+                        ,
+                        "completed-with-errors"
+                        ,
+                        "completed-successfully"
+                    ]
+                }
+                ,
+                "sleepDuration": {
+                    "description": "The length of time to sleep before the task completes.",
+                    "type": "string"
+                }
+                ,
+                "ldapURLForSearchExpectedToReturnEntries": {
+                    "description": "An LDAP URL that provides the criteria for a search request that is expected to return at least one entry. The search will be performed internally, and only the base DN, scope, and filter from the URL will be used; any host, port, or requested attributes included in the URL will be ignored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "outputDirectory": {
+                    "description": "The directory in which the support data archive files will be placed. The path must be a directory, and that directory must already exist. Relative paths will be interpreted as relative to the server root.",
+                    "type": "string"
+                }
+                ,
+                "logFileHeadCollectionSize": {
+                    "description": "The amount of data to collect from the beginning of each log file included in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "includedBackendID": {
+                    "description": "The backend IDs of any backends that should be included in the backup.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "compress": {
+                    "description": "Indicates whether to compress the data as it is written into the backup.",
+                    "type": "boolean"
+                }
+                ,
+                "retainPreviousLDIFExportCount": {
+                    "description": "The minimum number of previous LDIF exports that should be preserved after a new export completes successfully.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousFullBackupAge": {
+                    "description": "The minimum age of previous full backups that should be preserved after a new backup completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "reportIntervalSeconds": {
+                    "description": "The duration (in seconds) between each interval of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousLDIFExportAge": {
+                    "description": "The minimum age of previous LDIF exports that should be preserved after a new export completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousProfileCount": {
+                    "description": "The minimum number of previous server profile zip files that should be preserved after a new profile is generated.",
+                    "type": "integer"
+                }
+                ,
+                "durationToWaitForWorkQueueIdle": {
+                    "description": "Indicates that task should wait for up to the specified length of time for the work queue to report that all worker threads are idle and there are no pending operations. Note that this primarily monitors operations that use worker threads, which does not include internal operations (for example, those invoked by extensions), and may not include requests from non-LDAP clients (for example, HTTP-based clients).",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousFullBackupCount": {
+                    "description": "The minimum number of previous full backups that should be preserved after a new backup completes successfully.",
+                    "type": "integer"
+                }
+                ,
+                "cancelOnTaskDependencyFailure": {
+                    "description": "Indicates whether an instance of this Recurring Task should be canceled if the task immediately before it in the recurring task chain fails to complete successfully (including if it is canceled by an administrator before it starts or while it is running).",
+                    "type": "boolean"
+                }
+                ,
+                "timestampFormat": {
+                    "description": "The format to use for the timestamp represented by the "${timestamp}" token in the filename pattern.",
+                    "type": "string"
+                    , "enum": [
+                        "generalized-time-utc-with-milliseconds"
+                        ,
+                        "generalized-time-utc-with-seconds"
+                        ,
+                        "generalized-time-utc-with-minutes"
+                        ,
+                        "local-time-with-milliseconds"
+                        ,
+                        "local-time-with-seconds"
+                        ,
+                        "local-time-with-minutes"
+                        ,
+                        "local-date"
+                    ]
+                }
+                ,
+                "logCommandOutput": {
+                    "description": "Indicates whether the command's output (both standard output and standard error) should be recorded in the server's error log.",
+                    "type": "boolean"
+                }
+                ,
+                "includeFilter": {
+                    "description": "A filter that will be used to identify entries that may be included in the generated report. If multiple filters are specified, then any entry that matches at least one of the filters will be included. If no filters are specified, then all entries will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeExpensiveData": {
+                    "description": "Indicates whether the support data archive should include information that may be expensive to obtain, and that may temporarily affect the server's performance or responsiveness.",
+                    "type": "boolean"
+                }
+                ,
+                "excludeBackendID": {
+                    "description": "The backend ID for a backend to be excluded from the export.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "baseOutputDirectory": {
+                    "description": "The base directory below which generated reports will be written. Each invocation of the audit-data-security task will create a new subdirectory below this base directory whose name is a timestamp indicating when the report was generated.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Recurring Task.",
+                    "type": "string"
+                }
+                ,
+                "encryptionSettingsDefinitionID": {
+                    "description": "The ID of an encryption settings definition to use to obtain the backup encryption key.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Recurring Task",
+                    "type": "string"
+                }
+                ,
+                "backendID": {
+                    "description": "The backend ID for a backend to be exported.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "retainPreviousProfileAge": {
+                    "description": "The minimum age of previous server profile zip files that should be preserved after a new profile is generated.",
+                    "type": "string"
+                }
+                ,
+                "taskJavaClass": {
+                    "description": "The fully-qualified name of the Java class that provides the logic for the task to be invoked.",
+                    "type": "string"
+                }
+                ,
+                "taskCompletionStateForNonzeroExitCode": {
+                    "description": "The final task state that a task instance should have if the task executes the specified command and that command completes with a nonzero exit code, which generally means that the command did not complete successfully.",
+                    "type": "string"
+                    , "enum": [
+                        "stopped-by-error"
+                        ,
+                        "completed-with-errors"
+                        ,
+                        "completed-successfully"
+                    ]
+                }
+                ,
+                "securityLevel": {
+                    "description": "The security level to use when deciding which information to include in or exclude from the support data archive, and which included data should be obscured or redacted.",
+                    "type": "string"
+                    , "enum": [
+                        "none"
+                        ,
+                        "obscure-secrets"
+                        ,
+                        "maximum"
+                    ]
+                }
+                ,
+                "durationToWaitForSearchToReturnEntries": {
+                    "description": "The maximum length of time that the server will continue to perform internal searches using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "encrypt": {
+                    "description": "Indicates whether to encrypt the data as it is written into the backup.",
+                    "type": "boolean"
+                }
+                ,
+                "jstackCount": {
+                    "description": "The number of times to invoke the jstack utility to obtain a stack trace of all threads running in the JVM. A value of zero indicates that the jstack utility should not be invoked.",
+                    "type": "integer"
+                }
+                ,
+                "emailOnSuccess": {
+                    "description": "The email addresses to which a message should be sent whenever an instance of this Recurring Task completes successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "emailOnFailure": {
+                    "description": "The email addresses to which a message should be sent if an instance of this Recurring Task fails to complete successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "backend": {
+                    "description": "The set of backends that should be examined. If no backends are specified, then all backends that support this functionality will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "excludedBackendID": {
+                    "description": "The backend IDs of any backends that should be excluded from the backup. All backends that support backups and are not listed will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "dataSecurityAuditor": {
+                    "description": "The set of data security auditors that should be invoked. If no auditors are specified, then all auditors defined in the configuration will be used.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "retainPreviousOutputFileAge": {
+                    "description": "The minimum age of previous command output files that should be preserved after a new instance of the command is invoked.",
+                    "type": "string"
+                }
+                ,
+                "retainFileCount": {
+                    "description": "The minimum number of files matching the pattern that will be retained.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousSupportDataArchiveCount": {
+                    "description": "The minimum number of previous support data archives that should be preserved after a new archive is generated.",
+                    "type": "integer"
+                }
+                ,
+                "emailOnStart": {
+                    "description": "The email addresses to which a message should be sent whenever an instance of this Recurring Task starts running. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeBinaryFiles": {
+                    "description": "Indicates whether the support data archive should include binary files that may not have otherwise been included. Note that it may not be possible to obscure or redact sensitive information in binary files.",
+                    "type": "boolean"
+                }
+                ,
+                "retainPreviousReportAge": {
+                    "description": "The minimum age of previous reports that should be preserved after a new report completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "backupDirectory": {
+                    "description": "The directory in which backup files will be placed. When backing up a single backend, the backup files will be placed directly in this directory. When backing up multiple backends, the backup files for each backend will be placed in a subdirectory whose name is the corresponding backend ID.",
+                    "type": "string"
+                }
+                ,
+                "retainFileAge": {
+                    "description": "The minimum age of files matching the pattern that will be retained.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousSupportDataArchiveAge": {
+                    "description": "The minimum age of previous support data archives that should be preserved after a new archive is generated.",
+                    "type": "string"
+                }
+                ,
+                "commandArguments": {
+                    "description": "A string containing the arguments to provide to the command. If the command should be run without arguments, this property should be left undefined. If there should be multiple arguments, then they should be separated with spaces.",
+                    "type": "string"
+                }
+                ,
+                "commandOutputFileBaseName": {
+                    "description": "The path and base name for a file to which the command output (both standard output and standard error) should be written. This may be left undefined if the command output should not be recorded into a file.",
+                    "type": "string"
+                }
+                ,
+                "filenamePattern": {
+                    "description": "A pattern that specifies the names of the files to examine. The pattern may contain zero or more asterisks as wildcards, where each wildcard matches zero or more characters. It may also contain at most one occurrence of the special string "${timestamp}", which will match a timestamp with the format specified using the timestamp-format property. All other characters in the pattern will be treated literally.",
+                    "type": "string"
+                }
+                ,
+                "retainAggregateFileSize": {
+                    "description": "The minimum aggregate size of files that will be retained. The size should be specified as an integer followed by a unit that is one of "b" or "bytes", "kb" or "kilobytes", "mb" or "megabytes", "gb" or "gigabytes", or "tb" or "terabytes". For example, a value of "1 gb" indicates that at least one gigabyte of files should be retained.",
+                    "type": "string"
+                }
+                ,
+                "includeExtensionSource": {
+                    "description": "Indicates whether the support data archive should include the source code (if available) for any third-party extensions that may be installed in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "commandPath": {
+                    "description": "The absolute path to the command to execute. It must be an absolute path, the corresponding file must exist, and it must be listed in the config/exec-command-whitelist.txt file.",
+                    "type": "string"
+                }
+                ,
+                "alertOnFailure": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task fails to complete successfully.",
+                    "type": "boolean"
+                }
+                ,
+                "taskObjectClass": {
+                    "description": "The names or OIDs of the object classes to include in the tasks that are scheduled from this Statically Defined Recurring Task. All object classes must be defined in the server schema, and the combination of object classes must be valid for a task entry.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "alertOnSuccess": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task completes successfully.",
+                    "type": "boolean"
+                }
+                ,
+                "reportCount": {
+                    "description": "The number of intervals of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat. A value of zero indicates that these kinds of tools should not be used to collect any information.",
+                    "type": "integer"
+                }
+                ,
+                "comment": {
+                    "description": "An optional comment to include in a README file within the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousReportCount": {
+                    "description": "The minimum number of previous reports that should be preserved after a new report is generated.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousOutputFileCount": {
+                    "description": "The minimum number of previous command output files that should be preserved after a new instance of the command is invoked.",
+                    "type": "integer"
+                }
+                ,
+                "encryptionPassphraseFile": {
+                    "description": "The path to a file that contains the passphrase to encrypt the contents of the support data archive.",
+                    "type": "string"
+                }
+            }
+        },
+        "recurring-task-response": {
+            "id": "recurring-task-response",
+            "description": "A Recurring Task resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:generate-server-profile"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:leave-lockdown-mode"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:backup"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:delay"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:statically-defined"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:collect-support-data"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:ldif-export"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:enter-lockdown-mode"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:audit-data-security"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:exec"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:file-retention"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:third-party"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Recurring Task"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "reason": {
+                    "description": "The reason that the server is being taken out of in lockdown mode.",
+                    "type": "string"
+                }
+                ,
+                "logDuration": {
+                    "description": "The maximum age (leading up to the time the collect-support-data tool was invoked) for log content to include in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "searchInterval": {
+                    "description": "The length of time the server should sleep between searches performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "workingDirectory": {
+                    "description": "The absolute path to a working directory where the command should be executed. It must be an absolute path and the corresponding directory must exist.",
+                    "type": "string"
+                }
+                ,
+                "includeReplicationStateDump": {
+                    "description": "Indicates whether the support data archive should include a replication state dump, which may be several megabytes in size.",
+                    "type": "boolean"
+                }
+                ,
+                "targetDirectory": {
+                    "description": "The path to the directory containing the files to examine. The directory must exist.",
+                    "type": "string"
+                }
+                ,
+                "alertOnStart": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task starts running.",
+                    "type": "boolean"
+                }
+                ,
+                "sign": {
+                    "description": "Indicates whether to cryptographically sign backups, which will make it possible to detect whether the backup has been altered since it was created.",
+                    "type": "boolean"
+                }
+                ,
+                "includePath": {
+                    "description": "An optional set of additional paths to files within the instance root that should be included in the generated server profile. All paths must be within the instance root, and relative paths will be relative to the instance root.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "maxMegabytesPerSecond": {
+                    "description": "The maximum rate, in megabytes per second, at which backups should be written.",
+                    "type": "integer"
+                }
+                ,
+                "searchTimeLimit": {
+                    "description": "The length of time that the server will wait for a response to each internal search performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "profileDirectory": {
+                    "description": "The directory in which the generated server profiles will be placed. The files will be named with the pattern "server-profile-{timestamp}.zip", where "{timestamp}" represents the time that the profile was generated.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Recurring Task. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "taskAttributeValue": {
+                    "description": "The set of attribute values that should be included in the tasks that are scheduled from this Statically Defined Recurring Task. Each value must be in the form {attribute-type}={value}, where {attribute-type} is the name or OID of an attribute type that is defined in the schema and permitted with the configured set of object classes, and {value} is a value to assign to an attribute with that type. A multivalued attribute can be created by providing multiple name-value pairs with the same name and different values.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "useSequentialMode": {
+                    "description": "Indicates whether to capture support data information sequentially rather than in parallel. Capturing data in sequential mode may reduce the amount of memory that the tool requires to operate, at the cost of taking longer to run.",
+                    "type": "boolean"
+                }
+                ,
+                "logFileTailCollectionSize": {
+                    "description": "The amount of data to collect from the end of each log file included in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "ldifDirectory": {
+                    "description": "The directory in which LDIF export files will be placed. The directory must already exist.",
+                    "type": "string"
+                }
+                ,
+                "taskReturnStateIfTimeoutIsEncountered": {
+                    "description": "The return state to use if a timeout is encountered while waiting for the server work queue to become idle (if the duration-to-wait-for-work-queue-idle property has a value), or if the time specified by the duration-to-wait-for-search-to-return-entries elapses without the associated search returning any entries.",
+                    "type": "string"
+                    , "enum": [
+                        "stopped-by-error"
+                        ,
+                        "completed-with-errors"
+                        ,
+                        "completed-successfully"
+                    ]
+                }
+                ,
+                "sleepDuration": {
+                    "description": "The length of time to sleep before the task completes.",
+                    "type": "string"
+                }
+                ,
+                "ldapURLForSearchExpectedToReturnEntries": {
+                    "description": "An LDAP URL that provides the criteria for a search request that is expected to return at least one entry. The search will be performed internally, and only the base DN, scope, and filter from the URL will be used; any host, port, or requested attributes included in the URL will be ignored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "outputDirectory": {
+                    "description": "The directory in which the support data archive files will be placed. The path must be a directory, and that directory must already exist. Relative paths will be interpreted as relative to the server root.",
+                    "type": "string"
+                }
+                ,
+                "logFileHeadCollectionSize": {
+                    "description": "The amount of data to collect from the beginning of each log file included in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "includedBackendID": {
+                    "description": "The backend IDs of any backends that should be included in the backup.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "compress": {
+                    "description": "Indicates whether to compress the data as it is written into the backup.",
+                    "type": "boolean"
+                }
+                ,
+                "retainPreviousLDIFExportCount": {
+                    "description": "The minimum number of previous LDIF exports that should be preserved after a new export completes successfully.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousFullBackupAge": {
+                    "description": "The minimum age of previous full backups that should be preserved after a new backup completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "reportIntervalSeconds": {
+                    "description": "The duration (in seconds) between each interval of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousLDIFExportAge": {
+                    "description": "The minimum age of previous LDIF exports that should be preserved after a new export completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousProfileCount": {
+                    "description": "The minimum number of previous server profile zip files that should be preserved after a new profile is generated.",
+                    "type": "integer"
+                }
+                ,
+                "durationToWaitForWorkQueueIdle": {
+                    "description": "Indicates that task should wait for up to the specified length of time for the work queue to report that all worker threads are idle and there are no pending operations. Note that this primarily monitors operations that use worker threads, which does not include internal operations (for example, those invoked by extensions), and may not include requests from non-LDAP clients (for example, HTTP-based clients).",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousFullBackupCount": {
+                    "description": "The minimum number of previous full backups that should be preserved after a new backup completes successfully.",
+                    "type": "integer"
+                }
+                ,
+                "cancelOnTaskDependencyFailure": {
+                    "description": "Indicates whether an instance of this Recurring Task should be canceled if the task immediately before it in the recurring task chain fails to complete successfully (including if it is canceled by an administrator before it starts or while it is running).",
+                    "type": "boolean"
+                }
+                ,
+                "timestampFormat": {
+                    "description": "The format to use for the timestamp represented by the "${timestamp}" token in the filename pattern.",
+                    "type": "string"
+                    , "enum": [
+                        "generalized-time-utc-with-milliseconds"
+                        ,
+                        "generalized-time-utc-with-seconds"
+                        ,
+                        "generalized-time-utc-with-minutes"
+                        ,
+                        "local-time-with-milliseconds"
+                        ,
+                        "local-time-with-seconds"
+                        ,
+                        "local-time-with-minutes"
+                        ,
+                        "local-date"
+                    ]
+                }
+                ,
+                "logCommandOutput": {
+                    "description": "Indicates whether the command's output (both standard output and standard error) should be recorded in the server's error log.",
+                    "type": "boolean"
+                }
+                ,
+                "includeFilter": {
+                    "description": "A filter that will be used to identify entries that may be included in the generated report. If multiple filters are specified, then any entry that matches at least one of the filters will be included. If no filters are specified, then all entries will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeExpensiveData": {
+                    "description": "Indicates whether the support data archive should include information that may be expensive to obtain, and that may temporarily affect the server's performance or responsiveness.",
+                    "type": "boolean"
+                }
+                ,
+                "excludeBackendID": {
+                    "description": "The backend ID for a backend to be excluded from the export.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "baseOutputDirectory": {
+                    "description": "The base directory below which generated reports will be written. Each invocation of the audit-data-security task will create a new subdirectory below this base directory whose name is a timestamp indicating when the report was generated.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Recurring Task.",
+                    "type": "string"
+                }
+                ,
+                "encryptionSettingsDefinitionID": {
+                    "description": "The ID of an encryption settings definition to use to obtain the backup encryption key.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Recurring Task",
+                    "type": "string"
+                }
+                ,
+                "backendID": {
+                    "description": "The backend ID for a backend to be exported.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "retainPreviousProfileAge": {
+                    "description": "The minimum age of previous server profile zip files that should be preserved after a new profile is generated.",
+                    "type": "string"
+                }
+                ,
+                "taskJavaClass": {
+                    "description": "The fully-qualified name of the Java class that provides the logic for the task to be invoked.",
+                    "type": "string"
+                }
+                ,
+                "taskCompletionStateForNonzeroExitCode": {
+                    "description": "The final task state that a task instance should have if the task executes the specified command and that command completes with a nonzero exit code, which generally means that the command did not complete successfully.",
+                    "type": "string"
+                    , "enum": [
+                        "stopped-by-error"
+                        ,
+                        "completed-with-errors"
+                        ,
+                        "completed-successfully"
+                    ]
+                }
+                ,
+                "securityLevel": {
+                    "description": "The security level to use when deciding which information to include in or exclude from the support data archive, and which included data should be obscured or redacted.",
+                    "type": "string"
+                    , "enum": [
+                        "none"
+                        ,
+                        "obscure-secrets"
+                        ,
+                        "maximum"
+                    ]
+                }
+                ,
+                "durationToWaitForSearchToReturnEntries": {
+                    "description": "The maximum length of time that the server will continue to perform internal searches using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "encrypt": {
+                    "description": "Indicates whether to encrypt the data as it is written into the backup.",
+                    "type": "boolean"
+                }
+                ,
+                "jstackCount": {
+                    "description": "The number of times to invoke the jstack utility to obtain a stack trace of all threads running in the JVM. A value of zero indicates that the jstack utility should not be invoked.",
+                    "type": "integer"
+                }
+                ,
+                "emailOnSuccess": {
+                    "description": "The email addresses to which a message should be sent whenever an instance of this Recurring Task completes successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "emailOnFailure": {
+                    "description": "The email addresses to which a message should be sent if an instance of this Recurring Task fails to complete successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "backend": {
+                    "description": "The set of backends that should be examined. If no backends are specified, then all backends that support this functionality will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "excludedBackendID": {
+                    "description": "The backend IDs of any backends that should be excluded from the backup. All backends that support backups and are not listed will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "dataSecurityAuditor": {
+                    "description": "The set of data security auditors that should be invoked. If no auditors are specified, then all auditors defined in the configuration will be used.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "retainPreviousOutputFileAge": {
+                    "description": "The minimum age of previous command output files that should be preserved after a new instance of the command is invoked.",
+                    "type": "string"
+                }
+                ,
+                "retainFileCount": {
+                    "description": "The minimum number of files matching the pattern that will be retained.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousSupportDataArchiveCount": {
+                    "description": "The minimum number of previous support data archives that should be preserved after a new archive is generated.",
+                    "type": "integer"
+                }
+                ,
+                "emailOnStart": {
+                    "description": "The email addresses to which a message should be sent whenever an instance of this Recurring Task starts running. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeBinaryFiles": {
+                    "description": "Indicates whether the support data archive should include binary files that may not have otherwise been included. Note that it may not be possible to obscure or redact sensitive information in binary files.",
+                    "type": "boolean"
+                }
+                ,
+                "retainPreviousReportAge": {
+                    "description": "The minimum age of previous reports that should be preserved after a new report completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "backupDirectory": {
+                    "description": "The directory in which backup files will be placed. When backing up a single backend, the backup files will be placed directly in this directory. When backing up multiple backends, the backup files for each backend will be placed in a subdirectory whose name is the corresponding backend ID.",
+                    "type": "string"
+                }
+                ,
+                "retainFileAge": {
+                    "description": "The minimum age of files matching the pattern that will be retained.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousSupportDataArchiveAge": {
+                    "description": "The minimum age of previous support data archives that should be preserved after a new archive is generated.",
+                    "type": "string"
+                }
+                ,
+                "commandArguments": {
+                    "description": "A string containing the arguments to provide to the command. If the command should be run without arguments, this property should be left undefined. If there should be multiple arguments, then they should be separated with spaces.",
+                    "type": "string"
+                }
+                ,
+                "commandOutputFileBaseName": {
+                    "description": "The path and base name for a file to which the command output (both standard output and standard error) should be written. This may be left undefined if the command output should not be recorded into a file.",
+                    "type": "string"
+                }
+                ,
+                "filenamePattern": {
+                    "description": "A pattern that specifies the names of the files to examine. The pattern may contain zero or more asterisks as wildcards, where each wildcard matches zero or more characters. It may also contain at most one occurrence of the special string "${timestamp}", which will match a timestamp with the format specified using the timestamp-format property. All other characters in the pattern will be treated literally.",
+                    "type": "string"
+                }
+                ,
+                "retainAggregateFileSize": {
+                    "description": "The minimum aggregate size of files that will be retained. The size should be specified as an integer followed by a unit that is one of "b" or "bytes", "kb" or "kilobytes", "mb" or "megabytes", "gb" or "gigabytes", or "tb" or "terabytes". For example, a value of "1 gb" indicates that at least one gigabyte of files should be retained.",
+                    "type": "string"
+                }
+                ,
+                "includeExtensionSource": {
+                    "description": "Indicates whether the support data archive should include the source code (if available) for any third-party extensions that may be installed in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "commandPath": {
+                    "description": "The absolute path to the command to execute. It must be an absolute path, the corresponding file must exist, and it must be listed in the config/exec-command-whitelist.txt file.",
+                    "type": "string"
+                }
+                ,
+                "alertOnFailure": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task fails to complete successfully.",
+                    "type": "boolean"
+                }
+                ,
+                "taskObjectClass": {
+                    "description": "The names or OIDs of the object classes to include in the tasks that are scheduled from this Statically Defined Recurring Task. All object classes must be defined in the server schema, and the combination of object classes must be valid for a task entry.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "alertOnSuccess": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task completes successfully.",
+                    "type": "boolean"
+                }
+                ,
+                "reportCount": {
+                    "description": "The number of intervals of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat. A value of zero indicates that these kinds of tools should not be used to collect any information.",
+                    "type": "integer"
+                }
+                ,
+                "comment": {
+                    "description": "An optional comment to include in a README file within the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousReportCount": {
+                    "description": "The minimum number of previous reports that should be preserved after a new report is generated.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousOutputFileCount": {
+                    "description": "The minimum number of previous command output files that should be preserved after a new instance of the command is invoked.",
+                    "type": "integer"
+                }
+                ,
+                "encryptionPassphraseFile": {
+                    "description": "The path to a file that contains the passphrase to encrypt the contents of the support data archive.",
+                    "type": "string"
+                }
+            }
+        },
+        "recurring-task-properties": {
+            "id": "recurring-task-properties",
+            "description": "Recurring Task properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:generate-server-profile"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:leave-lockdown-mode"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:backup"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:delay"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:statically-defined"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:collect-support-data"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:ldif-export"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:enter-lockdown-mode"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:audit-data-security"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:exec"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:file-retention"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:recurring-task:third-party"
+                        ]
+                    }
+                },
+                "reason": {
+                    "description": "The reason that the server is being taken out of in lockdown mode.",
+                    "type": "string"
+                }
+                ,
+                "logDuration": {
+                    "description": "The maximum age (leading up to the time the collect-support-data tool was invoked) for log content to include in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "searchInterval": {
+                    "description": "The length of time the server should sleep between searches performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "workingDirectory": {
+                    "description": "The absolute path to a working directory where the command should be executed. It must be an absolute path and the corresponding directory must exist.",
+                    "type": "string"
+                }
+                ,
+                "includeReplicationStateDump": {
+                    "description": "Indicates whether the support data archive should include a replication state dump, which may be several megabytes in size.",
+                    "type": "boolean"
+                }
+                ,
+                "targetDirectory": {
+                    "description": "The path to the directory containing the files to examine. The directory must exist.",
+                    "type": "string"
+                }
+                ,
+                "alertOnStart": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task starts running.",
+                    "type": "boolean"
+                }
+                ,
+                "sign": {
+                    "description": "Indicates whether to cryptographically sign backups, which will make it possible to detect whether the backup has been altered since it was created.",
+                    "type": "boolean"
+                }
+                ,
+                "includePath": {
+                    "description": "An optional set of additional paths to files within the instance root that should be included in the generated server profile. All paths must be within the instance root, and relative paths will be relative to the instance root.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "maxMegabytesPerSecond": {
+                    "description": "The maximum rate, in megabytes per second, at which backups should be written.",
+                    "type": "integer"
+                }
+                ,
+                "searchTimeLimit": {
+                    "description": "The length of time that the server will wait for a response to each internal search performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "profileDirectory": {
+                    "description": "The directory in which the generated server profiles will be placed. The files will be named with the pattern "server-profile-{timestamp}.zip", where "{timestamp}" represents the time that the profile was generated.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Recurring Task. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "taskAttributeValue": {
+                    "description": "The set of attribute values that should be included in the tasks that are scheduled from this Statically Defined Recurring Task. Each value must be in the form {attribute-type}={value}, where {attribute-type} is the name or OID of an attribute type that is defined in the schema and permitted with the configured set of object classes, and {value} is a value to assign to an attribute with that type. A multivalued attribute can be created by providing multiple name-value pairs with the same name and different values.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "useSequentialMode": {
+                    "description": "Indicates whether to capture support data information sequentially rather than in parallel. Capturing data in sequential mode may reduce the amount of memory that the tool requires to operate, at the cost of taking longer to run.",
+                    "type": "boolean"
+                }
+                ,
+                "logFileTailCollectionSize": {
+                    "description": "The amount of data to collect from the end of each log file included in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "ldifDirectory": {
+                    "description": "The directory in which LDIF export files will be placed. The directory must already exist.",
+                    "type": "string"
+                }
+                ,
+                "taskReturnStateIfTimeoutIsEncountered": {
+                    "description": "The return state to use if a timeout is encountered while waiting for the server work queue to become idle (if the duration-to-wait-for-work-queue-idle property has a value), or if the time specified by the duration-to-wait-for-search-to-return-entries elapses without the associated search returning any entries.",
+                    "type": "string"
+                    , "enum": [
+                        "stopped-by-error"
+                        ,
+                        "completed-with-errors"
+                        ,
+                        "completed-successfully"
+                    ]
+                }
+                ,
+                "sleepDuration": {
+                    "description": "The length of time to sleep before the task completes.",
+                    "type": "string"
+                }
+                ,
+                "ldapURLForSearchExpectedToReturnEntries": {
+                    "description": "An LDAP URL that provides the criteria for a search request that is expected to return at least one entry. The search will be performed internally, and only the base DN, scope, and filter from the URL will be used; any host, port, or requested attributes included in the URL will be ignored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "outputDirectory": {
+                    "description": "The directory in which the support data archive files will be placed. The path must be a directory, and that directory must already exist. Relative paths will be interpreted as relative to the server root.",
+                    "type": "string"
+                }
+                ,
+                "logFileHeadCollectionSize": {
+                    "description": "The amount of data to collect from the beginning of each log file included in the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "includedBackendID": {
+                    "description": "The backend IDs of any backends that should be included in the backup.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "compress": {
+                    "description": "Indicates whether to compress the data as it is written into the backup.",
+                    "type": "boolean"
+                }
+                ,
+                "retainPreviousLDIFExportCount": {
+                    "description": "The minimum number of previous LDIF exports that should be preserved after a new export completes successfully.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousFullBackupAge": {
+                    "description": "The minimum age of previous full backups that should be preserved after a new backup completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "reportIntervalSeconds": {
+                    "description": "The duration (in seconds) between each interval of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousLDIFExportAge": {
+                    "description": "The minimum age of previous LDIF exports that should be preserved after a new export completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousProfileCount": {
+                    "description": "The minimum number of previous server profile zip files that should be preserved after a new profile is generated.",
+                    "type": "integer"
+                }
+                ,
+                "durationToWaitForWorkQueueIdle": {
+                    "description": "Indicates that task should wait for up to the specified length of time for the work queue to report that all worker threads are idle and there are no pending operations. Note that this primarily monitors operations that use worker threads, which does not include internal operations (for example, those invoked by extensions), and may not include requests from non-LDAP clients (for example, HTTP-based clients).",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousFullBackupCount": {
+                    "description": "The minimum number of previous full backups that should be preserved after a new backup completes successfully.",
+                    "type": "integer"
+                }
+                ,
+                "cancelOnTaskDependencyFailure": {
+                    "description": "Indicates whether an instance of this Recurring Task should be canceled if the task immediately before it in the recurring task chain fails to complete successfully (including if it is canceled by an administrator before it starts or while it is running).",
+                    "type": "boolean"
+                }
+                ,
+                "timestampFormat": {
+                    "description": "The format to use for the timestamp represented by the "${timestamp}" token in the filename pattern.",
+                    "type": "string"
+                    , "enum": [
+                        "generalized-time-utc-with-milliseconds"
+                        ,
+                        "generalized-time-utc-with-seconds"
+                        ,
+                        "generalized-time-utc-with-minutes"
+                        ,
+                        "local-time-with-milliseconds"
+                        ,
+                        "local-time-with-seconds"
+                        ,
+                        "local-time-with-minutes"
+                        ,
+                        "local-date"
+                    ]
+                }
+                ,
+                "logCommandOutput": {
+                    "description": "Indicates whether the command's output (both standard output and standard error) should be recorded in the server's error log.",
+                    "type": "boolean"
+                }
+                ,
+                "includeFilter": {
+                    "description": "A filter that will be used to identify entries that may be included in the generated report. If multiple filters are specified, then any entry that matches at least one of the filters will be included. If no filters are specified, then all entries will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeExpensiveData": {
+                    "description": "Indicates whether the support data archive should include information that may be expensive to obtain, and that may temporarily affect the server's performance or responsiveness.",
+                    "type": "boolean"
+                }
+                ,
+                "excludeBackendID": {
+                    "description": "The backend ID for a backend to be excluded from the export.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "baseOutputDirectory": {
+                    "description": "The base directory below which generated reports will be written. Each invocation of the audit-data-security task will create a new subdirectory below this base directory whose name is a timestamp indicating when the report was generated.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Recurring Task.",
+                    "type": "string"
+                }
+                ,
+                "encryptionSettingsDefinitionID": {
+                    "description": "The ID of an encryption settings definition to use to obtain the backup encryption key.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Recurring Task",
+                    "type": "string"
+                }
+                ,
+                "backendID": {
+                    "description": "The backend ID for a backend to be exported.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "retainPreviousProfileAge": {
+                    "description": "The minimum age of previous server profile zip files that should be preserved after a new profile is generated.",
+                    "type": "string"
+                }
+                ,
+                "taskJavaClass": {
+                    "description": "The fully-qualified name of the Java class that provides the logic for the task to be invoked.",
+                    "type": "string"
+                }
+                ,
+                "taskCompletionStateForNonzeroExitCode": {
+                    "description": "The final task state that a task instance should have if the task executes the specified command and that command completes with a nonzero exit code, which generally means that the command did not complete successfully.",
+                    "type": "string"
+                    , "enum": [
+                        "stopped-by-error"
+                        ,
+                        "completed-with-errors"
+                        ,
+                        "completed-successfully"
+                    ]
+                }
+                ,
+                "securityLevel": {
+                    "description": "The security level to use when deciding which information to include in or exclude from the support data archive, and which included data should be obscured or redacted.",
+                    "type": "string"
+                    , "enum": [
+                        "none"
+                        ,
+                        "obscure-secrets"
+                        ,
+                        "maximum"
+                    ]
+                }
+                ,
+                "durationToWaitForSearchToReturnEntries": {
+                    "description": "The maximum length of time that the server will continue to perform internal searches using the criteria from the ldap-url-for-search-expected-to-return-entries property.",
+                    "type": "string"
+                }
+                ,
+                "encrypt": {
+                    "description": "Indicates whether to encrypt the data as it is written into the backup.",
+                    "type": "boolean"
+                }
+                ,
+                "jstackCount": {
+                    "description": "The number of times to invoke the jstack utility to obtain a stack trace of all threads running in the JVM. A value of zero indicates that the jstack utility should not be invoked.",
+                    "type": "integer"
+                }
+                ,
+                "emailOnSuccess": {
+                    "description": "The email addresses to which a message should be sent whenever an instance of this Recurring Task completes successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "emailOnFailure": {
+                    "description": "The email addresses to which a message should be sent if an instance of this Recurring Task fails to complete successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "backend": {
+                    "description": "The set of backends that should be examined. If no backends are specified, then all backends that support this functionality will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "excludedBackendID": {
+                    "description": "The backend IDs of any backends that should be excluded from the backup. All backends that support backups and are not listed will be included.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "dataSecurityAuditor": {
+                    "description": "The set of data security auditors that should be invoked. If no auditors are specified, then all auditors defined in the configuration will be used.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "retainPreviousOutputFileAge": {
+                    "description": "The minimum age of previous command output files that should be preserved after a new instance of the command is invoked.",
+                    "type": "string"
+                }
+                ,
+                "retainFileCount": {
+                    "description": "The minimum number of files matching the pattern that will be retained.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousSupportDataArchiveCount": {
+                    "description": "The minimum number of previous support data archives that should be preserved after a new archive is generated.",
+                    "type": "integer"
+                }
+                ,
+                "emailOnStart": {
+                    "description": "The email addresses to which a message should be sent whenever an instance of this Recurring Task starts running. If this option is used, then at least one smtp-server must be configured in the global configuration.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeBinaryFiles": {
+                    "description": "Indicates whether the support data archive should include binary files that may not have otherwise been included. Note that it may not be possible to obscure or redact sensitive information in binary files.",
+                    "type": "boolean"
+                }
+                ,
+                "retainPreviousReportAge": {
+                    "description": "The minimum age of previous reports that should be preserved after a new report completes successfully.",
+                    "type": "string"
+                }
+                ,
+                "backupDirectory": {
+                    "description": "The directory in which backup files will be placed. When backing up a single backend, the backup files will be placed directly in this directory. When backing up multiple backends, the backup files for each backend will be placed in a subdirectory whose name is the corresponding backend ID.",
+                    "type": "string"
+                }
+                ,
+                "retainFileAge": {
+                    "description": "The minimum age of files matching the pattern that will be retained.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousSupportDataArchiveAge": {
+                    "description": "The minimum age of previous support data archives that should be preserved after a new archive is generated.",
+                    "type": "string"
+                }
+                ,
+                "commandArguments": {
+                    "description": "A string containing the arguments to provide to the command. If the command should be run without arguments, this property should be left undefined. If there should be multiple arguments, then they should be separated with spaces.",
+                    "type": "string"
+                }
+                ,
+                "commandOutputFileBaseName": {
+                    "description": "The path and base name for a file to which the command output (both standard output and standard error) should be written. This may be left undefined if the command output should not be recorded into a file.",
+                    "type": "string"
+                }
+                ,
+                "filenamePattern": {
+                    "description": "A pattern that specifies the names of the files to examine. The pattern may contain zero or more asterisks as wildcards, where each wildcard matches zero or more characters. It may also contain at most one occurrence of the special string "${timestamp}", which will match a timestamp with the format specified using the timestamp-format property. All other characters in the pattern will be treated literally.",
+                    "type": "string"
+                }
+                ,
+                "retainAggregateFileSize": {
+                    "description": "The minimum aggregate size of files that will be retained. The size should be specified as an integer followed by a unit that is one of "b" or "bytes", "kb" or "kilobytes", "mb" or "megabytes", "gb" or "gigabytes", or "tb" or "terabytes". For example, a value of "1 gb" indicates that at least one gigabyte of files should be retained.",
+                    "type": "string"
+                }
+                ,
+                "includeExtensionSource": {
+                    "description": "Indicates whether the support data archive should include the source code (if available) for any third-party extensions that may be installed in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "commandPath": {
+                    "description": "The absolute path to the command to execute. It must be an absolute path, the corresponding file must exist, and it must be listed in the config/exec-command-whitelist.txt file.",
+                    "type": "string"
+                }
+                ,
+                "alertOnFailure": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task fails to complete successfully.",
+                    "type": "boolean"
+                }
+                ,
+                "taskObjectClass": {
+                    "description": "The names or OIDs of the object classes to include in the tasks that are scheduled from this Statically Defined Recurring Task. All object classes must be defined in the server schema, and the combination of object classes must be valid for a task entry.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "alertOnSuccess": {
+                    "description": "Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task completes successfully.",
+                    "type": "boolean"
+                }
+                ,
+                "reportCount": {
+                    "description": "The number of intervals of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat. A value of zero indicates that these kinds of tools should not be used to collect any information.",
+                    "type": "integer"
+                }
+                ,
+                "comment": {
+                    "description": "An optional comment to include in a README file within the support data archive.",
+                    "type": "string"
+                }
+                ,
+                "retainPreviousReportCount": {
+                    "description": "The minimum number of previous reports that should be preserved after a new report is generated.",
+                    "type": "integer"
+                }
+                ,
+                "retainPreviousOutputFileCount": {
+                    "description": "The minimum number of previous command output files that should be preserved after a new instance of the command is invoked.",
+                    "type": "integer"
+                }
+                ,
+                "encryptionPassphraseFile": {
+                    "description": "The path to a file that contains the passphrase to encrypt the contents of the support data archive.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

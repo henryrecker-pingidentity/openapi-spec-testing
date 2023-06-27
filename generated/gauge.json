@@ -1,0 +1,1111 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/gauges",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Gauge objects",
+                    "type": "gauge-list-response",
+                    "nickname": "list-gauges",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Gauge to the config",
+                    "nickname": "add-gauge",
+                    "type": "gauge-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Gauge to add",
+                            "name": "add-gauge-request",
+                            "type": "add-gauge-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/gauges/{gauge-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Gauge",
+                    "type": "gauge-response",
+                    "nickname": "get-gauge",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "gauge-name",
+                          "description": "Name of the Gauge",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Gauge by name, replacing any attributes specified in the request body",
+                    "type": "gauge-response",
+                    "nickname": "put-gauge",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "gauge-name",
+                          "description": "Name of the Gauge",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Gauge attributes to update",
+                            "name": "gauge-properties",
+                            "type": "gauge-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Gauge by name, using a SCIM patch request",
+                    "type": "gauge-response",
+                    "nickname": "patch-gauge",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "gauge-name",
+                          "description": "Name of the Gauge",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Gauge",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Gauge",
+                    "nickname": "delete-gauge",
+                    "parameters": [
+                        {
+                          "name": "gauge-name",
+                          "description": "Name of the Gauge",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "gauge-list-response": {
+            "id": "gauge-list-response",
+            "description": "Gauge list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "gauge-response"
+                    }
+                }
+            }
+        },
+        "add-gauge-request": {
+            "id": "add-gauge-request",
+            "description": "A Gauge resource request",
+            "required": [
+                "gaugeName"
+            ],
+            "properties": {
+                "gaugeName": {
+                    "type": "string",
+                    "description": "Name of the new Gauge"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:gauge:indicator"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:gauge:numeric"
+                        ]
+                    }
+                },
+                "criticalValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity should be critical.",
+                    "type": "string"
+                }
+                ,
+                "minorValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'minor'.",
+                    "type": "string"
+                }
+                ,
+                "overrideSeverity": {
+                    "description": "When defined, causes this Gauge to assume the specified severity, overriding its computed severity. This is useful for testing alarms generated by Gauges as well as suppressing alarms for known conditions.",
+                    "type": "string"
+                    , "enum": [
+                        "normal"
+                        ,
+                        "warning"
+                        ,
+                        "minor"
+                        ,
+                        "major"
+                        ,
+                        "critical"
+                    ]
+                }
+                ,
+                "alertLevel": {
+                    "description": "Specifies the level at which alerts are sent for alarms raised by this Gauge.",
+                    "type": "string"
+                    , "enum": [
+                        "always"
+                        ,
+                        "warning-and-above"
+                        ,
+                        "minor-and-above"
+                        ,
+                        "major-and-above"
+                        ,
+                        "critical-only"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "excludeResource": {
+                    "description": "Specifies resources to exclude from being monitored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this Gauge",
+                    "type": "string"
+                }
+                ,
+                "majorValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'major'.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Gauge is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "warningExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'warning'.",
+                    "type": "number"
+                }
+                ,
+                "gaugeDataSource": {
+                    "description": "Specifies the source of data to use in determining this Indicator Gauge's severity and status.",
+                    "type": "string"
+                }
+                ,
+                "includeResource": {
+                    "description": "Specifies set of resources to be monitored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "updateInterval": {
+                    "description": "The frequency with which this Gauge is updated.",
+                    "type": "string"
+                }
+                ,
+                "majorExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'major'.",
+                    "type": "number"
+                }
+                ,
+                "criticalExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'critical'.",
+                    "type": "number"
+                }
+                ,
+                "minorExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'minor'.",
+                    "type": "number"
+                }
+                ,
+                "serverDegradedSeverityLevel": {
+                    "description": "Specifies the alarm severity level at or above which the server is considered degraded.",
+                    "type": "string"
+                    , "enum": [
+                        "critical"
+                        ,
+                        "major"
+                        ,
+                        "minor"
+                        ,
+                        "warning"
+                        ,
+                        "none"
+                    ]
+                }
+                ,
+                "warningValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'warning'.",
+                    "type": "string"
+                }
+                ,
+                "samplesPerUpdateInterval": {
+                    "description": "Indicates the number of times the monitor data source value will be collected during the update interval.",
+                    "type": "integer"
+                }
+                ,
+                "serverUnavailableSeverityLevel": {
+                    "description": "Specifies the alarm severity level at or above which the server is considered unavailable.",
+                    "type": "string"
+                    , "enum": [
+                        "critical"
+                        ,
+                        "major"
+                        ,
+                        "minor"
+                        ,
+                        "warning"
+                        ,
+                        "none"
+                    ]
+                }
+            }
+        },
+        "gauge-response": {
+            "id": "gauge-response",
+            "description": "A Gauge resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:gauge:indicator"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:gauge:numeric"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Gauge"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "criticalValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity should be critical.",
+                    "type": "string"
+                }
+                ,
+                "minorValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'minor'.",
+                    "type": "string"
+                }
+                ,
+                "overrideSeverity": {
+                    "description": "When defined, causes this Gauge to assume the specified severity, overriding its computed severity. This is useful for testing alarms generated by Gauges as well as suppressing alarms for known conditions.",
+                    "type": "string"
+                    , "enum": [
+                        "normal"
+                        ,
+                        "warning"
+                        ,
+                        "minor"
+                        ,
+                        "major"
+                        ,
+                        "critical"
+                    ]
+                }
+                ,
+                "alertLevel": {
+                    "description": "Specifies the level at which alerts are sent for alarms raised by this Gauge.",
+                    "type": "string"
+                    , "enum": [
+                        "always"
+                        ,
+                        "warning-and-above"
+                        ,
+                        "minor-and-above"
+                        ,
+                        "major-and-above"
+                        ,
+                        "critical-only"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "excludeResource": {
+                    "description": "Specifies resources to exclude from being monitored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this Gauge",
+                    "type": "string"
+                }
+                ,
+                "majorValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'major'.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Gauge is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "warningExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'warning'.",
+                    "type": "number"
+                }
+                ,
+                "gaugeDataSource": {
+                    "description": "Specifies the source of data to use in determining this Indicator Gauge's severity and status.",
+                    "type": "string"
+                }
+                ,
+                "includeResource": {
+                    "description": "Specifies set of resources to be monitored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "updateInterval": {
+                    "description": "The frequency with which this Gauge is updated.",
+                    "type": "string"
+                }
+                ,
+                "majorExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'major'.",
+                    "type": "number"
+                }
+                ,
+                "criticalExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'critical'.",
+                    "type": "number"
+                }
+                ,
+                "minorExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'minor'.",
+                    "type": "number"
+                }
+                ,
+                "serverDegradedSeverityLevel": {
+                    "description": "Specifies the alarm severity level at or above which the server is considered degraded.",
+                    "type": "string"
+                    , "enum": [
+                        "critical"
+                        ,
+                        "major"
+                        ,
+                        "minor"
+                        ,
+                        "warning"
+                        ,
+                        "none"
+                    ]
+                }
+                ,
+                "warningValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'warning'.",
+                    "type": "string"
+                }
+                ,
+                "samplesPerUpdateInterval": {
+                    "description": "Indicates the number of times the monitor data source value will be collected during the update interval.",
+                    "type": "integer"
+                }
+                ,
+                "serverUnavailableSeverityLevel": {
+                    "description": "Specifies the alarm severity level at or above which the server is considered unavailable.",
+                    "type": "string"
+                    , "enum": [
+                        "critical"
+                        ,
+                        "major"
+                        ,
+                        "minor"
+                        ,
+                        "warning"
+                        ,
+                        "none"
+                    ]
+                }
+            }
+        },
+        "gauge-properties": {
+            "id": "gauge-properties",
+            "description": "Gauge properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:gauge:indicator"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:gauge:numeric"
+                        ]
+                    }
+                },
+                "criticalValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity should be critical.",
+                    "type": "string"
+                }
+                ,
+                "minorValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'minor'.",
+                    "type": "string"
+                }
+                ,
+                "overrideSeverity": {
+                    "description": "When defined, causes this Gauge to assume the specified severity, overriding its computed severity. This is useful for testing alarms generated by Gauges as well as suppressing alarms for known conditions.",
+                    "type": "string"
+                    , "enum": [
+                        "normal"
+                        ,
+                        "warning"
+                        ,
+                        "minor"
+                        ,
+                        "major"
+                        ,
+                        "critical"
+                    ]
+                }
+                ,
+                "alertLevel": {
+                    "description": "Specifies the level at which alerts are sent for alarms raised by this Gauge.",
+                    "type": "string"
+                    , "enum": [
+                        "always"
+                        ,
+                        "warning-and-above"
+                        ,
+                        "minor-and-above"
+                        ,
+                        "major-and-above"
+                        ,
+                        "critical-only"
+                        ,
+                        "never"
+                    ]
+                }
+                ,
+                "excludeResource": {
+                    "description": "Specifies resources to exclude from being monitored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this Gauge",
+                    "type": "string"
+                }
+                ,
+                "majorValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'major'.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Gauge is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "warningExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'warning'.",
+                    "type": "number"
+                }
+                ,
+                "gaugeDataSource": {
+                    "description": "Specifies the source of data to use in determining this Indicator Gauge's severity and status.",
+                    "type": "string"
+                }
+                ,
+                "includeResource": {
+                    "description": "Specifies set of resources to be monitored.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "updateInterval": {
+                    "description": "The frequency with which this Gauge is updated.",
+                    "type": "string"
+                }
+                ,
+                "majorExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'major'.",
+                    "type": "number"
+                }
+                ,
+                "criticalExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'critical'.",
+                    "type": "number"
+                }
+                ,
+                "minorExitValue": {
+                    "description": "A value that is used to determine whether the current monitored value indicates this gauge's severity should no longer be 'minor'.",
+                    "type": "number"
+                }
+                ,
+                "serverDegradedSeverityLevel": {
+                    "description": "Specifies the alarm severity level at or above which the server is considered degraded.",
+                    "type": "string"
+                    , "enum": [
+                        "critical"
+                        ,
+                        "major"
+                        ,
+                        "minor"
+                        ,
+                        "warning"
+                        ,
+                        "none"
+                    ]
+                }
+                ,
+                "warningValue": {
+                    "description": "A regular expression pattern that is used to determine whether the current monitored value indicates this gauge's severity will be 'warning'.",
+                    "type": "string"
+                }
+                ,
+                "samplesPerUpdateInterval": {
+                    "description": "Indicates the number of times the monitor data source value will be collected during the update interval.",
+                    "type": "integer"
+                }
+                ,
+                "serverUnavailableSeverityLevel": {
+                    "description": "Specifies the alarm severity level at or above which the server is considered unavailable.",
+                    "type": "string"
+                    , "enum": [
+                        "critical"
+                        ,
+                        "major"
+                        ,
+                        "minor"
+                        ,
+                        "warning"
+                        ,
+                        "none"
+                    ]
+                }
+            }
+        }
+    }
+}

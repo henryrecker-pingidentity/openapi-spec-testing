@@ -1,0 +1,1045 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/passphrase-providers",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Passphrase Provider objects",
+                    "type": "passphrase-provider-list-response",
+                    "nickname": "list-passphrase-providers",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Passphrase Provider to the config",
+                    "nickname": "add-passphrase-provider",
+                    "type": "passphrase-provider-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Passphrase Provider to add",
+                            "name": "add-passphrase-provider-request",
+                            "type": "add-passphrase-provider-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/passphrase-providers/{passphrase-provider-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Passphrase Provider",
+                    "type": "passphrase-provider-response",
+                    "nickname": "get-passphrase-provider",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "passphrase-provider-name",
+                          "description": "Name of the Passphrase Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Passphrase Provider by name, replacing any attributes specified in the request body",
+                    "type": "passphrase-provider-response",
+                    "nickname": "put-passphrase-provider",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "passphrase-provider-name",
+                          "description": "Name of the Passphrase Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Passphrase Provider attributes to update",
+                            "name": "passphrase-provider-properties",
+                            "type": "passphrase-provider-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Passphrase Provider by name, using a SCIM patch request",
+                    "type": "passphrase-provider-response",
+                    "nickname": "patch-passphrase-provider",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "passphrase-provider-name",
+                          "description": "Name of the Passphrase Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Passphrase Provider",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Passphrase Provider",
+                    "nickname": "delete-passphrase-provider",
+                    "parameters": [
+                        {
+                          "name": "passphrase-provider-name",
+                          "description": "Name of the Passphrase Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "passphrase-provider-list-response": {
+            "id": "passphrase-provider-list-response",
+            "description": "Passphrase Provider list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "passphrase-provider-response"
+                    }
+                }
+            }
+        },
+        "add-passphrase-provider-request": {
+            "id": "add-passphrase-provider-request",
+            "description": "A Passphrase Provider resource request",
+            "required": [
+                "providerName"
+            ],
+            "properties": {
+                "providerName": {
+                    "type": "string",
+                    "description": "Name of the new Passphrase Provider"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:environment-variable"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:amazon-secrets-manager"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:obscured-value"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:azure-key-vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:file-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:conjur"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:third-party"
+                        ]
+                    }
+                },
+                "keyVaultURI": {
+                    "description": "The URI that identifies the Azure Key Vault from which the secret is to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Passphrase Provider.",
+                    "type": "string"
+                }
+                ,
+                "secretName": {
+                    "description": "The name of the secret to retrieve.",
+                    "type": "string"
+                }
+                ,
+                "azureAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "secretFieldName": {
+                    "description": "The name of the JSON field whose value is the passphrase that will be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "secretVersionStage": {
+                    "description": "The staging label for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "maxCacheDuration": {
+                    "description": "The maximum length of time that the passphrase provider may cache the passphrase that has been read from Vault. A value of zero seconds indicates that the provider should always attempt to read the passphrase from Vault.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Passphrase Provider",
+                    "type": "string"
+                }
+                ,
+                "secretID": {
+                    "description": "The Amazon Resource Name (ARN) or the user-friendly name of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "vaultExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Vault instance containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretPath": {
+                    "description": "The path to the desired secret in the Vault service. This will be appended to the value of the base-url property for the associated Vault external server.",
+                    "type": "string"
+                }
+                ,
+                "environmentVariable": {
+                    "description": "The name of the environment variable that is expected to hold the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Passphrase Provider is enabled for use in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "secretVersionID": {
+                    "description": "The unique identifier for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "conjurExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Conjur instance containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Passphrase Provider. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "passwordFile": {
+                    "description": "The path to the file containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "awsExternalServer": {
+                    "description": "The external server with information to use when interacting with the AWS Secrets Manager.",
+                    "type": "string"
+                }
+                ,
+                "obscuredValue": {
+                    "description": "The value to be stored in an obscured form.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretFieldName": {
+                    "description": "The name of the field in the Vault secret record that contains the passphrase to use to generate the encryption key.",
+                    "type": "string"
+                }
+                ,
+                "conjurSecretRelativePath": {
+                    "description": "The portion of the path that follows the account name in the URI needed to obtain the desired secret. Any special characters in the path must be URL-encoded.",
+                    "type": "string"
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Azure service.",
+                    "type": "string"
+                }
+            }
+        },
+        "passphrase-provider-response": {
+            "id": "passphrase-provider-response",
+            "description": "A Passphrase Provider resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:environment-variable"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:amazon-secrets-manager"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:obscured-value"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:azure-key-vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:file-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:conjur"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:third-party"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Passphrase Provider"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "keyVaultURI": {
+                    "description": "The URI that identifies the Azure Key Vault from which the secret is to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Passphrase Provider.",
+                    "type": "string"
+                }
+                ,
+                "secretName": {
+                    "description": "The name of the secret to retrieve.",
+                    "type": "string"
+                }
+                ,
+                "azureAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "secretFieldName": {
+                    "description": "The name of the JSON field whose value is the passphrase that will be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "secretVersionStage": {
+                    "description": "The staging label for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "maxCacheDuration": {
+                    "description": "The maximum length of time that the passphrase provider may cache the passphrase that has been read from Vault. A value of zero seconds indicates that the provider should always attempt to read the passphrase from Vault.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Passphrase Provider",
+                    "type": "string"
+                }
+                ,
+                "secretID": {
+                    "description": "The Amazon Resource Name (ARN) or the user-friendly name of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "vaultExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Vault instance containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretPath": {
+                    "description": "The path to the desired secret in the Vault service. This will be appended to the value of the base-url property for the associated Vault external server.",
+                    "type": "string"
+                }
+                ,
+                "environmentVariable": {
+                    "description": "The name of the environment variable that is expected to hold the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Passphrase Provider is enabled for use in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "secretVersionID": {
+                    "description": "The unique identifier for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "conjurExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Conjur instance containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Passphrase Provider. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "passwordFile": {
+                    "description": "The path to the file containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "awsExternalServer": {
+                    "description": "The external server with information to use when interacting with the AWS Secrets Manager.",
+                    "type": "string"
+                }
+                ,
+                "obscuredValue": {
+                    "description": "The value to be stored in an obscured form.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretFieldName": {
+                    "description": "The name of the field in the Vault secret record that contains the passphrase to use to generate the encryption key.",
+                    "type": "string"
+                }
+                ,
+                "conjurSecretRelativePath": {
+                    "description": "The portion of the path that follows the account name in the URI needed to obtain the desired secret. Any special characters in the path must be URL-encoded.",
+                    "type": "string"
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Azure service.",
+                    "type": "string"
+                }
+            }
+        },
+        "passphrase-provider-properties": {
+            "id": "passphrase-provider-properties",
+            "description": "Passphrase Provider properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:environment-variable"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:amazon-secrets-manager"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:obscured-value"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:azure-key-vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:file-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:conjur"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:passphrase-provider:third-party"
+                        ]
+                    }
+                },
+                "keyVaultURI": {
+                    "description": "The URI that identifies the Azure Key Vault from which the secret is to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Passphrase Provider.",
+                    "type": "string"
+                }
+                ,
+                "secretName": {
+                    "description": "The name of the secret to retrieve.",
+                    "type": "string"
+                }
+                ,
+                "azureAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "secretFieldName": {
+                    "description": "The name of the JSON field whose value is the passphrase that will be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "secretVersionStage": {
+                    "description": "The staging label for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "maxCacheDuration": {
+                    "description": "The maximum length of time that the passphrase provider may cache the passphrase that has been read from Vault. A value of zero seconds indicates that the provider should always attempt to read the passphrase from Vault.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Passphrase Provider",
+                    "type": "string"
+                }
+                ,
+                "secretID": {
+                    "description": "The Amazon Resource Name (ARN) or the user-friendly name of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "vaultExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Vault instance containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretPath": {
+                    "description": "The path to the desired secret in the Vault service. This will be appended to the value of the base-url property for the associated Vault external server.",
+                    "type": "string"
+                }
+                ,
+                "environmentVariable": {
+                    "description": "The name of the environment variable that is expected to hold the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Passphrase Provider is enabled for use in the server.",
+                    "type": "boolean"
+                }
+                ,
+                "secretVersionID": {
+                    "description": "The unique identifier for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "conjurExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Conjur instance containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Passphrase Provider. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "passwordFile": {
+                    "description": "The path to the file containing the passphrase.",
+                    "type": "string"
+                }
+                ,
+                "awsExternalServer": {
+                    "description": "The external server with information to use when interacting with the AWS Secrets Manager.",
+                    "type": "string"
+                }
+                ,
+                "obscuredValue": {
+                    "description": "The value to be stored in an obscured form.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretFieldName": {
+                    "description": "The name of the field in the Vault secret record that contains the passphrase to use to generate the encryption key.",
+                    "type": "string"
+                }
+                ,
+                "conjurSecretRelativePath": {
+                    "description": "The portion of the path that follows the account name in the URI needed to obtain the desired secret. Any special characters in the path must be URL-encoded.",
+                    "type": "string"
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Azure service.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

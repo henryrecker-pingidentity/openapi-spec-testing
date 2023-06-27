@@ -1,0 +1,757 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/attribute-syntaxes",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Attribute Syntax objects",
+                    "type": "attribute-syntax-list-response",
+                    "nickname": "list-attribute-syntaxes",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                }
+            ]
+        },
+        {
+            "path": "/attribute-syntaxes/{attribute-syntax-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Attribute Syntax",
+                    "type": "attribute-syntax-response",
+                    "nickname": "get-attribute-syntax",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "attribute-syntax-name",
+                          "description": "Name of the Attribute Syntax",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Attribute Syntax by name, replacing any attributes specified in the request body",
+                    "type": "attribute-syntax-response",
+                    "nickname": "put-attribute-syntax",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "attribute-syntax-name",
+                          "description": "Name of the Attribute Syntax",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Attribute Syntax attributes to update",
+                            "name": "attribute-syntax-properties",
+                            "type": "attribute-syntax-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Attribute Syntax by name, using a SCIM patch request",
+                    "type": "attribute-syntax-response",
+                    "nickname": "patch-attribute-syntax",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "attribute-syntax-name",
+                          "description": "Name of the Attribute Syntax",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Attribute Syntax",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "attribute-syntax-list-response": {
+            "id": "attribute-syntax-list-response",
+            "description": "Attribute Syntax list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "attribute-syntax-response"
+                    }
+                }
+            }
+        },
+        "add-attribute-syntax-request": {
+            "id": "add-attribute-syntax-request",
+            "description": "A Attribute Syntax resource request",
+            "required": [
+                "syntaxName"
+            ],
+            "properties": {
+                "syntaxName": {
+                    "type": "string",
+                    "description": "Name of the new Attribute Syntax"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:attribute-type-description"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:directory-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:telephone-number"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:distinguished-name"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:generalized-time"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:integer"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:uuid"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:generic"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:json-object"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:user-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:boolean"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:hex-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:bit-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:ldap-url"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:name-and-optional-uid"
+                        ]
+                    }
+                },
+                "strictFormat": {
+                    "description": "Indicates whether to require telephone number values to strictly comply with the standard definition for this syntax.",
+                    "type": "boolean"
+                }
+                ,
+                "requireBinaryTransfer": {
+                    "description": "Indicates whether values of this attribute are required to have a "binary" transfer option as described in RFC 4522. Attributes with this syntax will generally be referenced with names including ";binary" (e.g., "userCertificate;binary").",
+                    "type": "boolean"
+                }
+                ,
+                "allowZeroLengthValues": {
+                    "description": "Indicates whether zero-length (that is, an empty string) values are allowed.",
+                    "type": "boolean"
+                }
+                ,
+                "excludeAttributeFromCompaction": {
+                    "description": "Specifies the specific attributes (which should be associated with this syntax) whose values should not be compacted. If one or more exclude attributes are specified, then values of those attributes will not have their values compacted. This property takes precedence over the include-attribute-in-compaction property.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enableCompaction": {
+                    "description": "Indicates whether values of attributes with this syntax should be compacted when stored in a local DB database.",
+                    "type": "boolean"
+                }
+                ,
+                "stripSyntaxMinUpperBound": {
+                    "description": "Indicates whether the suggested minimum upper bound appended to an attribute's syntax OID in its schema definition Attribute Type Description should be stripped.",
+                    "type": "boolean"
+                }
+                ,
+                "includeAttributeInCompaction": {
+                    "description": "Specifies the specific attributes (which should be associated with this syntax) whose values should be compacted. If one or more include attributes are specified, then only those attributes will have their values compacted. If not set then all attributes will have their values compacted. The exclude-attribute-from-compaction property takes precedence over this property.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Attribute Syntax is enabled.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "attribute-syntax-response": {
+            "id": "attribute-syntax-response",
+            "description": "A Attribute Syntax resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:attribute-type-description"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:directory-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:telephone-number"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:distinguished-name"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:generalized-time"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:integer"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:uuid"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:generic"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:json-object"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:user-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:boolean"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:hex-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:bit-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:ldap-url"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:name-and-optional-uid"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Attribute Syntax"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "strictFormat": {
+                    "description": "Indicates whether to require telephone number values to strictly comply with the standard definition for this syntax.",
+                    "type": "boolean"
+                }
+                ,
+                "requireBinaryTransfer": {
+                    "description": "Indicates whether values of this attribute are required to have a "binary" transfer option as described in RFC 4522. Attributes with this syntax will generally be referenced with names including ";binary" (e.g., "userCertificate;binary").",
+                    "type": "boolean"
+                }
+                ,
+                "allowZeroLengthValues": {
+                    "description": "Indicates whether zero-length (that is, an empty string) values are allowed.",
+                    "type": "boolean"
+                }
+                ,
+                "excludeAttributeFromCompaction": {
+                    "description": "Specifies the specific attributes (which should be associated with this syntax) whose values should not be compacted. If one or more exclude attributes are specified, then values of those attributes will not have their values compacted. This property takes precedence over the include-attribute-in-compaction property.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enableCompaction": {
+                    "description": "Indicates whether values of attributes with this syntax should be compacted when stored in a local DB database.",
+                    "type": "boolean"
+                }
+                ,
+                "stripSyntaxMinUpperBound": {
+                    "description": "Indicates whether the suggested minimum upper bound appended to an attribute's syntax OID in its schema definition Attribute Type Description should be stripped.",
+                    "type": "boolean"
+                }
+                ,
+                "includeAttributeInCompaction": {
+                    "description": "Specifies the specific attributes (which should be associated with this syntax) whose values should be compacted. If one or more include attributes are specified, then only those attributes will have their values compacted. If not set then all attributes will have their values compacted. The exclude-attribute-from-compaction property takes precedence over this property.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Attribute Syntax is enabled.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "attribute-syntax-properties": {
+            "id": "attribute-syntax-properties",
+            "description": "Attribute Syntax properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:attribute-type-description"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:directory-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:telephone-number"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:distinguished-name"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:generalized-time"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:integer"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:uuid"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:generic"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:json-object"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:user-password"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:boolean"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:hex-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:bit-string"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:ldap-url"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:attribute-syntax:name-and-optional-uid"
+                        ]
+                    }
+                },
+                "strictFormat": {
+                    "description": "Indicates whether to require telephone number values to strictly comply with the standard definition for this syntax.",
+                    "type": "boolean"
+                }
+                ,
+                "requireBinaryTransfer": {
+                    "description": "Indicates whether values of this attribute are required to have a "binary" transfer option as described in RFC 4522. Attributes with this syntax will generally be referenced with names including ";binary" (e.g., "userCertificate;binary").",
+                    "type": "boolean"
+                }
+                ,
+                "allowZeroLengthValues": {
+                    "description": "Indicates whether zero-length (that is, an empty string) values are allowed.",
+                    "type": "boolean"
+                }
+                ,
+                "excludeAttributeFromCompaction": {
+                    "description": "Specifies the specific attributes (which should be associated with this syntax) whose values should not be compacted. If one or more exclude attributes are specified, then values of those attributes will not have their values compacted. This property takes precedence over the include-attribute-in-compaction property.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enableCompaction": {
+                    "description": "Indicates whether values of attributes with this syntax should be compacted when stored in a local DB database.",
+                    "type": "boolean"
+                }
+                ,
+                "stripSyntaxMinUpperBound": {
+                    "description": "Indicates whether the suggested minimum upper bound appended to an attribute's syntax OID in its schema definition Attribute Type Description should be stripped.",
+                    "type": "boolean"
+                }
+                ,
+                "includeAttributeInCompaction": {
+                    "description": "Specifies the specific attributes (which should be associated with this syntax) whose values should be compacted. If one or more include attributes are specified, then only those attributes will have their values compacted. If not set then all attributes will have their values compacted. The exclude-attribute-from-compaction property takes precedence over this property.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the Attribute Syntax is enabled.",
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

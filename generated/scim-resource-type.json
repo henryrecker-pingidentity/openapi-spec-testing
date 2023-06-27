@@ -1,0 +1,3082 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/scim-resource-types",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all SCIM Resource Type objects",
+                    "type": "scim-resource-type-list-response",
+                    "nickname": "list-scim-resource-types",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new SCIM Resource Type to the config",
+                    "nickname": "add-scim-resource-type",
+                    "type": "scim-resource-type-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Resource Type to add",
+                            "name": "add-scim-resource-type-request",
+                            "type": "add-scim-resource-type-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/scim-resource-types/{scim-resource-type-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single SCIM Resource Type",
+                    "type": "scim-resource-type-response",
+                    "nickname": "get-scim-resource-type",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-resource-type-name",
+                          "description": "Name of the SCIM Resource Type",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing SCIM Resource Type by name, replacing any attributes specified in the request body",
+                    "type": "scim-resource-type-response",
+                    "nickname": "put-scim-resource-type",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-resource-type-name",
+                          "description": "Name of the SCIM Resource Type",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Resource Type attributes to update",
+                            "name": "scim-resource-type-properties",
+                            "type": "scim-resource-type-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing SCIM Resource Type by name, using a SCIM patch request",
+                    "type": "scim-resource-type-response",
+                    "nickname": "patch-scim-resource-type",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-resource-type-name",
+                          "description": "Name of the SCIM Resource Type",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the SCIM Resource Type",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a SCIM Resource Type",
+                    "nickname": "delete-scim-resource-type",
+                    "parameters": [
+                        {
+                          "name": "scim-resource-type-name",
+                          "description": "Name of the SCIM Resource Type",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "path": "/scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Correlated LDAP Data View objects",
+                    "type": "correlated-ldap-data-view-list-response",
+                    "nickname": "list-correlated-ldap-data-views",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Correlated LDAP Data View to the config",
+                    "nickname": "add-correlated-ldap-data-view",
+                    "type": "correlated-ldap-data-view-response",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Correlated LDAP Data View to add",
+                            "name": "add-correlated-ldap-data-view-request",
+                            "type": "add-correlated-ldap-data-view-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Correlated LDAP Data View",
+                    "type": "correlated-ldap-data-view-response",
+                    "nickname": "get-correlated-ldap-data-view",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "correlated-ldap-data-view-name",
+                          "description": "Name of the Correlated LDAP Data View",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Correlated LDAP Data View by name, replacing any attributes specified in the request body",
+                    "type": "correlated-ldap-data-view-response",
+                    "nickname": "put-correlated-ldap-data-view",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "correlated-ldap-data-view-name",
+                          "description": "Name of the Correlated LDAP Data View",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Correlated LDAP Data View attributes to update",
+                            "name": "correlated-ldap-data-view-properties",
+                            "type": "correlated-ldap-data-view-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Correlated LDAP Data View by name, using a SCIM patch request",
+                    "type": "correlated-ldap-data-view-response",
+                    "nickname": "patch-correlated-ldap-data-view",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "correlated-ldap-data-view-name",
+                          "description": "Name of the Correlated LDAP Data View",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Correlated LDAP Data View",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Correlated LDAP Data View",
+                    "nickname": "delete-correlated-ldap-data-view",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                          "name": "correlated-ldap-data-view-name",
+                          "description": "Name of the Correlated LDAP Data View",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "path": "/scim-resource-types/{scim-resource-type-name}/scim-attribute-mappings",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all SCIM Attribute Mapping objects",
+                    "type": "scim-attribute-mapping-list-response",
+                    "nickname": "list-scim-attribute-mappings",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new SCIM Attribute Mapping to the config",
+                    "nickname": "add-scim-attribute-mapping",
+                    "type": "scim-attribute-mapping-response",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Attribute Mapping to add",
+                            "name": "add-scim-attribute-mapping-request",
+                            "type": "add-scim-attribute-mapping-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/scim-resource-types/{scim-resource-type-name}/scim-attribute-mappings/{scim-attribute-mapping-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single SCIM Attribute Mapping",
+                    "type": "scim-attribute-mapping-response",
+                    "nickname": "get-scim-attribute-mapping",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-attribute-mapping-name",
+                          "description": "Name of the SCIM Attribute Mapping",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing SCIM Attribute Mapping by name, replacing any attributes specified in the request body",
+                    "type": "scim-attribute-mapping-response",
+                    "nickname": "put-scim-attribute-mapping",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-attribute-mapping-name",
+                          "description": "Name of the SCIM Attribute Mapping",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM Attribute Mapping attributes to update",
+                            "name": "scim-attribute-mapping-properties",
+                            "type": "scim-attribute-mapping-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing SCIM Attribute Mapping by name, using a SCIM patch request",
+                    "type": "scim-attribute-mapping-response",
+                    "nickname": "patch-scim-attribute-mapping",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "scim-attribute-mapping-name",
+                          "description": "Name of the SCIM Attribute Mapping",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the SCIM Attribute Mapping",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a SCIM Attribute Mapping",
+                    "nickname": "delete-scim-attribute-mapping",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                          "name": "scim-attribute-mapping-name",
+                          "description": "Name of the SCIM Attribute Mapping",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "path": "/scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}/ldap-correlation-attribute-pairs",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all LDAP Correlation Attribute Pair objects",
+                    "type": "ldap-correlation-attribute-pair-list-response",
+                    "nickname": "list-ldap-correlation-attribute-pairs",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "correlated-ldap-data-view-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new LDAP Correlation Attribute Pair to the config",
+                    "nickname": "add-ldap-correlation-attribute-pair",
+                    "type": "ldap-correlation-attribute-pair-response",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "correlated-ldap-data-view-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "LDAP Correlation Attribute Pair to add",
+                            "name": "add-ldap-correlation-attribute-pair-request",
+                            "type": "add-ldap-correlation-attribute-pair-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}/ldap-correlation-attribute-pairs/{ldap-correlation-attribute-pair-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single LDAP Correlation Attribute Pair",
+                    "type": "ldap-correlation-attribute-pair-response",
+                    "nickname": "get-ldap-correlation-attribute-pair",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "correlated-ldap-data-view-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "ldap-correlation-attribute-pair-name",
+                          "description": "Name of the LDAP Correlation Attribute Pair",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing LDAP Correlation Attribute Pair by name, replacing any attributes specified in the request body",
+                    "type": "ldap-correlation-attribute-pair-response",
+                    "nickname": "put-ldap-correlation-attribute-pair",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "correlated-ldap-data-view-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "ldap-correlation-attribute-pair-name",
+                          "description": "Name of the LDAP Correlation Attribute Pair",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "LDAP Correlation Attribute Pair attributes to update",
+                            "name": "ldap-correlation-attribute-pair-properties",
+                            "type": "ldap-correlation-attribute-pair-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing LDAP Correlation Attribute Pair by name, using a SCIM patch request",
+                    "type": "ldap-correlation-attribute-pair-response",
+                    "nickname": "patch-ldap-correlation-attribute-pair",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "correlated-ldap-data-view-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "ldap-correlation-attribute-pair-name",
+                          "description": "Name of the LDAP Correlation Attribute Pair",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the LDAP Correlation Attribute Pair",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a LDAP Correlation Attribute Pair",
+                    "nickname": "delete-ldap-correlation-attribute-pair",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "correlated-ldap-data-view-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scim-resource-type-name",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                          "name": "ldap-correlation-attribute-pair-name",
+                          "description": "Name of the LDAP Correlation Attribute Pair",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scim-resource-type-list-response": {
+            "id": "scim-resource-type-list-response",
+            "description": "SCIM Resource Type list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "scim-resource-type-response"
+                    }
+                }
+            }
+        },
+        "add-scim-resource-type-request": {
+            "id": "add-scim-resource-type-request",
+            "description": "A SCIM Resource Type resource request",
+            "required": [
+                "typeName"
+            ],
+            "properties": {
+                "typeName": {
+                    "type": "string",
+                    "description": "Name of the new SCIM Resource Type"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-pass-through"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-mapping"
+                        ]
+                    }
+                },
+                "includeOperationalAttribute": {
+                    "description": "Specifies the set of operational LDAP attributes to be provided by this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Resource Type",
+                    "type": "string"
+                }
+                ,
+                "auxiliaryLDAPObjectclass": {
+                    "description": "Specifies an auxiliary LDAP object class that should be exposed by this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the SCIM Resource Type is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "endpoint": {
+                    "description": "The HTTP addressable endpoint of this SCIM Resource Type relative to the '/scim/v2' base URL. Do not include a leading '/'.",
+                    "type": "string"
+                }
+                ,
+                "schemaCheckingOption": {
+                    "description": "Options to alter the way schema checking is performed during create or modify requests.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "allow-undefined-attributes"
+                            ,
+                            "allow-undefined-sub-attributes"
+                        ]
+                    }
+                }
+                ,
+                "structuralLDAPObjectclass": {
+                    "description": "Specifies the LDAP structural object class that should be exposed by this SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "lookthroughLimit": {
+                    "description": "The maximum number of resources that the SCIM Resource Type should "look through" in the course of processing a search request.",
+                    "type": "integer"
+                }
+                ,
+                "coreSchema": {
+                    "description": "The core schema enforced on core attributes at the top level of a SCIM resource representation exposed by thisMapping SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "requiredSchemaExtension": {
+                    "description": "Required additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "optionalSchemaExtension": {
+                    "description": "Optional additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeBaseDN": {
+                    "description": "Specifies the base DN of the branch of the LDAP directory that can be accessed by this SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "includeFilter": {
+                    "description": "The set of LDAP filters that define the LDAP entries that should be included in this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "createDNPattern": {
+                    "description": "Specifies the template to use for the DN when creating new entries.",
+                    "type": "string"
+                }
+            }
+        },
+        "scim-resource-type-response": {
+            "id": "scim-resource-type-response",
+            "description": "A SCIM Resource Type resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-pass-through"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-mapping"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the SCIM Resource Type"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "includeOperationalAttribute": {
+                    "description": "Specifies the set of operational LDAP attributes to be provided by this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Resource Type",
+                    "type": "string"
+                }
+                ,
+                "auxiliaryLDAPObjectclass": {
+                    "description": "Specifies an auxiliary LDAP object class that should be exposed by this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the SCIM Resource Type is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "endpoint": {
+                    "description": "The HTTP addressable endpoint of this SCIM Resource Type relative to the '/scim/v2' base URL. Do not include a leading '/'.",
+                    "type": "string"
+                }
+                ,
+                "schemaCheckingOption": {
+                    "description": "Options to alter the way schema checking is performed during create or modify requests.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "allow-undefined-attributes"
+                            ,
+                            "allow-undefined-sub-attributes"
+                        ]
+                    }
+                }
+                ,
+                "structuralLDAPObjectclass": {
+                    "description": "Specifies the LDAP structural object class that should be exposed by this SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "lookthroughLimit": {
+                    "description": "The maximum number of resources that the SCIM Resource Type should "look through" in the course of processing a search request.",
+                    "type": "integer"
+                }
+                ,
+                "coreSchema": {
+                    "description": "The core schema enforced on core attributes at the top level of a SCIM resource representation exposed by thisMapping SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "requiredSchemaExtension": {
+                    "description": "Required additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "optionalSchemaExtension": {
+                    "description": "Optional additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeBaseDN": {
+                    "description": "Specifies the base DN of the branch of the LDAP directory that can be accessed by this SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "includeFilter": {
+                    "description": "The set of LDAP filters that define the LDAP entries that should be included in this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "createDNPattern": {
+                    "description": "Specifies the template to use for the DN when creating new entries.",
+                    "type": "string"
+                }
+            }
+        },
+        "scim-resource-type-properties": {
+            "id": "scim-resource-type-properties",
+            "description": "SCIM Resource Type properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-pass-through"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-mapping"
+                        ]
+                    }
+                },
+                "includeOperationalAttribute": {
+                    "description": "Specifies the set of operational LDAP attributes to be provided by this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "description": {
+                    "description": "A description for this SCIM Resource Type",
+                    "type": "string"
+                }
+                ,
+                "auxiliaryLDAPObjectclass": {
+                    "description": "Specifies an auxiliary LDAP object class that should be exposed by this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether the SCIM Resource Type is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "endpoint": {
+                    "description": "The HTTP addressable endpoint of this SCIM Resource Type relative to the '/scim/v2' base URL. Do not include a leading '/'.",
+                    "type": "string"
+                }
+                ,
+                "schemaCheckingOption": {
+                    "description": "Options to alter the way schema checking is performed during create or modify requests.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "allow-undefined-attributes"
+                            ,
+                            "allow-undefined-sub-attributes"
+                        ]
+                    }
+                }
+                ,
+                "structuralLDAPObjectclass": {
+                    "description": "Specifies the LDAP structural object class that should be exposed by this SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "lookthroughLimit": {
+                    "description": "The maximum number of resources that the SCIM Resource Type should "look through" in the course of processing a search request.",
+                    "type": "integer"
+                }
+                ,
+                "coreSchema": {
+                    "description": "The core schema enforced on core attributes at the top level of a SCIM resource representation exposed by thisMapping SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "requiredSchemaExtension": {
+                    "description": "Required additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "optionalSchemaExtension": {
+                    "description": "Optional additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "includeBaseDN": {
+                    "description": "Specifies the base DN of the branch of the LDAP directory that can be accessed by this SCIM Resource Type.",
+                    "type": "string"
+                }
+                ,
+                "includeFilter": {
+                    "description": "The set of LDAP filters that define the LDAP entries that should be included in this SCIM Resource Type.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "createDNPattern": {
+                    "description": "Specifies the template to use for the DN when creating new entries.",
+                    "type": "string"
+                }
+            }
+        }
+        ,
+        "correlated-ldap-data-view-list-response": {
+            "id": "correlated-ldap-data-view-list-response",
+            "description": "Correlated LDAP Data View list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "correlated-ldap-data-view-response"
+                    }
+                }
+            }
+        },
+        "add-correlated-ldap-data-view-request": {
+            "id": "add-correlated-ldap-data-view-request",
+            "description": "A Correlated LDAP Data View resource request",
+            "required": [
+                "viewName"
+            ],
+            "properties": {
+                "viewName": {
+                    "type": "string",
+                    "description": "Name of the new Correlated LDAP Data View"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:correlated-ldap-data-view"
+                        ]
+                    }
+                },
+                "includeOperationalAttribute": {
+                    "description": "Specifies the set of operational LDAP attributes to be provided by this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "structuralLDAPObjectclass": {
+                    "description": "Specifies the LDAP structural object class that should be exposed by this Correlated LDAP Data View.",
+                    "type": "string"
+                }
+                ,
+                "secondaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the Correlated LDAP Data View whose value will be matched with the primary-correlation-attribute. If multiple correlation attributes are required they may be specified by creating additional correlation-attribute-pairs.",
+                    "type": "string"
+                }
+                ,
+                "auxiliaryLDAPObjectclass": {
+                    "description": "Specifies an auxiliary LDAP object class that should be exposed by this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "primaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the parent SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View. If multiple correlation attributes are required they may be created using additional correlation-attribute-pairs.",
+                    "type": "string"
+                }
+                ,
+                "includeBaseDN": {
+                    "description": "Specifies the base DN of the branch of the LDAP directory that can be accessed by this Correlated LDAP Data View.",
+                    "type": "string"
+                }
+                ,
+                "includeFilter": {
+                    "description": "The set of LDAP filters that define the LDAP entries that should be included in this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "createDNPattern": {
+                    "description": "Specifies the template to use for the DN when creating new entries.",
+                    "type": "string"
+                }
+            }
+        },
+        "correlated-ldap-data-view-response": {
+            "id": "correlated-ldap-data-view-response",
+            "description": "A Correlated LDAP Data View resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:correlated-ldap-data-view"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Correlated LDAP Data View"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "includeOperationalAttribute": {
+                    "description": "Specifies the set of operational LDAP attributes to be provided by this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "structuralLDAPObjectclass": {
+                    "description": "Specifies the LDAP structural object class that should be exposed by this Correlated LDAP Data View.",
+                    "type": "string"
+                }
+                ,
+                "secondaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the Correlated LDAP Data View whose value will be matched with the primary-correlation-attribute. If multiple correlation attributes are required they may be specified by creating additional correlation-attribute-pairs.",
+                    "type": "string"
+                }
+                ,
+                "auxiliaryLDAPObjectclass": {
+                    "description": "Specifies an auxiliary LDAP object class that should be exposed by this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "primaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the parent SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View. If multiple correlation attributes are required they may be created using additional correlation-attribute-pairs.",
+                    "type": "string"
+                }
+                ,
+                "includeBaseDN": {
+                    "description": "Specifies the base DN of the branch of the LDAP directory that can be accessed by this Correlated LDAP Data View.",
+                    "type": "string"
+                }
+                ,
+                "includeFilter": {
+                    "description": "The set of LDAP filters that define the LDAP entries that should be included in this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "createDNPattern": {
+                    "description": "Specifies the template to use for the DN when creating new entries.",
+                    "type": "string"
+                }
+            }
+        },
+        "correlated-ldap-data-view-properties": {
+            "id": "correlated-ldap-data-view-properties",
+            "description": "Correlated LDAP Data View properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:correlated-ldap-data-view"
+                        ]
+                    }
+                },
+                "includeOperationalAttribute": {
+                    "description": "Specifies the set of operational LDAP attributes to be provided by this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "structuralLDAPObjectclass": {
+                    "description": "Specifies the LDAP structural object class that should be exposed by this Correlated LDAP Data View.",
+                    "type": "string"
+                }
+                ,
+                "secondaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the Correlated LDAP Data View whose value will be matched with the primary-correlation-attribute. If multiple correlation attributes are required they may be specified by creating additional correlation-attribute-pairs.",
+                    "type": "string"
+                }
+                ,
+                "auxiliaryLDAPObjectclass": {
+                    "description": "Specifies an auxiliary LDAP object class that should be exposed by this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "primaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the parent SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View. If multiple correlation attributes are required they may be created using additional correlation-attribute-pairs.",
+                    "type": "string"
+                }
+                ,
+                "includeBaseDN": {
+                    "description": "Specifies the base DN of the branch of the LDAP directory that can be accessed by this Correlated LDAP Data View.",
+                    "type": "string"
+                }
+                ,
+                "includeFilter": {
+                    "description": "The set of LDAP filters that define the LDAP entries that should be included in this Correlated LDAP Data View.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "createDNPattern": {
+                    "description": "Specifies the template to use for the DN when creating new entries.",
+                    "type": "string"
+                }
+            }
+        }
+        ,
+        "scim-attribute-mapping-list-response": {
+            "id": "scim-attribute-mapping-list-response",
+            "description": "SCIM Attribute Mapping list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "scim-attribute-mapping-response"
+                    }
+                }
+            }
+        },
+        "add-scim-attribute-mapping-request": {
+            "id": "add-scim-attribute-mapping-request",
+            "description": "A SCIM Attribute Mapping resource request",
+            "required": [
+                "mappingName"
+            ],
+            "properties": {
+                "mappingName": {
+                    "type": "string",
+                    "description": "Name of the new SCIM Attribute Mapping"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-attribute-mapping"
+                        ]
+                    }
+                },
+                "readable": {
+                    "description": "Specifies whether the mapping is used to map from LDAP attribute to SCIM Resource Type attribute in a read operation.",
+                    "type": "boolean"
+                }
+                ,
+                "scimResourceTypeAttribute": {
+                    "description": "The attribute path of SCIM Resource Type attributes to be mapped.",
+                    "type": "string"
+                }
+                ,
+                "authoritative": {
+                    "description": "Specifies that the mapping is authoritative over other mappings for the same SCIM Resource Type attribute (for read operations).",
+                    "type": "boolean"
+                }
+                ,
+                "ldapAttribute": {
+                    "description": "The LDAP attribute to be mapped, or the path to a specific field of an LDAP attribute with the JSON object attribute syntax.",
+                    "type": "string"
+                }
+                ,
+                "correlatedLDAPDataView": {
+                    "description": "The Correlated LDAP Data View that persists the mapped SCIM Resource Type attribute(s).",
+                    "type": "string"
+                }
+                ,
+                "searchable": {
+                    "description": "Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a search filter.",
+                    "type": "boolean"
+                }
+                ,
+                "writable": {
+                    "description": "Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a write operation.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "scim-attribute-mapping-response": {
+            "id": "scim-attribute-mapping-response",
+            "description": "A SCIM Attribute Mapping resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-attribute-mapping"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the SCIM Attribute Mapping"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "readable": {
+                    "description": "Specifies whether the mapping is used to map from LDAP attribute to SCIM Resource Type attribute in a read operation.",
+                    "type": "boolean"
+                }
+                ,
+                "scimResourceTypeAttribute": {
+                    "description": "The attribute path of SCIM Resource Type attributes to be mapped.",
+                    "type": "string"
+                }
+                ,
+                "authoritative": {
+                    "description": "Specifies that the mapping is authoritative over other mappings for the same SCIM Resource Type attribute (for read operations).",
+                    "type": "boolean"
+                }
+                ,
+                "ldapAttribute": {
+                    "description": "The LDAP attribute to be mapped, or the path to a specific field of an LDAP attribute with the JSON object attribute syntax.",
+                    "type": "string"
+                }
+                ,
+                "correlatedLDAPDataView": {
+                    "description": "The Correlated LDAP Data View that persists the mapped SCIM Resource Type attribute(s).",
+                    "type": "string"
+                }
+                ,
+                "searchable": {
+                    "description": "Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a search filter.",
+                    "type": "boolean"
+                }
+                ,
+                "writable": {
+                    "description": "Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a write operation.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "scim-attribute-mapping-properties": {
+            "id": "scim-attribute-mapping-properties",
+            "description": "SCIM Attribute Mapping properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:scim-attribute-mapping"
+                        ]
+                    }
+                },
+                "readable": {
+                    "description": "Specifies whether the mapping is used to map from LDAP attribute to SCIM Resource Type attribute in a read operation.",
+                    "type": "boolean"
+                }
+                ,
+                "scimResourceTypeAttribute": {
+                    "description": "The attribute path of SCIM Resource Type attributes to be mapped.",
+                    "type": "string"
+                }
+                ,
+                "authoritative": {
+                    "description": "Specifies that the mapping is authoritative over other mappings for the same SCIM Resource Type attribute (for read operations).",
+                    "type": "boolean"
+                }
+                ,
+                "ldapAttribute": {
+                    "description": "The LDAP attribute to be mapped, or the path to a specific field of an LDAP attribute with the JSON object attribute syntax.",
+                    "type": "string"
+                }
+                ,
+                "correlatedLDAPDataView": {
+                    "description": "The Correlated LDAP Data View that persists the mapped SCIM Resource Type attribute(s).",
+                    "type": "string"
+                }
+                ,
+                "searchable": {
+                    "description": "Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a search filter.",
+                    "type": "boolean"
+                }
+                ,
+                "writable": {
+                    "description": "Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a write operation.",
+                    "type": "boolean"
+                }
+            }
+        }
+        ,
+        "ldap-correlation-attribute-pair-list-response": {
+            "id": "ldap-correlation-attribute-pair-list-response",
+            "description": "LDAP Correlation Attribute Pair list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "ldap-correlation-attribute-pair-response"
+                    }
+                }
+            }
+        },
+        "add-ldap-correlation-attribute-pair-request": {
+            "id": "add-ldap-correlation-attribute-pair-request",
+            "description": "A LDAP Correlation Attribute Pair resource request",
+            "required": [
+                "pairName"
+            ],
+            "properties": {
+                "pairName": {
+                    "type": "string",
+                    "description": "Name of the new LDAP Correlation Attribute Pair"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:ldap-correlation-attribute-pair"
+                        ]
+                    }
+                },
+                "secondaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the Correlated LDAP Data View whose value will be matched.",
+                    "type": "string"
+                }
+                ,
+                "primaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the base SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View.",
+                    "type": "string"
+                }
+            }
+        },
+        "ldap-correlation-attribute-pair-response": {
+            "id": "ldap-correlation-attribute-pair-response",
+            "description": "A LDAP Correlation Attribute Pair resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:ldap-correlation-attribute-pair"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the LDAP Correlation Attribute Pair"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "secondaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the Correlated LDAP Data View whose value will be matched.",
+                    "type": "string"
+                }
+                ,
+                "primaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the base SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View.",
+                    "type": "string"
+                }
+            }
+        },
+        "ldap-correlation-attribute-pair-properties": {
+            "id": "ldap-correlation-attribute-pair-properties",
+            "description": "LDAP Correlation Attribute Pair properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:ldap-correlation-attribute-pair"
+                        ]
+                    }
+                },
+                "secondaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the Correlated LDAP Data View whose value will be matched.",
+                    "type": "string"
+                }
+                ,
+                "primaryCorrelationAttribute": {
+                    "description": "The LDAP attribute from the base SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

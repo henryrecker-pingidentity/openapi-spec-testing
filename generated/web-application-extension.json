@@ -1,0 +1,1051 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/web-application-extensions",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Web Application Extension objects",
+                    "type": "web-application-extension-list-response",
+                    "nickname": "list-web-application-extensions",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Web Application Extension to the config",
+                    "nickname": "add-web-application-extension",
+                    "type": "web-application-extension-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Web Application Extension to add",
+                            "name": "add-web-application-extension-request",
+                            "type": "add-web-application-extension-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/web-application-extensions/{web-application-extension-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Web Application Extension",
+                    "type": "web-application-extension-response",
+                    "nickname": "get-web-application-extension",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "web-application-extension-name",
+                          "description": "Name of the Web Application Extension",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Web Application Extension by name, replacing any attributes specified in the request body",
+                    "type": "web-application-extension-response",
+                    "nickname": "put-web-application-extension",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "web-application-extension-name",
+                          "description": "Name of the Web Application Extension",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Web Application Extension attributes to update",
+                            "name": "web-application-extension-properties",
+                            "type": "web-application-extension-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Web Application Extension by name, using a SCIM patch request",
+                    "type": "web-application-extension-response",
+                    "nickname": "patch-web-application-extension",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "web-application-extension-name",
+                          "description": "Name of the Web Application Extension",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Web Application Extension",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Web Application Extension",
+                    "nickname": "delete-web-application-extension",
+                    "parameters": [
+                        {
+                          "name": "web-application-extension-name",
+                          "description": "Name of the Web Application Extension",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "web-application-extension-list-response": {
+            "id": "web-application-extension-list-response",
+            "description": "Web Application Extension list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "web-application-extension-response"
+                    }
+                }
+            }
+        },
+        "add-web-application-extension-request": {
+            "id": "add-web-application-extension-request",
+            "description": "A Web Application Extension resource request",
+            "required": [
+                "extensionName"
+            ],
+            "properties": {
+                "extensionName": {
+                    "type": "string",
+                    "description": "Name of the new Web Application Extension"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:web-application-extension:console"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:web-application-extension:generic"
+                        ]
+                    }
+                },
+                "ldapServer": {
+                    "description": "The LDAP URL used to connect to the managed server.",
+                    "type": "string"
+                }
+                ,
+                "complexity": {
+                    "description": "Specifies the maximum complexity level for managed configuration elements.",
+                    "type": "string"
+                    , "enum": [
+                        "basic"
+                        ,
+                        "standard"
+                        ,
+                        "advanced"
+                        ,
+                        "expert"
+                    ]
+                }
+                ,
+                "initParameter": {
+                    "description": "Specifies an initialization parameter to pass into the web application during startup.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "baseContextPath": {
+                    "description": "Specifies the base context path that should be used by HTTP clients to reference content. The value must start with a forward slash and at least one additional character and must represent a valid HTTP context path.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStoreFile": {
+                    "description": "Specifies the path to the truststore file used by this application to evaluate OIDC provider certificates. If this field is left blank, the default JVM trust store will be used.",
+                    "type": "string"
+                }
+                ,
+                "oidcStrictHostnameVerification": {
+                    "description": "Controls whether or not hostname verification is performed, which checks if the hostname of the OIDC provider matches the name(s) stored inside the certificate it provides. This property should only be set to false for testing purposes.",
+                    "type": "boolean"
+                }
+                ,
+                "oidcClientID": {
+                    "description": "The client ID to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStorePinPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the PIN for the trust store used with OIDC providers. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Web Application Extension",
+                    "type": "string"
+                }
+                ,
+                "oidcClientSecretPassphraseProvider": {
+                    "description": "A passphrase provider that may be used to obtain the client secret to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "oidcClientSecret": {
+                    "description": "The client secret to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "temporaryDirectory": {
+                    "description": "Specifies the path to the directory that may be used to store temporary files such as extracted WAR files and compiled JSP files.",
+                    "type": "string"
+                }
+                ,
+                "oidcIssuerURL": {
+                    "description": "The issuer URL of the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "trustStorePinPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the PIN for the trust store used with managed LDAP servers. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "ssoEnabled": {
+                    "description": "Indicates that SSO login into the Administrative Console is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "trustStoreFile": {
+                    "description": "Specifies the path to the truststore file, which is used by this application to establish trust of managed servers.",
+                    "type": "string"
+                }
+                ,
+                "documentRootDirectory": {
+                    "description": "Specifies the path to the directory on the local filesystem containing the files to be served by this Web Application Extension. The path must exist, and it must be a directory.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustAll": {
+                    "description": "Controls whether or not this application will always trust any certificate that is presented to it, regardless of its contents. This property should only be set to true for testing purposes.",
+                    "type": "boolean"
+                }
+                ,
+                "logFile": {
+                    "description": "The path to the log file for the web application.",
+                    "type": "string"
+                }
+                ,
+                "warFile": {
+                    "description": "Specifies the path to a standard web application archive (WAR) file.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreType": {
+                    "description": "Specifies the format for the data in the trust store file.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStoreType": {
+                    "description": "Specifies the format for the data in the OIDC trust store file.",
+                    "type": "string"
+                }
+                ,
+                "deploymentDescriptorFile": {
+                    "description": "Specifies the path to the deployment descriptor file when used with document-root-directory.",
+                    "type": "string"
+                }
+            }
+        },
+        "web-application-extension-response": {
+            "id": "web-application-extension-response",
+            "description": "A Web Application Extension resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:web-application-extension:console"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:web-application-extension:generic"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Web Application Extension"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "ldapServer": {
+                    "description": "The LDAP URL used to connect to the managed server.",
+                    "type": "string"
+                }
+                ,
+                "complexity": {
+                    "description": "Specifies the maximum complexity level for managed configuration elements.",
+                    "type": "string"
+                    , "enum": [
+                        "basic"
+                        ,
+                        "standard"
+                        ,
+                        "advanced"
+                        ,
+                        "expert"
+                    ]
+                }
+                ,
+                "initParameter": {
+                    "description": "Specifies an initialization parameter to pass into the web application during startup.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "baseContextPath": {
+                    "description": "Specifies the base context path that should be used by HTTP clients to reference content. The value must start with a forward slash and at least one additional character and must represent a valid HTTP context path.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStoreFile": {
+                    "description": "Specifies the path to the truststore file used by this application to evaluate OIDC provider certificates. If this field is left blank, the default JVM trust store will be used.",
+                    "type": "string"
+                }
+                ,
+                "oidcStrictHostnameVerification": {
+                    "description": "Controls whether or not hostname verification is performed, which checks if the hostname of the OIDC provider matches the name(s) stored inside the certificate it provides. This property should only be set to false for testing purposes.",
+                    "type": "boolean"
+                }
+                ,
+                "oidcClientID": {
+                    "description": "The client ID to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStorePinPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the PIN for the trust store used with OIDC providers. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Web Application Extension",
+                    "type": "string"
+                }
+                ,
+                "oidcClientSecretPassphraseProvider": {
+                    "description": "A passphrase provider that may be used to obtain the client secret to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "oidcClientSecret": {
+                    "description": "The client secret to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "temporaryDirectory": {
+                    "description": "Specifies the path to the directory that may be used to store temporary files such as extracted WAR files and compiled JSP files.",
+                    "type": "string"
+                }
+                ,
+                "oidcIssuerURL": {
+                    "description": "The issuer URL of the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "trustStorePinPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the PIN for the trust store used with managed LDAP servers. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "ssoEnabled": {
+                    "description": "Indicates that SSO login into the Administrative Console is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "trustStoreFile": {
+                    "description": "Specifies the path to the truststore file, which is used by this application to establish trust of managed servers.",
+                    "type": "string"
+                }
+                ,
+                "documentRootDirectory": {
+                    "description": "Specifies the path to the directory on the local filesystem containing the files to be served by this Web Application Extension. The path must exist, and it must be a directory.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustAll": {
+                    "description": "Controls whether or not this application will always trust any certificate that is presented to it, regardless of its contents. This property should only be set to true for testing purposes.",
+                    "type": "boolean"
+                }
+                ,
+                "logFile": {
+                    "description": "The path to the log file for the web application.",
+                    "type": "string"
+                }
+                ,
+                "warFile": {
+                    "description": "Specifies the path to a standard web application archive (WAR) file.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreType": {
+                    "description": "Specifies the format for the data in the trust store file.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStoreType": {
+                    "description": "Specifies the format for the data in the OIDC trust store file.",
+                    "type": "string"
+                }
+                ,
+                "deploymentDescriptorFile": {
+                    "description": "Specifies the path to the deployment descriptor file when used with document-root-directory.",
+                    "type": "string"
+                }
+            }
+        },
+        "web-application-extension-properties": {
+            "id": "web-application-extension-properties",
+            "description": "Web Application Extension properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:web-application-extension:console"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:web-application-extension:generic"
+                        ]
+                    }
+                },
+                "ldapServer": {
+                    "description": "The LDAP URL used to connect to the managed server.",
+                    "type": "string"
+                }
+                ,
+                "complexity": {
+                    "description": "Specifies the maximum complexity level for managed configuration elements.",
+                    "type": "string"
+                    , "enum": [
+                        "basic"
+                        ,
+                        "standard"
+                        ,
+                        "advanced"
+                        ,
+                        "expert"
+                    ]
+                }
+                ,
+                "initParameter": {
+                    "description": "Specifies an initialization parameter to pass into the web application during startup.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "baseContextPath": {
+                    "description": "Specifies the base context path that should be used by HTTP clients to reference content. The value must start with a forward slash and at least one additional character and must represent a valid HTTP context path.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStoreFile": {
+                    "description": "Specifies the path to the truststore file used by this application to evaluate OIDC provider certificates. If this field is left blank, the default JVM trust store will be used.",
+                    "type": "string"
+                }
+                ,
+                "oidcStrictHostnameVerification": {
+                    "description": "Controls whether or not hostname verification is performed, which checks if the hostname of the OIDC provider matches the name(s) stored inside the certificate it provides. This property should only be set to false for testing purposes.",
+                    "type": "boolean"
+                }
+                ,
+                "oidcClientID": {
+                    "description": "The client ID to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStorePinPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the PIN for the trust store used with OIDC providers. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Web Application Extension",
+                    "type": "string"
+                }
+                ,
+                "oidcClientSecretPassphraseProvider": {
+                    "description": "A passphrase provider that may be used to obtain the client secret to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "oidcClientSecret": {
+                    "description": "The client secret to use when authenticating to the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "temporaryDirectory": {
+                    "description": "Specifies the path to the directory that may be used to store temporary files such as extracted WAR files and compiled JSP files.",
+                    "type": "string"
+                }
+                ,
+                "oidcIssuerURL": {
+                    "description": "The issuer URL of the OpenID Connect provider.",
+                    "type": "string"
+                }
+                ,
+                "trustStorePinPassphraseProvider": {
+                    "description": "The passphrase provider that may be used to obtain the PIN for the trust store used with managed LDAP servers. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "ssoEnabled": {
+                    "description": "Indicates that SSO login into the Administrative Console is enabled.",
+                    "type": "boolean"
+                }
+                ,
+                "trustStoreFile": {
+                    "description": "Specifies the path to the truststore file, which is used by this application to establish trust of managed servers.",
+                    "type": "string"
+                }
+                ,
+                "documentRootDirectory": {
+                    "description": "Specifies the path to the directory on the local filesystem containing the files to be served by this Web Application Extension. The path must exist, and it must be a directory.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustAll": {
+                    "description": "Controls whether or not this application will always trust any certificate that is presented to it, regardless of its contents. This property should only be set to true for testing purposes.",
+                    "type": "boolean"
+                }
+                ,
+                "logFile": {
+                    "description": "The path to the log file for the web application.",
+                    "type": "string"
+                }
+                ,
+                "warFile": {
+                    "description": "Specifies the path to a standard web application archive (WAR) file.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreType": {
+                    "description": "Specifies the format for the data in the trust store file.",
+                    "type": "string"
+                }
+                ,
+                "oidcTrustStoreType": {
+                    "description": "Specifies the format for the data in the OIDC trust store file.",
+                    "type": "string"
+                }
+                ,
+                "deploymentDescriptorFile": {
+                    "description": "Specifies the path to the deployment descriptor file when used with document-root-directory.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
