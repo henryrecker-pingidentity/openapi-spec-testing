@@ -17,11 +17,57 @@
                     "summary": "Returns a list of all Location objects",
                     "type": "Locations",
                     "nickname": "list-locations",
-                    "parameters": [ 
+                    "parameters": [
                         {
                             "paramType": "query",
                             "name": "filter",
                             "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
                             "required": false,
                             "type": "string"
                         }
@@ -69,14 +115,39 @@
                     "method": "POST",
                     "summary": "Add a new Location to the config",
                     "nickname": "add-location",
-                    "type": "LocationResource",
+                    "type": "LocationResponse",
                     "parameters": [
                         {
                             "paramType": "body",
                             "required": true,
                             "description": "Location to add",
-                            "name": "LocationResource",
-                            "type": "LocationResource"
+                            "name": "AddLocationRequest",
+                            "type": "AddLocationRequest"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
                         }
                     ],
                     "responseMessages": [
@@ -126,7 +197,7 @@
                 {
                     "method": "GET",
                     "summary": "Returns a single location",
-                    "type": "LocationResource",
+                    "type": "LocationResponse",
                     "nickname": "get-location",
                     "parameters": [
                         {
@@ -179,7 +250,7 @@
                 {
                     "method": "PUT",
                     "summary": "Update an existing Location by name, replacing any attributes specified in the request body",
-                    "type": "LocationResource",
+                    "type": "LocationResponse",
                     "nickname": "put-location",
                     "parameters": [
                         {
@@ -193,8 +264,8 @@
                             "paramType": "body",
                             "required": true,
                             "description": "Location attributes to update",
-                            "name": "LocationResource",
-                            "type": "LocationResource"
+                            "name": "LocationProperties",
+                            "type": "LocationProperties"
                         }
                     ],
                     "responseMessages": [
@@ -239,7 +310,7 @@
                 {
                     "method": "PATCH",
                     "summary": "Update an existing Location by name, using a SCIM patch request",
-                    "type": "LocationResource",
+                    "type": "LocationResponse",
                     "nickname": "patch-location",
                     "parameters": [
                         {
@@ -363,7 +434,10 @@
                 "schemas": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
                     }
                 },
                 "totalResults": {
@@ -372,38 +446,8 @@
                 "Resources": {
                     "type": "array",
                     "items": {
-                        "$ref": "LocationResource"
+                        "$ref": "LocationResponse"
                     }
-                }
-            }
-        },
-        "LocationResource": {
-            "id": "LocationResource",
-            "description": "A Location resource",
-            "properties": {
-                "locationName": {
-                    "type": "string",
-                    "description": "Name of the new location"
-                },
-                "schemas": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "id": {
-                    "type": "string",
-                    "description": "Name of the Location"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A description for this Location"
-                },
-                "meta": {
-                    "$ref": "Meta"
-                },
-                "urn:pingidentity:schemas:configuration:messages:2.0": {
-                    "$ref": "Messages"
                 }
             }
         },
@@ -455,6 +499,9 @@
         },
         "Operations": {
             "id": "Operations",
+            "required": [
+                "operations"
+            ],
             "properties": {
                 "operations": {
                     "type": "array",
@@ -466,6 +513,10 @@
         },
         "Operation": {
             "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
             "properties": {
                 "op": {
                     "type": "string",
@@ -480,6 +531,80 @@
                 },
                 "value": {
                     "type": "string"
+                }
+            }
+        },
+        "AddLocationRequest": {
+            "id": "AddLocationRequest",
+            "description": "A Location resource request",
+            "required": [
+                "locationName"
+            ],
+            "properties": {
+                "locationName": {
+                    "type": "string",
+                    "description": "Name of the new location"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:location"
+                        ]
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description for this Location"
+                }
+            }
+        },
+        "LocationResponse": {
+            "id": "LocationResponse",
+            "description": "A Location resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Location"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description for this Location"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                }
+            }
+        },
+        "LocationProperties": {
+            "id": "LocationProperties",
+            "description": "Location properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:location"
+                        ]
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description for this Location"
                 }
             }
         }
