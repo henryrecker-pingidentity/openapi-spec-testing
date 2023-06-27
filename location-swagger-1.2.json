@@ -78,6 +78,274 @@
                             "name": "LocationResource",
                             "type": "LocationResource"
                         }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/locations/{location-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single location",
+                    "type": "LocationResource",
+                    "nickname": "get-location",
+                    "parameters": [
+                        {
+                          "name": "location-name",
+                          "description": "Name of the Location",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Location by name, replacing any attributes specified in the request body",
+                    "type": "LocationResource",
+                    "nickname": "put-location",
+                    "parameters": [
+                        {
+                          "name": "location-name",
+                          "description": "Name of the Location",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Location attributes to update",
+                            "name": "LocationResource",
+                            "type": "LocationResource"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Location by name, using a SCIM patch request",
+                    "type": "LocationResource",
+                    "nickname": "patch-location",
+                    "parameters": [
+                        {
+                          "name": "location-name",
+                          "description": "Name of the Location",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Location",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Location",
+                    "nickname": "delete-location",
+                    "parameters": [
+                        {
+                          "name": "location-name",
+                          "description": "Name of the Location",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
                     ]
                 }
             ]
@@ -181,6 +449,36 @@
                     "type": "string"
                 },
                 "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"   
+                },
+                "value": {
                     "type": "string"
                 }
             }
