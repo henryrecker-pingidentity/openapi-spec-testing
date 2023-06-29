@@ -1,0 +1,1165 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/access-token-validators",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Access Token Validator objects",
+                    "type": "access-token-validator-list-response",
+                    "nickname": "list-access-token-validators",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Access Token Validator to the config",
+                    "nickname": "add-access-token-validator",
+                    "type": "access-token-validator-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Access Token Validator to add",
+                            "name": "add-access-token-validator-request",
+                            "type": "add-access-token-validator-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/access-token-validators/{access-token-validator-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Access Token Validator",
+                    "type": "access-token-validator-response",
+                    "nickname": "get-access-token-validator",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "access-token-validator-name",
+                          "description": "Name of the Access Token Validator",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Access Token Validator by name, replacing any attributes specified in the request body",
+                    "type": "access-token-validator-response",
+                    "nickname": "put-access-token-validator",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "access-token-validator-name",
+                          "description": "Name of the Access Token Validator",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Access Token Validator attributes to update",
+                            "name": "access-token-validator-properties",
+                            "type": "access-token-validator-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Access Token Validator by name, using a SCIM patch request",
+                    "type": "access-token-validator-response",
+                    "nickname": "patch-access-token-validator",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "access-token-validator-name",
+                          "description": "Name of the Access Token Validator",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Access Token Validator",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Access Token Validator",
+                    "nickname": "delete-access-token-validator",
+                    "parameters": [
+                        {
+                          "name": "access-token-validator-name",
+                          "description": "Name of the Access Token Validator",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "access-token-validator-list-response": {
+            "id": "access-token-validator-list-response",
+            "description": "Access Token Validator list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "access-token-validator-response"
+                    }
+                }
+            }
+        },
+        "add-access-token-validator-request": {
+            "id": "add-access-token-validator-request",
+            "description": "A Access Token Validator resource request",
+            "required": [
+                "validatorName"
+            ],
+            "properties": {
+                "validatorName": {
+                    "type": "string",
+                    "description": "Name of the new Access Token Validator"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:ping-federate"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:jwt"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:mock"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:third-party"
+                        ]
+                    }
+                },
+                "subjectClaimName": {
+                    "description": "The name of the token claim that contains the subject, i.e. the logged-in user in an access token. This property goes hand-in-hand with the identity-mapper property and tells the Identity Mapper which field to use to look up the user entry on the server.",
+                    "type": "string"
+                }
+                ,
+                "signingCertificate": {
+                    "description": "Specifies the locally stored certificates that may be used to validate the signature of an incoming JWT access token. If this property is specified, the JWT Access Token Validator will not use a JWKS endpoint to retrieve public keys.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Access Token Validator.",
+                    "type": "string"
+                }
+                ,
+                "accessTokenManagerID": {
+                    "description": "The Access Token Manager instance ID to specify when calling the PingFederate introspection endpoint. If this property is set the include-aud-parameter property is ignored.",
+                    "type": "string"
+                }
+                ,
+                "scopeClaimName": {
+                    "description": "The name of the token claim that contains the scopes granted by the token.",
+                    "type": "string"
+                }
+                ,
+                "clientID": {
+                    "description": "The client identifier to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "authorizationServer": {
+                    "description": "Specifies the external server that will be used to aid in validating access tokens. In most cases this will be the Authorization Server that minted the token.",
+                    "type": "string"
+                }
+                ,
+                "jwksEndpointPath": {
+                    "description": "The relative path to JWKS endpoint from which to retrieve one or more public signing keys that may be used to validate the signature of an incoming JWT access token. This path is relative to the base_url property defined for the validator's external authorization server. If jwks-endpoint-path is specified, the JWT Access Token Validator will not consult locally stored certificates for validating token signatures.",
+                    "type": "string"
+                }
+                ,
+                "includeAudParameter": {
+                    "description": "Whether to include the incoming request URL as the \"aud\" parameter when calling the PingFederate introspection endpoint. This property is ignored if the access-token-manager-id property is set.",
+                    "type": "boolean"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Access Token Validator",
+                    "type": "string"
+                }
+                ,
+                "encryptionKeyPair": {
+                    "description": "The public-private key pair that is used to encrypt the JWT payload. If specified, the JWT Access Token Validator will use the private key to decrypt the JWT payload, and the public key must be exported to the Authorization Server that is issuing access tokens.",
+                    "type": "string"
+                }
+                ,
+                "endpointCacheRefresh": {
+                    "description": "How often the Access Token Validator should refresh its stored value of the PingFederate server's token introspection endpoint.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Access Token Validator is enabled for use in Directory Server.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Access Token Validator. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "clientSecretPassphraseProvider": {
+                    "description": "The passphrase provider for obtaining the client secret to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "allowedContentEncryptionAlgorithm": {
+                    "description": "Specifies an allow list of JWT content encryption algorithms that will be accepted by the JWT Access Token Validator.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "A128CBC_HS256"
+                            ,
+                            "A192CBC_HS384"
+                            ,
+                            "A256CBC_HS512"
+                        ]
+                    }
+                }
+                ,
+                "clientIDClaimName": {
+                    "description": "The name of the token claim that contains the OAuth2 client Id.",
+                    "type": "string"
+                }
+                ,
+                "evaluationOrderIndex": {
+                    "description": "When multiple Ping Federate Access Token Validators are defined for a single Directory Server, this property determines the evaluation order for determining the correct validator class for an access token received by the Directory Server. Values of this property must be unique among all Ping Federate Access Token Validators defined within Directory Server but not necessarily contiguous. Ping Federate Access Token Validators with a smaller value will be evaluated first to determine if they are able to validate the access token.",
+                    "type": "integer"
+                }
+                ,
+                "allowedKeyEncryptionAlgorithm": {
+                    "description": "Specifies an allow list of JWT key encryption algorithms that will be accepted by the JWT Access Token Validator. This setting is only used if encryption-key-pair is set.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "RSA_OAEP"
+                            ,
+                            "ECDH_ES"
+                            ,
+                            "ECDH_ES_A128KW"
+                            ,
+                            "ECDH_ES_A192KW"
+                            ,
+                            "ECDH_ES_A256KW"
+                        ]
+                    }
+                }
+                ,
+                "clientSecret": {
+                    "description": "The client secret to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "identityMapper": {
+                    "description": "Specifies the name of the Identity Mapper that should be used for associating user entries with Bearer token subject names. The claim name from which to obtain the subject (i.e. the currently logged-in user) may be configured using the subject-claim-name property.",
+                    "type": "string"
+                }
+                ,
+                "allowedSigningAlgorithm": {
+                    "description": "Specifies an allow list of JWT signing algorithms that will be accepted by the JWT Access Token Validator.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "RS256"
+                            ,
+                            "RS384"
+                            ,
+                            "RS512"
+                            ,
+                            "ES256"
+                            ,
+                            "ES384"
+                            ,
+                            "ES512"
+                        ]
+                    }
+                }
+                ,
+                "clockSkewGracePeriod": {
+                    "description": "Specifies the amount of clock skew that is tolerated by the JWT Access Token Validator when evaluating whether a token is within its valid time interval. The duration specified by this parameter will be subtracted from the token's not-before (nbf) time and added to the token's expiration (exp) time, if present, to allow for any time difference between the local server's clock and the token issuer's clock.",
+                    "type": "string"
+                }
+            }
+        },
+        "access-token-validator-response": {
+            "id": "access-token-validator-response",
+            "description": "A Access Token Validator resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:ping-federate"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:jwt"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:mock"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:third-party"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Access Token Validator"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "subjectClaimName": {
+                    "description": "The name of the token claim that contains the subject, i.e. the logged-in user in an access token. This property goes hand-in-hand with the identity-mapper property and tells the Identity Mapper which field to use to look up the user entry on the server.",
+                    "type": "string"
+                }
+                ,
+                "signingCertificate": {
+                    "description": "Specifies the locally stored certificates that may be used to validate the signature of an incoming JWT access token. If this property is specified, the JWT Access Token Validator will not use a JWKS endpoint to retrieve public keys.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Access Token Validator.",
+                    "type": "string"
+                }
+                ,
+                "accessTokenManagerID": {
+                    "description": "The Access Token Manager instance ID to specify when calling the PingFederate introspection endpoint. If this property is set the include-aud-parameter property is ignored.",
+                    "type": "string"
+                }
+                ,
+                "scopeClaimName": {
+                    "description": "The name of the token claim that contains the scopes granted by the token.",
+                    "type": "string"
+                }
+                ,
+                "clientID": {
+                    "description": "The client identifier to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "authorizationServer": {
+                    "description": "Specifies the external server that will be used to aid in validating access tokens. In most cases this will be the Authorization Server that minted the token.",
+                    "type": "string"
+                }
+                ,
+                "jwksEndpointPath": {
+                    "description": "The relative path to JWKS endpoint from which to retrieve one or more public signing keys that may be used to validate the signature of an incoming JWT access token. This path is relative to the base_url property defined for the validator's external authorization server. If jwks-endpoint-path is specified, the JWT Access Token Validator will not consult locally stored certificates for validating token signatures.",
+                    "type": "string"
+                }
+                ,
+                "includeAudParameter": {
+                    "description": "Whether to include the incoming request URL as the \"aud\" parameter when calling the PingFederate introspection endpoint. This property is ignored if the access-token-manager-id property is set.",
+                    "type": "boolean"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Access Token Validator",
+                    "type": "string"
+                }
+                ,
+                "encryptionKeyPair": {
+                    "description": "The public-private key pair that is used to encrypt the JWT payload. If specified, the JWT Access Token Validator will use the private key to decrypt the JWT payload, and the public key must be exported to the Authorization Server that is issuing access tokens.",
+                    "type": "string"
+                }
+                ,
+                "endpointCacheRefresh": {
+                    "description": "How often the Access Token Validator should refresh its stored value of the PingFederate server's token introspection endpoint.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Access Token Validator is enabled for use in Directory Server.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Access Token Validator. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "clientSecretPassphraseProvider": {
+                    "description": "The passphrase provider for obtaining the client secret to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "allowedContentEncryptionAlgorithm": {
+                    "description": "Specifies an allow list of JWT content encryption algorithms that will be accepted by the JWT Access Token Validator.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "A128CBC_HS256"
+                            ,
+                            "A192CBC_HS384"
+                            ,
+                            "A256CBC_HS512"
+                        ]
+                    }
+                }
+                ,
+                "clientIDClaimName": {
+                    "description": "The name of the token claim that contains the OAuth2 client Id.",
+                    "type": "string"
+                }
+                ,
+                "evaluationOrderIndex": {
+                    "description": "When multiple Ping Federate Access Token Validators are defined for a single Directory Server, this property determines the evaluation order for determining the correct validator class for an access token received by the Directory Server. Values of this property must be unique among all Ping Federate Access Token Validators defined within Directory Server but not necessarily contiguous. Ping Federate Access Token Validators with a smaller value will be evaluated first to determine if they are able to validate the access token.",
+                    "type": "integer"
+                }
+                ,
+                "allowedKeyEncryptionAlgorithm": {
+                    "description": "Specifies an allow list of JWT key encryption algorithms that will be accepted by the JWT Access Token Validator. This setting is only used if encryption-key-pair is set.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "RSA_OAEP"
+                            ,
+                            "ECDH_ES"
+                            ,
+                            "ECDH_ES_A128KW"
+                            ,
+                            "ECDH_ES_A192KW"
+                            ,
+                            "ECDH_ES_A256KW"
+                        ]
+                    }
+                }
+                ,
+                "clientSecret": {
+                    "description": "The client secret to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "identityMapper": {
+                    "description": "Specifies the name of the Identity Mapper that should be used for associating user entries with Bearer token subject names. The claim name from which to obtain the subject (i.e. the currently logged-in user) may be configured using the subject-claim-name property.",
+                    "type": "string"
+                }
+                ,
+                "allowedSigningAlgorithm": {
+                    "description": "Specifies an allow list of JWT signing algorithms that will be accepted by the JWT Access Token Validator.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "RS256"
+                            ,
+                            "RS384"
+                            ,
+                            "RS512"
+                            ,
+                            "ES256"
+                            ,
+                            "ES384"
+                            ,
+                            "ES512"
+                        ]
+                    }
+                }
+                ,
+                "clockSkewGracePeriod": {
+                    "description": "Specifies the amount of clock skew that is tolerated by the JWT Access Token Validator when evaluating whether a token is within its valid time interval. The duration specified by this parameter will be subtracted from the token's not-before (nbf) time and added to the token's expiration (exp) time, if present, to allow for any time difference between the local server's clock and the token issuer's clock.",
+                    "type": "string"
+                }
+            }
+        },
+        "access-token-validator-properties": {
+            "id": "access-token-validator-properties",
+            "description": "Access Token Validator properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:ping-federate"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:jwt"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:mock"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:access-token-validator:third-party"
+                        ]
+                    }
+                },
+                "subjectClaimName": {
+                    "description": "The name of the token claim that contains the subject, i.e. the logged-in user in an access token. This property goes hand-in-hand with the identity-mapper property and tells the Identity Mapper which field to use to look up the user entry on the server.",
+                    "type": "string"
+                }
+                ,
+                "signingCertificate": {
+                    "description": "Specifies the locally stored certificates that may be used to validate the signature of an incoming JWT access token. If this property is specified, the JWT Access Token Validator will not use a JWKS endpoint to retrieve public keys.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Access Token Validator.",
+                    "type": "string"
+                }
+                ,
+                "accessTokenManagerID": {
+                    "description": "The Access Token Manager instance ID to specify when calling the PingFederate introspection endpoint. If this property is set the include-aud-parameter property is ignored.",
+                    "type": "string"
+                }
+                ,
+                "scopeClaimName": {
+                    "description": "The name of the token claim that contains the scopes granted by the token.",
+                    "type": "string"
+                }
+                ,
+                "clientID": {
+                    "description": "The client identifier to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "authorizationServer": {
+                    "description": "Specifies the external server that will be used to aid in validating access tokens. In most cases this will be the Authorization Server that minted the token.",
+                    "type": "string"
+                }
+                ,
+                "jwksEndpointPath": {
+                    "description": "The relative path to JWKS endpoint from which to retrieve one or more public signing keys that may be used to validate the signature of an incoming JWT access token. This path is relative to the base_url property defined for the validator's external authorization server. If jwks-endpoint-path is specified, the JWT Access Token Validator will not consult locally stored certificates for validating token signatures.",
+                    "type": "string"
+                }
+                ,
+                "includeAudParameter": {
+                    "description": "Whether to include the incoming request URL as the \"aud\" parameter when calling the PingFederate introspection endpoint. This property is ignored if the access-token-manager-id property is set.",
+                    "type": "boolean"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Access Token Validator",
+                    "type": "string"
+                }
+                ,
+                "encryptionKeyPair": {
+                    "description": "The public-private key pair that is used to encrypt the JWT payload. If specified, the JWT Access Token Validator will use the private key to decrypt the JWT payload, and the public key must be exported to the Authorization Server that is issuing access tokens.",
+                    "type": "string"
+                }
+                ,
+                "endpointCacheRefresh": {
+                    "description": "How often the Access Token Validator should refresh its stored value of the PingFederate server's token introspection endpoint.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Access Token Validator is enabled for use in Directory Server.",
+                    "type": "boolean"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Access Token Validator. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "clientSecretPassphraseProvider": {
+                    "description": "The passphrase provider for obtaining the client secret to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "allowedContentEncryptionAlgorithm": {
+                    "description": "Specifies an allow list of JWT content encryption algorithms that will be accepted by the JWT Access Token Validator.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "A128CBC_HS256"
+                            ,
+                            "A192CBC_HS384"
+                            ,
+                            "A256CBC_HS512"
+                        ]
+                    }
+                }
+                ,
+                "clientIDClaimName": {
+                    "description": "The name of the token claim that contains the OAuth2 client Id.",
+                    "type": "string"
+                }
+                ,
+                "evaluationOrderIndex": {
+                    "description": "When multiple Ping Federate Access Token Validators are defined for a single Directory Server, this property determines the evaluation order for determining the correct validator class for an access token received by the Directory Server. Values of this property must be unique among all Ping Federate Access Token Validators defined within Directory Server but not necessarily contiguous. Ping Federate Access Token Validators with a smaller value will be evaluated first to determine if they are able to validate the access token.",
+                    "type": "integer"
+                }
+                ,
+                "allowedKeyEncryptionAlgorithm": {
+                    "description": "Specifies an allow list of JWT key encryption algorithms that will be accepted by the JWT Access Token Validator. This setting is only used if encryption-key-pair is set.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "RSA_OAEP"
+                            ,
+                            "ECDH_ES"
+                            ,
+                            "ECDH_ES_A128KW"
+                            ,
+                            "ECDH_ES_A192KW"
+                            ,
+                            "ECDH_ES_A256KW"
+                        ]
+                    }
+                }
+                ,
+                "clientSecret": {
+                    "description": "The client secret to use when authenticating to the PingFederate authorization server.",
+                    "type": "string"
+                }
+                ,
+                "identityMapper": {
+                    "description": "Specifies the name of the Identity Mapper that should be used for associating user entries with Bearer token subject names. The claim name from which to obtain the subject (i.e. the currently logged-in user) may be configured using the subject-claim-name property.",
+                    "type": "string"
+                }
+                ,
+                "allowedSigningAlgorithm": {
+                    "description": "Specifies an allow list of JWT signing algorithms that will be accepted by the JWT Access Token Validator.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        , "enum": [
+                            "RS256"
+                            ,
+                            "RS384"
+                            ,
+                            "RS512"
+                            ,
+                            "ES256"
+                            ,
+                            "ES384"
+                            ,
+                            "ES512"
+                        ]
+                    }
+                }
+                ,
+                "clockSkewGracePeriod": {
+                    "description": "Specifies the amount of clock skew that is tolerated by the JWT Access Token Validator when evaluating whether a token is within its valid time interval. The duration specified by this parameter will be subtracted from the token's not-before (nbf) time and added to the token's expiration (exp) time, if present, to allow for any time difference between the local server's clock and the token issuer's clock.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

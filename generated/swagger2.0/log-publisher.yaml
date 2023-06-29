@@ -1,0 +1,1512 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /log-publishers:
+    get:
+      summary: Returns a list of all Log Publisher objects
+      operationId: list-log-publishers
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-publisher-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-publisher
+    post:
+      summary: Add a new Log Publisher to the config
+      operationId: add-log-publisher
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-log-publisher-request'
+        description: Create a new Log Publisher in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-publisher-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-publisher
+  /log-publishers/{log-publisher-name}:
+    get:
+      operationId: get-log-publisher
+      summary: Returns a single Log Publisher
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-publisher-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-publisher
+    put:
+      operationId: put-log-publisher
+      summary: Update an existing Log Publisher by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/log-publisher-properties'
+        description: Attributes to replace in the Log Publisher
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-publisher-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-publisher
+    patch:
+      operationId: patch-log-publisher
+      summary: Update an existing Log Publisher by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Log Publisher
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-publisher-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-publisher
+    delete:
+      summary: Delete a Log Publisher
+      operationId: delete-log-publisher
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-publisher
+
+  /log-publishers/{log-publisher-name}/debug-targets:
+    get:
+      summary: Returns a list of all Debug Target objects
+      operationId: list-debug-targets
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/debug-target-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - debug-target
+    post:
+      summary: Add a new Debug Target to the config
+      operationId: add-debug-target
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-debug-target-request'
+        description: Create a new Debug Target in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/debug-target-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - debug-target
+  /log-publishers/{log-publisher-name}/debug-targets/{debug-target-name}:
+    get:
+      operationId: get-debug-target
+      summary: Returns a single Debug Target
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Debug Target
+        in: path
+        name: debug-target-name
+        required: true
+        type: string
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/debug-target-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - debug-target
+    put:
+      operationId: put-debug-target
+      summary: Update an existing Debug Target by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Debug Target
+        in: path
+        name: debug-target-name
+        required: true
+        type: string
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/debug-target-properties'
+        description: Attributes to replace in the Debug Target
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/debug-target-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - debug-target
+    patch:
+      operationId: patch-debug-target
+      summary: Update an existing Debug Target by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Debug Target
+        in: path
+        name: debug-target-name
+        required: true
+        type: string
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Debug Target
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/debug-target-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - debug-target
+    delete:
+      summary: Delete a Debug Target
+      operationId: delete-debug-target
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Debug Target
+        in: path
+        name: debug-target-name
+        required: true
+        type: string
+      - description: Name of the Log Publisher
+        in: path
+        name: log-publisher-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - debug-target
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  log-publisher-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/log-publisher-response'
+    required:
+    - schemas
+    - totalResults
+  add-log-publisher-request:
+    allOf:
+    - type: object
+      properties:
+        publisherName:
+          type: string
+          description: >-
+              Name of the new Log Publisher
+    - $ref: '#/definitions/log-publisher-properties'
+    required:
+    - publisherName
+  log-publisher-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Log Publisher
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/log-publisher-properties'
+    required:
+    - id
+    - schemas
+  log-publisher-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/log-publisher-response'
+  log-publisher-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-json-audit"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-based-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:third-party-file-based-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:operation-timing-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:third-party-http-operation"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:admin-alert-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:file-based-trace"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:jdbc-based-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:jdbc-based-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:common-log-file-http-operation"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:console-json-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-text-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-based-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:file-based-json-audit"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:file-based-debug"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:file-based-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:third-party-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-text-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:detailed-http-operation"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:json-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:debug-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-json-http-operation"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:third-party-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:file-based-audit"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:json-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:groovy-scripted-file-based-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:groovy-scripted-file-based-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-json-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:groovy-scripted-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:third-party-file-based-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:console-json-audit"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:console-json-http-operation"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:console-json-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:file-based-access"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:groovy-scripted-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:file-based-json-http-operation"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:syslog-json-error"
+          - "urn:pingidentity:schemas:configuration:2.0:log-publisher:groovy-scripted-http-operation"
+      suppressedResponseHeaderName:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the case-insensitive names of response headers that should be omitted from log messages (e.g., for the purpose of brevity or security). This will only be used if the log-response-headers property has a value of true.
+      idTokenValidatorMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "external-server-request"
+          - "external-server-response"
+          - "validation"
+          - "warning"
+          - "error"
+        description: >-
+               Specifies the ID token validator message types that can be logged.
+      logTableName:
+        type: string
+        description: >-
+               The table name to log entries to the database server.
+      logSearchReferences:
+        type: boolean
+        description: >-
+               Indicates whether to log information about search result references sent to the client.
+      suppressedRequestHeaderName:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the case-insensitive names of request headers that should be omitted from log messages (e.g., for the purpose of brevity or security). This will only be used if the log-request-headers property has a value of true.
+      logResponseHeaders:
+        type: string
+        enum:
+        - "none"
+        - "header-names"
+        - "header-names-and-values"
+        description: >-
+               Indicates whether response log messages should include information about HTTP headers included in the response.
+      suppressReplicationOperations:
+        type: boolean
+        description: >-
+               Indicates whether access messages that are generated by replication operations should be suppressed.
+      logFieldMapping:
+        type: string
+        description: >-
+               The log field mapping associates loggable fields to database column names. The table name is not part of this mapping.
+      httpMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "request"
+          - "response"
+        description: >-
+               Specifies the HTTP message types which can be logged.
+      logDisconnects:
+        type: boolean
+        description: >-
+               Indicates whether to log information about connections that have been closed by the client or terminated by the server.
+      overrideSeverity:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the override severity levels for the logger based on the category of the messages.
+      rotationPolicy:
+        type: array
+        items:
+          type: string
+        description: >-
+               The rotation policy to use for the Third Party File Based Access Log Publisher .
+      generifyMessageStringsWhenPossible:
+        type: boolean
+        description: >-
+               Indicates whether to use generified version of certain message strings, including diagnostic messages, additional information messages, authentication failure reasons, and disconnect messages. Generified versions of those strings may use placeholders (like %s for a string or %d for an integer) rather than the version of the string with those placeholders replaced with specific values.
+      syslogMessageApplicationName:
+        type: string
+        description: >-
+               The application name that will be included in syslog messages that are logged by this Syslog JSON Audit Log Publisher.
+      includeRequestControls:
+        type: boolean
+        description: >-
+               Indicates whether log messages for operation requests should include a list of the OIDs of any controls included in the request.
+      correlateRequestsAndResults:
+        type: boolean
+        description: >-
+               Indicates whether to automatically log result messages for any operation in which the corresponding request was logged. In such cases, the result, entry, and reference criteria will be ignored, although the log-responses, log-search-entries, and log-search-references properties will be honored.
+      obscureAttribute:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the names of any attribute types that should have their values obscured in the audit log because they may be considered sensitive.
+      autoFlush:
+        type: boolean
+        description: >-
+               Specifies whether to flush the writer after every log record.
+      includeAddAttributeNames:
+        type: boolean
+        description: >-
+               Indicates whether log messages for add requests should include a list of the names of the attributes included in the entry to add.
+      directoryRESTAPIMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "error"
+        description: >-
+               Specifies the Directory REST API message types which can be logged.
+      signLog:
+        type: boolean
+        description: >-
+               Indicates whether the log should be cryptographically signed so that the log content cannot be altered in an undetectable manner.
+      server:
+        type: string
+        description: >-
+               The JDBC-based Database Server to use for a connection.
+      includeRequestDetailsInIntermediateResponseMessages:
+        type: boolean
+        description: >-
+               Indicates whether log messages for intermediate responses should include information about the associated operation request.
+      syslogSeverity:
+        type: string
+        enum:
+        - "emergency"
+        - "alert"
+        - "critical"
+        - "error"
+        - "warning"
+        - "notice"
+        - "informational"
+        - "debug"
+        description: >-
+               The syslog severity to use for the messages that are logged by this Syslog JSON Audit Log Publisher.
+      encryptionSettingsDefinitionID:
+        type: string
+        description: >-
+               Specifies the ID of the encryption settings definition that should be used to encrypt the data. If this is not provided, the server's preferred encryption settings definition will be used. The "encryption-settings list" command can be used to obtain a list of the encryption settings definitions available in the server.
+      encryptLog:
+        type: boolean
+        description: >-
+               Indicates whether log files should be encrypted so that their content is not available to unauthorized users.
+      serverPort:
+        type: integer
+        description: >-
+               Specifies the port number of the syslogd host to log to.
+      enabled:
+        type: boolean
+        description: >-
+               Indicates whether the Log Publisher is enabled for use.
+      includeRequesterDN:
+        type: boolean
+        description: >-
+               Indicates whether log messages for operation requests should include the DN of the authenticated user for the client connection on which the operation was requested.
+      retentionPolicy:
+        type: array
+        items:
+          type: string
+        description: >-
+               The retention policy to use for the Third Party File Based Access Log Publisher .
+      loggingErrorBehavior:
+        type: string
+        enum:
+        - "standard-error"
+        - "lockdown-mode"
+        description: >-
+               Specifies the behavior that the server should exhibit if an error occurs during logging processing.
+      minIncludedPhaseTimeNanos:
+        type: integer
+        description: >-
+               The minimum length of time in nanoseconds that an operation phase should take before it is included in a log message.
+      includeRequestDetailsInSearchReferenceMessages:
+        type: boolean
+        description: >-
+               Indicates whether log messages for search result references should include information about the associated search request.
+      defaultOmitMethodEntryArguments:
+        type: boolean
+        description: >-
+               Indicates whether to include method arguments in debug messages logged by default.
+      includeIntermediateClientRequestControl:
+        type: boolean
+        description: >-
+               Indicates whether to include information about any intermediate client request control that may have been included in the request.
+      logResponseCookieNames:
+        type: boolean
+        description: >-
+               Indicates whether to log the names of any cookies set in an HTTP response. Logging cookie names may be useful and is much more secure than logging the entire content of the cookies (which may include sensitive information).
+      resultCriteria:
+        type: string
+        description: >-
+               Specifies a set of result criteria that must match the associated operation result in order for that result to be logged by this Access Log Publisher.
+      logAssuranceCompleted:
+        type: boolean
+        description: >-
+               Indicates whether to log information about the result of replication assurance processing.
+      compressionMechanism:
+        type: string
+        enum:
+        - "none"
+        - "gzip"
+        description: >-
+               Specifies the type of compression (if any) to use for log files that are written.
+      logRequestHeaders:
+        type: string
+        enum:
+        - "none"
+        - "header-names"
+        - "header-names-and-values"
+        description: >-
+               Indicates whether request log messages should include information about HTTP headers included in the request.
+      defaultSeverity:
+        type: array
+        items:
+          type: string
+          enum:
+          - "all"
+          - "none"
+          - "fatal-error"
+          - "info"
+          - "mild-error"
+          - "mild-warning"
+          - "notice"
+          - "severe-error"
+          - "severe-warning"
+          - "debug"
+        description: >-
+               Specifies the default severity levels for the logger.
+      searchReferenceCriteria:
+        type: string
+        description: >-
+               Specifies a set of search reference criteria that must match the associated search result reference in order for that it to be logged by this Access Log Publisher.
+      includeResponseControls:
+        type: boolean
+        description: >-
+               Indicates whether log messages for operation results should include a list of the OIDs of any controls included in the result.
+      logRequests:
+        type: boolean
+        description: >-
+               Indicates whether to log information about requests received from clients.
+      maxStringLength:
+        type: integer
+        description: >-
+               Specifies the maximum number of characters that may be included in any string in a log message before that string is truncated and replaced with a placeholder indicating the number of characters that were omitted. This can help prevent extremely long log messages from being written.
+      logIntermediateResponses:
+        type: boolean
+        description: >-
+               Indicates whether to log information about intermediate responses sent to the client.
+      includeResultCodeNames:
+        type: boolean
+        description: >-
+               Indicates whether result log messages should include human-readable names for result codes in addition to their numeric values.
+      writeMultiLineMessages:
+        type: boolean
+        description: >-
+               Indicates whether the JSON objects should use a multi-line representation (with each object field and array value on its own line) that may be easier for administrators to read, but each message will be larger (because of additional spaces and end-of-line markers), and it may be more difficult to consume and parse through some text-oriented tools.
+      logSecurityNegotiation:
+        type: boolean
+        description: >-
+               Indicates whether to log information about the result of any security negotiation (e.g., SSL handshake) processing that has been performed.
+      defaultIncludeThrowableCause:
+        type: boolean
+        description: >-
+               Indicates whether to include the cause of exceptions in exception thrown and caught messages logged by default.
+      suppressInternalOperations:
+        type: boolean
+        description: >-
+               Indicates whether internal operations (for example, operations that are initiated by plugins) should be logged along with the operations that are requested by users.
+      outputLocation:
+        type: string
+        enum:
+        - "standard-output"
+        - "standard-error"
+        description: >-
+               Specifies the output stream to which JSON-formatted error log messages should be written.
+      logRequestAuthorizationType:
+        type: boolean
+        description: >-
+               Indicates whether to log the type of credentials given if an "Authorization" header was included in the request. Logging the authorization type may be useful, and is much more secure than logging the entire value of the "Authorization" header.
+      obscureSensitiveContent:
+        type: boolean
+        description: >-
+               Indicates whether the resulting log file should attempt to obscure content that may be considered sensitive. This primarily includes the credentials for bind requests, the values of password modify extended requests and responses, and the values of any attributes specified in the obscure-attribute property. Note that the use of this option does not guarantee no sensitive information will be exposed, so the log output should still be carefully guarded.
+      includeModifyAttributeNames:
+        type: boolean
+        description: >-
+               Indicates whether log messages for modify requests should include a list of the names of the attributes to be modified.
+      rotationListener:
+        type: array
+        items:
+          type: string
+        description: >-
+               A listener that should be notified whenever a log file is rotated out of service.
+      extensionArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Third Party File Based Access Log Publisher. Each configuration property should be given in the form 'name=value'.
+      serverHostName:
+        type: string
+        description: >-
+               Specifies the hostname or IP address of the syslogd host to log to. It is highly recommend to use localhost.
+      defaultThrowableStackFrames:
+        type: integer
+        description: >-
+               Indicates the number of stack frames to include in the stack trace for method entry and exception thrown messages.
+      includeOperationPurposeRequestControl:
+        type: boolean
+        description: >-
+               Indicates whether to include information about any operation purpose request control that may have been included in the request.
+      consentMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "consent-created"
+          - "consent-updated"
+          - "consent-deleted"
+          - "consent-retrieved"
+          - "consent-search"
+          - "definition-created"
+          - "definition-updated"
+          - "definition-deleted"
+          - "definition-retrieved"
+          - "definition-search"
+          - "localization-created"
+          - "localization-updated"
+          - "localization-deleted"
+          - "localization-retrieved"
+          - "localization-search"
+          - "error"
+          - "audit"
+        description: >-
+               Specifies the consent message types that can be logged.
+      includeReplicationChangeID:
+        type: boolean
+        description: >-
+               Indicates whether to log information about the replication change ID.
+      includeThreadID:
+        type: boolean
+        description: >-
+               Indicates whether log messages should include the thread ID for the Directory Server in each log message. This ID can be used to correlate log messages from the same thread within a single log as well as generated by the same thread across different types of log files. More information about the thread with a specific ID can be obtained using the cn=JVM Stack Trace,cn=monitor entry.
+      debugMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "http-full-request-and-response"
+          - "ldap-external-server-request"
+          - "server-sdk-extension"
+          - "store-adapter-mapping"
+          - "store-adapter-processing"
+          - "access-token-validator-request-and-response"
+          - "access-token-validator-processing"
+          - "id-token-validator-request-and-response"
+          - "id-token-validator-processing"
+          - "consent-service-request-and-response"
+          - "gateway-request-and-response"
+          - "policy-request-and-response"
+        description: >-
+               Specifies the debug message types which can be logged. Note that enabling these may result in sensitive information being logged.
+      requestCriteria:
+        type: string
+        description: >-
+               Specifies a set of request criteria that must match the associated operation request in order for a request or result to be logged by this Access Log Publisher.
+      includePathPattern:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a set of HTTP request URL paths to determine whether log messages are included for a HTTP request. Log messages are included for a HTTP request if the request path does not match any exclude-path-pattern, and the request path does match an include-path-pattern (or no include-path-pattern is specified).
+      includeStartupID:
+        type: boolean
+        description: >-
+               Indicates whether log messages should include the startup ID for the Directory Server, which is a value assigned to the server instance at startup and may be used to identify when the server has been restarted.
+      connectionCriteria:
+        type: string
+        description: >-
+               Specifies a set of connection criteria that must match the associated client connection in order for a connect, disconnect, request, or result message to be logged.
+      includeInstanceName:
+        type: boolean
+        description: >-
+               Indicates whether log messages should include the instance name for the Directory Server.
+      extensionMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "error"
+          - "warning"
+          - "notice"
+          - "info"
+        description: >-
+               Specifies the Server SDK extension message types that can be logged.
+      logRequestProtocol:
+        type: boolean
+        description: >-
+               Indicates whether request log messages should include information about the HTTP version specified in the request.
+      defaultOmitMethodReturnValue:
+        type: boolean
+        description: >-
+               Indicates whether to include the return value in debug messages logged by default.
+      minIncludedOperationProcessingTime:
+        type: string
+        description: >-
+               The minimum processing time (i.e., "etime") for operations that should be logged by this Operation Timing Access Log Publisher
+      logFile:
+        type: string
+        description: >-
+               The file name to use for the log files generated by the Third Party File Based Access Log Publisher. The path to the file can be specified either as relative to the server root or as an absolute path.
+      logFilePermissions:
+        type: string
+        description: >-
+               The UNIX permissions of the log files created by this Third Party File Based Access Log Publisher.
+      timestampPrecision:
+        type: string
+        enum:
+        - "seconds"
+        - "milliseconds"
+        description: >-
+               Specifies the smallest time unit to be included in timestamps.
+      logRedirectURI:
+        type: boolean
+        description: >-
+               Indicates whether the redirect URI (i.e., the value of the "Location" header from responses) should be included in response log messages.
+      suppressedRequestParameterName:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the case-insensitive names of request parameters that should be omitted from log messages (e.g., for the purpose of brevity or security). This will only be used if the log-request-parameters property has a value of parameter-names or parameter-names-and-values.
+      logRequestParameters:
+        type: string
+        enum:
+        - "none"
+        - "parameter-names"
+        - "parameter-names-and-values"
+        description: >-
+               Indicates what (if any) information about request parameters should be included in request log messages. Note that this will only be used for requests with a method other than GET, since GET request parameters will be included in the request URL.
+      logConnects:
+        type: boolean
+        description: >-
+               Indicates whether to log information about connections established to the server.
+      defaultDebugCategory:
+        type: array
+        items:
+          type: string
+          enum:
+          - "caught"
+          - "constructor"
+          - "data"
+          - "database-access"
+          - "enter"
+          - "exit"
+          - "message"
+          - "protocol"
+          - "thrown"
+        description: >-
+               The debug message categories to be logged when none of the defined targets match the message.
+      includeProductName:
+        type: boolean
+        description: >-
+               Indicates whether log messages should include the product name for the Directory Server.
+      extensionClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Java class providing the logic for the Third Party File Based Access Log Publisher.
+      includeRequestDetailsInSearchEntryMessages:
+        type: boolean
+        description: >-
+               Indicates whether log messages for search result entries should include information about the associated search request.
+      logSearchEntries:
+        type: boolean
+        description: >-
+               Indicates whether to log information about search result entries sent to the client.
+      syslogMessageHostName:
+        type: string
+        description: >-
+               The local host name that will be included in syslog messages that are logged by this Syslog JSON Audit Log Publisher.
+      excludeAttribute:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the names of any attribute types that should be excluded from the audit log.
+      description:
+        type: string
+        description: >-
+               A description for this Log Publisher
+      softDeleteEntryAuditBehavior:
+        type: string
+        enum:
+        - "included"
+        - "excluded"
+        description: >-
+               Specifies the audit behavior for delete and modify operations on soft-deleted entries.
+      includeRequesterIPAddress:
+        type: boolean
+        description: >-
+               Indicates whether log messages for operation requests should include the IP address of the client that requested the operation.
+      searchEntryCriteria:
+        type: string
+        description: >-
+               Specifies a set of search entry criteria that must match the associated search result entry in order for that it to be logged by this Access Log Publisher.
+      excludePathPattern:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a set of HTTP request URL paths to determine whether log messages are excluded for a HTTP request. Log messages are included for a HTTP request if the request path does not match any exclude-path-pattern, and the request path does match an include-path-pattern (or no include-path-pattern is specified).
+      asynchronous:
+        type: boolean
+        description: >-
+               Indicates whether the Syslog Based Error Log Publisher will publish records asynchronously.
+      timeInterval:
+        type: string
+        description: >-
+               Specifies the interval at which to check whether the log files need to be rotated.
+      logRequestCookieNames:
+        type: boolean
+        description: >-
+               Indicates whether to log the names of any cookies included in an HTTP request. Logging cookie names may be useful and is much more secure than logging the entire content of the cookies (which may include sensitive information).
+      scimMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "request"
+          - "result"
+          - "internal-request"
+          - "internal-result"
+          - "error"
+        description: >-
+               Specifies the SCIM message types which can be logged.
+      scriptArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Scripted File Based Access Log Publisher. Each configuration property should be given in the form 'name=value'.
+      includeExtendedSearchRequestDetails:
+        type: boolean
+        description: >-
+               Indicates whether log messages for search requests should include extended information from the request, including the requested size limit, time limit, alias dereferencing behavior, and types only behavior.
+      queueSize:
+        type: integer
+        description: >-
+               The maximum number of log records that can be stored in the asynchronous queue.
+      accessTokenValidatorMessageType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "subject-lookup"
+          - "external-server-request"
+          - "external-server-response"
+          - "validation"
+          - "error"
+        description: >-
+               Specifies the access token validator message types that can be logged.
+      includeSearchEntryAttributeNames:
+        type: boolean
+        description: >-
+               Indicates whether log messages for search result entries should include a list of the names of the attributes included in the entry that was returned.
+      syslogFacility:
+        type: string
+        enum:
+        - "user-level-messages"
+        - "system-daemons"
+        - "security-and-authorization"
+        - "security-and-authorization-alternative"
+        - "log-audit"
+        - "log-alert"
+        - "local-use-0"
+        - "local-use-1"
+        - "local-use-2"
+        - "local-use-3"
+        - "local-use-4"
+        - "local-use-5"
+        - "local-use-6"
+        - "local-use-7"
+        - "kernel-messages"
+        - "mail-system"
+        - "syslogd-internal-messages"
+        - "line-printer"
+        - "network-news"
+        - "uucp"
+        - "clock-daemon"
+        - "ftp-daemon"
+        - "ntp-daemon"
+        - "clock-daemon-alternative"
+        description: >-
+               The syslog facility to use for the messages that are logged by this Syslog JSON Audit Log Publisher.
+      scriptClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted File Based Access Log Publisher.
+      debugACIEnabled:
+        type: boolean
+        description: >-
+               Indicates whether to include debugging information about ACIs being used by the operations being logged.
+      syslogExternalServer:
+        type: array
+        items:
+          type: string
+        description: >-
+               The syslog server to which messages should be sent.
+      defaultDebugLevel:
+        type: string
+        enum:
+        - "disabled"
+        - "error"
+        - "warning"
+        - "info"
+        - "verbose"
+        - "all"
+        description: >-
+               The lowest severity level of debug messages to log when none of the defined targets match the message.
+      logClientCertificates:
+        type: boolean
+        description: >-
+               Indicates whether to log information about any client certificates presented to the server.
+      logResults:
+        type: boolean
+        description: >-
+               Indicates whether to log information about the results of client requests.
+      includeRequestDetailsInResultMessages:
+        type: boolean
+        description: >-
+               Indicates whether log messages for operation results should include information about both the request and the result.
+      logFieldBehavior:
+        type: string
+        description: >-
+               The behavior to use for determining which fields to log and whether to transform the values of those fields in any way.
+      append:
+        type: boolean
+        description: >-
+               Specifies whether to append to existing log files.
+      useReversibleForm:
+        type: boolean
+        description: >-
+               Indicates whether the audit log should be written in reversible form so that it is possible to revert the changes if desired.
+      bufferSize:
+        type: string
+        description: >-
+               Specifies the log file buffer size.
+
+  debug-target-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/debug-target-response'
+    required:
+    - schemas
+    - totalResults
+  add-debug-target-request:
+    allOf:
+    - type: object
+      properties:
+        targetName:
+          type: string
+          description: >-
+              Name of the new Debug Target
+    - $ref: '#/definitions/debug-target-properties'
+    required:
+    - targetName
+  debug-target-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Debug Target
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/debug-target-properties'
+    required:
+    - id
+    - schemas
+  debug-target-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/debug-target-response'
+  debug-target-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:debug-target"
+      omitMethodEntryArguments:
+        type: boolean
+        description: >-
+               Specifies the property to indicate whether to include method arguments in debug messages.
+      debugCategory:
+        type: array
+        items:
+          type: string
+          enum:
+          - "caught"
+          - "constructor"
+          - "data"
+          - "database-access"
+          - "enter"
+          - "exit"
+          - "message"
+          - "protocol"
+          - "thrown"
+        description: >-
+               Specifies the debug message categories to be logged.
+      omitMethodReturnValue:
+        type: boolean
+        description: >-
+               Specifies the property to indicate whether to include the return value in debug messages.
+      includeThrowableCause:
+        type: boolean
+        description: >-
+               Specifies the property to indicate whether to include the cause of exceptions in exception thrown and caught messages.
+      description:
+        type: string
+        description: >-
+               A description for this Debug Target
+      throwableStackFrames:
+        type: integer
+        description: >-
+               Specifies the property to indicate the number of stack frames to include in the stack trace for method entry and exception thrown messages.
+      debugScope:
+        type: string
+        description: >-
+               Specifies the fully-qualified Java package, class, or method affected by the settings in this target definition. Use the number character (#) to separate the class name and the method name (that is, com.unboundid.directory.server.core.DirectoryServer#startUp).
+      debugLevel:
+        type: string
+        enum:
+        - "disabled"
+        - "error"
+        - "warning"
+        - "info"
+        - "verbose"
+        - "all"
+        description: >-
+               Specifies the lowest severity level of debug messages to log.
+
+

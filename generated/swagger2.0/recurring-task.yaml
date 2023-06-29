@@ -1,0 +1,835 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /recurring-tasks:
+    get:
+      summary: Returns a list of all Recurring Task objects
+      operationId: list-recurring-tasks
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/recurring-task-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - recurring-task
+    post:
+      summary: Add a new Recurring Task to the config
+      operationId: add-recurring-task
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-recurring-task-request'
+        description: Create a new Recurring Task in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/recurring-task-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - recurring-task
+  /recurring-tasks/{recurring-task-name}:
+    get:
+      operationId: get-recurring-task
+      summary: Returns a single Recurring Task
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Recurring Task
+        in: path
+        name: recurring-task-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/recurring-task-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - recurring-task
+    put:
+      operationId: put-recurring-task
+      summary: Update an existing Recurring Task by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Recurring Task
+        in: path
+        name: recurring-task-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/recurring-task-properties'
+        description: Attributes to replace in the Recurring Task
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/recurring-task-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - recurring-task
+    patch:
+      operationId: patch-recurring-task
+      summary: Update an existing Recurring Task by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Recurring Task
+        in: path
+        name: recurring-task-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Recurring Task
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/recurring-task-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - recurring-task
+    delete:
+      summary: Delete a Recurring Task
+      operationId: delete-recurring-task
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Recurring Task
+        in: path
+        name: recurring-task-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - recurring-task
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  recurring-task-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/recurring-task-response'
+    required:
+    - schemas
+    - totalResults
+  add-recurring-task-request:
+    allOf:
+    - type: object
+      properties:
+        taskName:
+          type: string
+          description: >-
+              Name of the new Recurring Task
+    - $ref: '#/definitions/recurring-task-properties'
+    required:
+    - taskName
+  recurring-task-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Recurring Task
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/recurring-task-properties'
+    required:
+    - id
+    - schemas
+  recurring-task-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/recurring-task-response'
+  recurring-task-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:generate-server-profile"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:leave-lockdown-mode"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:backup"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:delay"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:statically-defined"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:collect-support-data"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:ldif-export"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:enter-lockdown-mode"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:audit-data-security"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:exec"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:file-retention"
+          - "urn:pingidentity:schemas:configuration:2.0:recurring-task:third-party"
+      reason:
+        type: string
+        description: >-
+               The reason that the server is being taken out of in lockdown mode.
+      logDuration:
+        type: string
+        description: >-
+               The maximum age (leading up to the time the collect-support-data tool was invoked) for log content to include in the support data archive.
+      searchInterval:
+        type: string
+        description: >-
+               The length of time the server should sleep between searches performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.
+      workingDirectory:
+        type: string
+        description: >-
+               The absolute path to a working directory where the command should be executed. It must be an absolute path and the corresponding directory must exist.
+      includeReplicationStateDump:
+        type: boolean
+        description: >-
+               Indicates whether the support data archive should include a replication state dump, which may be several megabytes in size.
+      targetDirectory:
+        type: string
+        description: >-
+               The path to the directory containing the files to examine. The directory must exist.
+      alertOnStart:
+        type: boolean
+        description: >-
+               Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task starts running.
+      sign:
+        type: boolean
+        description: >-
+               Indicates whether to cryptographically sign backups, which will make it possible to detect whether the backup has been altered since it was created.
+      includePath:
+        type: array
+        items:
+          type: string
+        description: >-
+               An optional set of additional paths to files within the instance root that should be included in the generated server profile. All paths must be within the instance root, and relative paths will be relative to the instance root.
+      maxMegabytesPerSecond:
+        type: integer
+        description: >-
+               The maximum rate, in megabytes per second, at which backups should be written.
+      searchTimeLimit:
+        type: string
+        description: >-
+               The length of time that the server will wait for a response to each internal search performed using the criteria from the ldap-url-for-search-expected-to-return-entries property.
+      profileDirectory:
+        type: string
+        description: >-
+               The directory in which the generated server profiles will be placed. The files will be named with the pattern "server-profile-{timestamp}.zip", where "{timestamp}" represents the time that the profile was generated.
+      extensionArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Third Party Recurring Task. Each configuration property should be given in the form 'name=value'.
+      taskAttributeValue:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of attribute values that should be included in the tasks that are scheduled from this Statically Defined Recurring Task. Each value must be in the form {attribute-type}={value}, where {attribute-type} is the name or OID of an attribute type that is defined in the schema and permitted with the configured set of object classes, and {value} is a value to assign to an attribute with that type. A multivalued attribute can be created by providing multiple name-value pairs with the same name and different values.
+      useSequentialMode:
+        type: boolean
+        description: >-
+               Indicates whether to capture support data information sequentially rather than in parallel. Capturing data in sequential mode may reduce the amount of memory that the tool requires to operate, at the cost of taking longer to run.
+      logFileTailCollectionSize:
+        type: string
+        description: >-
+               The amount of data to collect from the end of each log file included in the support data archive.
+      ldifDirectory:
+        type: string
+        description: >-
+               The directory in which LDIF export files will be placed. The directory must already exist.
+      taskReturnStateIfTimeoutIsEncountered:
+        type: string
+        enum:
+        - "stopped-by-error"
+        - "completed-with-errors"
+        - "completed-successfully"
+        description: >-
+               The return state to use if a timeout is encountered while waiting for the server work queue to become idle (if the duration-to-wait-for-work-queue-idle property has a value), or if the time specified by the duration-to-wait-for-search-to-return-entries elapses without the associated search returning any entries.
+      sleepDuration:
+        type: string
+        description: >-
+               The length of time to sleep before the task completes.
+      ldapURLForSearchExpectedToReturnEntries:
+        type: array
+        items:
+          type: string
+        description: >-
+               An LDAP URL that provides the criteria for a search request that is expected to return at least one entry. The search will be performed internally, and only the base DN, scope, and filter from the URL will be used; any host, port, or requested attributes included in the URL will be ignored.
+      outputDirectory:
+        type: string
+        description: >-
+               The directory in which the support data archive files will be placed. The path must be a directory, and that directory must already exist. Relative paths will be interpreted as relative to the server root.
+      logFileHeadCollectionSize:
+        type: string
+        description: >-
+               The amount of data to collect from the beginning of each log file included in the support data archive.
+      includedBackendID:
+        type: array
+        items:
+          type: string
+        description: >-
+               The backend IDs of any backends that should be included in the backup.
+      compress:
+        type: boolean
+        description: >-
+               Indicates whether to compress the data as it is written into the backup.
+      retainPreviousLDIFExportCount:
+        type: integer
+        description: >-
+               The minimum number of previous LDIF exports that should be preserved after a new export completes successfully.
+      retainPreviousFullBackupAge:
+        type: string
+        description: >-
+               The minimum age of previous full backups that should be preserved after a new backup completes successfully.
+      reportIntervalSeconds:
+        type: integer
+        description: >-
+               The duration (in seconds) between each interval of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat.
+      retainPreviousLDIFExportAge:
+        type: string
+        description: >-
+               The minimum age of previous LDIF exports that should be preserved after a new export completes successfully.
+      retainPreviousProfileCount:
+        type: integer
+        description: >-
+               The minimum number of previous server profile zip files that should be preserved after a new profile is generated.
+      durationToWaitForWorkQueueIdle:
+        type: string
+        description: >-
+               Indicates that task should wait for up to the specified length of time for the work queue to report that all worker threads are idle and there are no pending operations. Note that this primarily monitors operations that use worker threads, which does not include internal operations (for example, those invoked by extensions), and may not include requests from non-LDAP clients (for example, HTTP-based clients).
+      retainPreviousFullBackupCount:
+        type: integer
+        description: >-
+               The minimum number of previous full backups that should be preserved after a new backup completes successfully.
+      cancelOnTaskDependencyFailure:
+        type: boolean
+        description: >-
+               Indicates whether an instance of this Recurring Task should be canceled if the task immediately before it in the recurring task chain fails to complete successfully (including if it is canceled by an administrator before it starts or while it is running).
+      timestampFormat:
+        type: string
+        enum:
+        - "generalized-time-utc-with-milliseconds"
+        - "generalized-time-utc-with-seconds"
+        - "generalized-time-utc-with-minutes"
+        - "local-time-with-milliseconds"
+        - "local-time-with-seconds"
+        - "local-time-with-minutes"
+        - "local-date"
+        description: >-
+               The format to use for the timestamp represented by the "${timestamp}" token in the filename pattern.
+      logCommandOutput:
+        type: boolean
+        description: >-
+               Indicates whether the command's output (both standard output and standard error) should be recorded in the server's error log.
+      includeFilter:
+        type: array
+        items:
+          type: string
+        description: >-
+               A filter that will be used to identify entries that may be included in the generated report. If multiple filters are specified, then any entry that matches at least one of the filters will be included. If no filters are specified, then all entries will be included.
+      includeExpensiveData:
+        type: boolean
+        description: >-
+               Indicates whether the support data archive should include information that may be expensive to obtain, and that may temporarily affect the server's performance or responsiveness.
+      excludeBackendID:
+        type: array
+        items:
+          type: string
+        description: >-
+               The backend ID for a backend to be excluded from the export.
+      baseOutputDirectory:
+        type: string
+        description: >-
+               The base directory below which generated reports will be written. Each invocation of the audit-data-security task will create a new subdirectory below this base directory whose name is a timestamp indicating when the report was generated.
+      extensionClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Java class providing the logic for the Third Party Recurring Task.
+      encryptionSettingsDefinitionID:
+        type: string
+        description: >-
+               The ID of an encryption settings definition to use to obtain the backup encryption key.
+      description:
+        type: string
+        description: >-
+               A description for this Recurring Task
+      backendID:
+        type: array
+        items:
+          type: string
+        description: >-
+               The backend ID for a backend to be exported.
+      retainPreviousProfileAge:
+        type: string
+        description: >-
+               The minimum age of previous server profile zip files that should be preserved after a new profile is generated.
+      taskJavaClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Java class that provides the logic for the task to be invoked.
+      taskCompletionStateForNonzeroExitCode:
+        type: string
+        enum:
+        - "stopped-by-error"
+        - "completed-with-errors"
+        - "completed-successfully"
+        description: >-
+               The final task state that a task instance should have if the task executes the specified command and that command completes with a nonzero exit code, which generally means that the command did not complete successfully.
+      securityLevel:
+        type: string
+        enum:
+        - "none"
+        - "obscure-secrets"
+        - "maximum"
+        description: >-
+               The security level to use when deciding which information to include in or exclude from the support data archive, and which included data should be obscured or redacted.
+      durationToWaitForSearchToReturnEntries:
+        type: string
+        description: >-
+               The maximum length of time that the server will continue to perform internal searches using the criteria from the ldap-url-for-search-expected-to-return-entries property.
+      encrypt:
+        type: boolean
+        description: >-
+               Indicates whether to encrypt the data as it is written into the backup.
+      jstackCount:
+        type: integer
+        description: >-
+               The number of times to invoke the jstack utility to obtain a stack trace of all threads running in the JVM. A value of zero indicates that the jstack utility should not be invoked.
+      emailOnSuccess:
+        type: array
+        items:
+          type: string
+        description: >-
+               The email addresses to which a message should be sent whenever an instance of this Recurring Task completes successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.
+      emailOnFailure:
+        type: array
+        items:
+          type: string
+        description: >-
+               The email addresses to which a message should be sent if an instance of this Recurring Task fails to complete successfully. If this option is used, then at least one smtp-server must be configured in the global configuration.
+      backend:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of backends that should be examined. If no backends are specified, then all backends that support this functionality will be included.
+      excludedBackendID:
+        type: array
+        items:
+          type: string
+        description: >-
+               The backend IDs of any backends that should be excluded from the backup. All backends that support backups and are not listed will be included.
+      dataSecurityAuditor:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of data security auditors that should be invoked. If no auditors are specified, then all auditors defined in the configuration will be used.
+      retainPreviousOutputFileAge:
+        type: string
+        description: >-
+               The minimum age of previous command output files that should be preserved after a new instance of the command is invoked.
+      retainFileCount:
+        type: integer
+        description: >-
+               The minimum number of files matching the pattern that will be retained.
+      retainPreviousSupportDataArchiveCount:
+        type: integer
+        description: >-
+               The minimum number of previous support data archives that should be preserved after a new archive is generated.
+      emailOnStart:
+        type: array
+        items:
+          type: string
+        description: >-
+               The email addresses to which a message should be sent whenever an instance of this Recurring Task starts running. If this option is used, then at least one smtp-server must be configured in the global configuration.
+      includeBinaryFiles:
+        type: boolean
+        description: >-
+               Indicates whether the support data archive should include binary files that may not have otherwise been included. Note that it may not be possible to obscure or redact sensitive information in binary files.
+      retainPreviousReportAge:
+        type: string
+        description: >-
+               The minimum age of previous reports that should be preserved after a new report completes successfully.
+      backupDirectory:
+        type: string
+        description: >-
+               The directory in which backup files will be placed. When backing up a single backend, the backup files will be placed directly in this directory. When backing up multiple backends, the backup files for each backend will be placed in a subdirectory whose name is the corresponding backend ID.
+      retainFileAge:
+        type: string
+        description: >-
+               The minimum age of files matching the pattern that will be retained.
+      retainPreviousSupportDataArchiveAge:
+        type: string
+        description: >-
+               The minimum age of previous support data archives that should be preserved after a new archive is generated.
+      commandArguments:
+        type: string
+        description: >-
+               A string containing the arguments to provide to the command. If the command should be run without arguments, this property should be left undefined. If there should be multiple arguments, then they should be separated with spaces.
+      commandOutputFileBaseName:
+        type: string
+        description: >-
+               The path and base name for a file to which the command output (both standard output and standard error) should be written. This may be left undefined if the command output should not be recorded into a file.
+      filenamePattern:
+        type: string
+        description: >-
+               A pattern that specifies the names of the files to examine. The pattern may contain zero or more asterisks as wildcards, where each wildcard matches zero or more characters. It may also contain at most one occurrence of the special string "${timestamp}", which will match a timestamp with the format specified using the timestamp-format property. All other characters in the pattern will be treated literally.
+      retainAggregateFileSize:
+        type: string
+        description: >-
+               The minimum aggregate size of files that will be retained. The size should be specified as an integer followed by a unit that is one of "b" or "bytes", "kb" or "kilobytes", "mb" or "megabytes", "gb" or "gigabytes", or "tb" or "terabytes". For example, a value of "1 gb" indicates that at least one gigabyte of files should be retained.
+      includeExtensionSource:
+        type: boolean
+        description: >-
+               Indicates whether the support data archive should include the source code (if available) for any third-party extensions that may be installed in the server.
+      commandPath:
+        type: string
+        description: >-
+               The absolute path to the command to execute. It must be an absolute path, the corresponding file must exist, and it must be listed in the config/exec-command-whitelist.txt file.
+      alertOnFailure:
+        type: boolean
+        description: >-
+               Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task fails to complete successfully.
+      taskObjectClass:
+        type: array
+        items:
+          type: string
+        description: >-
+               The names or OIDs of the object classes to include in the tasks that are scheduled from this Statically Defined Recurring Task. All object classes must be defined in the server schema, and the combination of object classes must be valid for a task entry.
+      alertOnSuccess:
+        type: boolean
+        description: >-
+               Indicates whether the server should generate an administrative alert whenever an instance of this Recurring Task completes successfully.
+      reportCount:
+        type: integer
+        description: >-
+               The number of intervals of data to collect from tools that use sample-based reporting, like vmstat, iostat, and mpstat. A value of zero indicates that these kinds of tools should not be used to collect any information.
+      comment:
+        type: string
+        description: >-
+               An optional comment to include in a README file within the support data archive.
+      retainPreviousReportCount:
+        type: integer
+        description: >-
+               The minimum number of previous reports that should be preserved after a new report is generated.
+      retainPreviousOutputFileCount:
+        type: integer
+        description: >-
+               The minimum number of previous command output files that should be preserved after a new instance of the command is invoked.
+      encryptionPassphraseFile:
+        type: string
+        description: >-
+               The path to a file that contains the passphrase to encrypt the contents of the support data archive.
+
+

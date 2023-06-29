@@ -1,0 +1,1572 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /scim-resource-types:
+    get:
+      summary: Returns a list of all SCIM Resource Type objects
+      operationId: list-scim-resource-types
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-resource-type-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-resource-type
+    post:
+      summary: Add a new SCIM Resource Type to the config
+      operationId: add-scim-resource-type
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-scim-resource-type-request'
+        description: Create a new SCIM Resource Type in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-resource-type-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-resource-type
+  /scim-resource-types/{scim-resource-type-name}:
+    get:
+      operationId: get-scim-resource-type
+      summary: Returns a single SCIM Resource Type
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-resource-type-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-resource-type
+    put:
+      operationId: put-scim-resource-type
+      summary: Update an existing SCIM Resource Type by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/scim-resource-type-properties'
+        description: Attributes to replace in the SCIM Resource Type
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-resource-type-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-resource-type
+    patch:
+      operationId: patch-scim-resource-type
+      summary: Update an existing SCIM Resource Type by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the SCIM Resource Type
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-resource-type-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-resource-type
+    delete:
+      summary: Delete a SCIM Resource Type
+      operationId: delete-scim-resource-type
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-resource-type
+
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views:
+    get:
+      summary: Returns a list of all Correlated LDAP Data View objects
+      operationId: list-correlated-ldap-data-views
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/correlated-ldap-data-view-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - correlated-ldap-data-view
+    post:
+      summary: Add a new Correlated LDAP Data View to the config
+      operationId: add-correlated-ldap-data-view
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-correlated-ldap-data-view-request'
+        description: Create a new Correlated LDAP Data View in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/correlated-ldap-data-view-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - correlated-ldap-data-view
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}:
+    get:
+      operationId: get-correlated-ldap-data-view
+      summary: Returns a single Correlated LDAP Data View
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/correlated-ldap-data-view-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - correlated-ldap-data-view
+    put:
+      operationId: put-correlated-ldap-data-view
+      summary: Update an existing Correlated LDAP Data View by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/correlated-ldap-data-view-properties'
+        description: Attributes to replace in the Correlated LDAP Data View
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/correlated-ldap-data-view-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - correlated-ldap-data-view
+    patch:
+      operationId: patch-correlated-ldap-data-view
+      summary: Update an existing Correlated LDAP Data View by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Correlated LDAP Data View
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/correlated-ldap-data-view-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - correlated-ldap-data-view
+    delete:
+      summary: Delete a Correlated LDAP Data View
+      operationId: delete-correlated-ldap-data-view
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - correlated-ldap-data-view
+
+  /scim-resource-types/{scim-resource-type-name}/scim-attribute-mappings:
+    get:
+      summary: Returns a list of all SCIM Attribute Mapping objects
+      operationId: list-scim-attribute-mappings
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-attribute-mapping-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-attribute-mapping
+    post:
+      summary: Add a new SCIM Attribute Mapping to the config
+      operationId: add-scim-attribute-mapping
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-scim-attribute-mapping-request'
+        description: Create a new SCIM Attribute Mapping in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-attribute-mapping-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-attribute-mapping
+  /scim-resource-types/{scim-resource-type-name}/scim-attribute-mappings/{scim-attribute-mapping-name}:
+    get:
+      operationId: get-scim-attribute-mapping
+      summary: Returns a single SCIM Attribute Mapping
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the SCIM Attribute Mapping
+        in: path
+        name: scim-attribute-mapping-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-attribute-mapping-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-attribute-mapping
+    put:
+      operationId: put-scim-attribute-mapping
+      summary: Update an existing SCIM Attribute Mapping by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Attribute Mapping
+        in: path
+        name: scim-attribute-mapping-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/scim-attribute-mapping-properties'
+        description: Attributes to replace in the SCIM Attribute Mapping
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-attribute-mapping-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-attribute-mapping
+    patch:
+      operationId: patch-scim-attribute-mapping
+      summary: Update an existing SCIM Attribute Mapping by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Attribute Mapping
+        in: path
+        name: scim-attribute-mapping-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the SCIM Attribute Mapping
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/scim-attribute-mapping-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-attribute-mapping
+    delete:
+      summary: Delete a SCIM Attribute Mapping
+      operationId: delete-scim-attribute-mapping
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the SCIM Attribute Mapping
+        in: path
+        name: scim-attribute-mapping-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - scim-attribute-mapping
+
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}/ldap-correlation-attribute-pairs:
+    get:
+      summary: Returns a list of all LDAP Correlation Attribute Pair objects
+      operationId: list-ldap-correlation-attribute-pairs
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-correlation-attribute-pair-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-correlation-attribute-pair
+    post:
+      summary: Add a new LDAP Correlation Attribute Pair to the config
+      operationId: add-ldap-correlation-attribute-pair
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-ldap-correlation-attribute-pair-request'
+        description: Create a new LDAP Correlation Attribute Pair in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-correlation-attribute-pair-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-correlation-attribute-pair
+  /scim-resource-types/{scim-resource-type-name}/correlated-ldap-data-views/{correlated-ldap-data-view-name}/ldap-correlation-attribute-pairs/{ldap-correlation-attribute-pair-name}:
+    get:
+      operationId: get-ldap-correlation-attribute-pair
+      summary: Returns a single LDAP Correlation Attribute Pair
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the LDAP Correlation Attribute Pair
+        in: path
+        name: ldap-correlation-attribute-pair-name
+        required: true
+        type: string
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-correlation-attribute-pair-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-correlation-attribute-pair
+    put:
+      operationId: put-ldap-correlation-attribute-pair
+      summary: Update an existing LDAP Correlation Attribute Pair by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the LDAP Correlation Attribute Pair
+        in: path
+        name: ldap-correlation-attribute-pair-name
+        required: true
+        type: string
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/ldap-correlation-attribute-pair-properties'
+        description: Attributes to replace in the LDAP Correlation Attribute Pair
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-correlation-attribute-pair-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-correlation-attribute-pair
+    patch:
+      operationId: patch-ldap-correlation-attribute-pair
+      summary: Update an existing LDAP Correlation Attribute Pair by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the LDAP Correlation Attribute Pair
+        in: path
+        name: ldap-correlation-attribute-pair-name
+        required: true
+        type: string
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the LDAP Correlation Attribute Pair
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-correlation-attribute-pair-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-correlation-attribute-pair
+    delete:
+      summary: Delete a LDAP Correlation Attribute Pair
+      operationId: delete-ldap-correlation-attribute-pair
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the LDAP Correlation Attribute Pair
+        in: path
+        name: ldap-correlation-attribute-pair-name
+        required: true
+        type: string
+      - description: Name of the Correlated LDAP Data View
+        in: path
+        name: correlated-ldap-data-view-name
+        required: true
+        type: string
+      - description: Name of the SCIM Resource Type
+        in: path
+        name: scim-resource-type-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-correlation-attribute-pair
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  scim-resource-type-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/scim-resource-type-response'
+    required:
+    - schemas
+    - totalResults
+  add-scim-resource-type-request:
+    allOf:
+    - type: object
+      properties:
+        typeName:
+          type: string
+          description: >-
+              Name of the new SCIM Resource Type
+    - $ref: '#/definitions/scim-resource-type-properties'
+    required:
+    - typeName
+  scim-resource-type-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the SCIM Resource Type
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/scim-resource-type-properties'
+    required:
+    - id
+    - schemas
+  scim-resource-type-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/scim-resource-type-response'
+  scim-resource-type-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-pass-through"
+          - "urn:pingidentity:schemas:configuration:2.0:scim-resource-type:ldap-mapping"
+      includeOperationalAttribute:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the set of operational LDAP attributes to be provided by this SCIM Resource Type.
+      description:
+        type: string
+        description: >-
+               A description for this SCIM Resource Type
+      auxiliaryLDAPObjectclass:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies an auxiliary LDAP object class that should be exposed by this SCIM Resource Type.
+      enabled:
+        type: boolean
+        description: >-
+               Indicates whether the SCIM Resource Type is enabled.
+      endpoint:
+        type: string
+        description: >-
+               The HTTP addressable endpoint of this SCIM Resource Type relative to the '/scim/v2' base URL. Do not include a leading '/'.
+      schemaCheckingOption:
+        type: array
+        items:
+          type: string
+          enum:
+          - "allow-undefined-attributes"
+          - "allow-undefined-sub-attributes"
+        description: >-
+               Options to alter the way schema checking is performed during create or modify requests.
+      structuralLDAPObjectclass:
+        type: string
+        description: >-
+               Specifies the LDAP structural object class that should be exposed by this SCIM Resource Type.
+      lookthroughLimit:
+        type: integer
+        description: >-
+               The maximum number of resources that the SCIM Resource Type should "look through" in the course of processing a search request.
+      coreSchema:
+        type: string
+        description: >-
+               The core schema enforced on core attributes at the top level of a SCIM resource representation exposed by thisMapping SCIM Resource Type.
+      requiredSchemaExtension:
+        type: array
+        items:
+          type: string
+        description: >-
+               Required additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.
+      optionalSchemaExtension:
+        type: array
+        items:
+          type: string
+        description: >-
+               Optional additive schemas that are enforced on extension attributes in a SCIM resource representation for this Mapping SCIM Resource Type.
+      includeBaseDN:
+        type: string
+        description: >-
+               Specifies the base DN of the branch of the LDAP directory that can be accessed by this SCIM Resource Type.
+      includeFilter:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of LDAP filters that define the LDAP entries that should be included in this SCIM Resource Type.
+      createDNPattern:
+        type: string
+        description: >-
+               Specifies the template to use for the DN when creating new entries.
+
+  correlated-ldap-data-view-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/correlated-ldap-data-view-response'
+    required:
+    - schemas
+    - totalResults
+  add-correlated-ldap-data-view-request:
+    allOf:
+    - type: object
+      properties:
+        viewName:
+          type: string
+          description: >-
+              Name of the new Correlated LDAP Data View
+    - $ref: '#/definitions/correlated-ldap-data-view-properties'
+    required:
+    - viewName
+  correlated-ldap-data-view-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Correlated LDAP Data View
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/correlated-ldap-data-view-properties'
+    required:
+    - id
+    - schemas
+  correlated-ldap-data-view-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/correlated-ldap-data-view-response'
+  correlated-ldap-data-view-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:correlated-ldap-data-view"
+      includeOperationalAttribute:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the set of operational LDAP attributes to be provided by this Correlated LDAP Data View.
+      structuralLDAPObjectclass:
+        type: string
+        description: >-
+               Specifies the LDAP structural object class that should be exposed by this Correlated LDAP Data View.
+      secondaryCorrelationAttribute:
+        type: string
+        description: >-
+               The LDAP attribute from the Correlated LDAP Data View whose value will be matched with the primary-correlation-attribute. If multiple correlation attributes are required they may be specified by creating additional correlation-attribute-pairs.
+      auxiliaryLDAPObjectclass:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies an auxiliary LDAP object class that should be exposed by this Correlated LDAP Data View.
+      primaryCorrelationAttribute:
+        type: string
+        description: >-
+               The LDAP attribute from the parent SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View. If multiple correlation attributes are required they may be created using additional correlation-attribute-pairs.
+      includeBaseDN:
+        type: string
+        description: >-
+               Specifies the base DN of the branch of the LDAP directory that can be accessed by this Correlated LDAP Data View.
+      includeFilter:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of LDAP filters that define the LDAP entries that should be included in this Correlated LDAP Data View.
+      createDNPattern:
+        type: string
+        description: >-
+               Specifies the template to use for the DN when creating new entries.
+
+  scim-attribute-mapping-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/scim-attribute-mapping-response'
+    required:
+    - schemas
+    - totalResults
+  add-scim-attribute-mapping-request:
+    allOf:
+    - type: object
+      properties:
+        mappingName:
+          type: string
+          description: >-
+              Name of the new SCIM Attribute Mapping
+    - $ref: '#/definitions/scim-attribute-mapping-properties'
+    required:
+    - mappingName
+  scim-attribute-mapping-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the SCIM Attribute Mapping
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/scim-attribute-mapping-properties'
+    required:
+    - id
+    - schemas
+  scim-attribute-mapping-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/scim-attribute-mapping-response'
+  scim-attribute-mapping-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:scim-attribute-mapping"
+      readable:
+        type: boolean
+        description: >-
+               Specifies whether the mapping is used to map from LDAP attribute to SCIM Resource Type attribute in a read operation.
+      scimResourceTypeAttribute:
+        type: string
+        description: >-
+               The attribute path of SCIM Resource Type attributes to be mapped.
+      authoritative:
+        type: boolean
+        description: >-
+               Specifies that the mapping is authoritative over other mappings for the same SCIM Resource Type attribute (for read operations).
+      ldapAttribute:
+        type: string
+        description: >-
+               The LDAP attribute to be mapped, or the path to a specific field of an LDAP attribute with the JSON object attribute syntax.
+      correlatedLDAPDataView:
+        type: string
+        description: >-
+               The Correlated LDAP Data View that persists the mapped SCIM Resource Type attribute(s).
+      searchable:
+        type: boolean
+        description: >-
+               Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a search filter.
+      writable:
+        type: boolean
+        description: >-
+               Specifies that the mapping is used to map from SCIM Resource Type attribute to LDAP attribute in a write operation.
+
+  ldap-correlation-attribute-pair-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/ldap-correlation-attribute-pair-response'
+    required:
+    - schemas
+    - totalResults
+  add-ldap-correlation-attribute-pair-request:
+    allOf:
+    - type: object
+      properties:
+        pairName:
+          type: string
+          description: >-
+              Name of the new LDAP Correlation Attribute Pair
+    - $ref: '#/definitions/ldap-correlation-attribute-pair-properties'
+    required:
+    - pairName
+  ldap-correlation-attribute-pair-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the LDAP Correlation Attribute Pair
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/ldap-correlation-attribute-pair-properties'
+    required:
+    - id
+    - schemas
+  ldap-correlation-attribute-pair-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/ldap-correlation-attribute-pair-response'
+  ldap-correlation-attribute-pair-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:ldap-correlation-attribute-pair"
+      secondaryCorrelationAttribute:
+        type: string
+        description: >-
+               The LDAP attribute from the Correlated LDAP Data View whose value will be matched.
+      primaryCorrelationAttribute:
+        type: string
+        description: >-
+               The LDAP attribute from the base SCIM Resource Type whose value will be used to match objects in the Correlated LDAP Data View.
+
+

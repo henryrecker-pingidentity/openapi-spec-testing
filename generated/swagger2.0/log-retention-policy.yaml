@@ -1,0 +1,490 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /log-retention-policies:
+    get:
+      summary: Returns a list of all Log Retention Policy objects
+      operationId: list-log-retention-policies
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-retention-policy-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-retention-policy
+    post:
+      summary: Add a new Log Retention Policy to the config
+      operationId: add-log-retention-policy
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-log-retention-policy-request'
+        description: Create a new Log Retention Policy in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-retention-policy-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-retention-policy
+  /log-retention-policies/{log-retention-policy-name}:
+    get:
+      operationId: get-log-retention-policy
+      summary: Returns a single Log Retention Policy
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Log Retention Policy
+        in: path
+        name: log-retention-policy-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-retention-policy-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-retention-policy
+    put:
+      operationId: put-log-retention-policy
+      summary: Update an existing Log Retention Policy by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Log Retention Policy
+        in: path
+        name: log-retention-policy-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/log-retention-policy-properties'
+        description: Attributes to replace in the Log Retention Policy
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-retention-policy-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-retention-policy
+    patch:
+      operationId: patch-log-retention-policy
+      summary: Update an existing Log Retention Policy by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Log Retention Policy
+        in: path
+        name: log-retention-policy-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Log Retention Policy
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/log-retention-policy-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-retention-policy
+    delete:
+      summary: Delete a Log Retention Policy
+      operationId: delete-log-retention-policy
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Log Retention Policy
+        in: path
+        name: log-retention-policy-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - log-retention-policy
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  log-retention-policy-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/log-retention-policy-response'
+    required:
+    - schemas
+    - totalResults
+  add-log-retention-policy-request:
+    allOf:
+    - type: object
+      properties:
+        policyName:
+          type: string
+          description: >-
+              Name of the new Log Retention Policy
+    - $ref: '#/definitions/log-retention-policy-properties'
+    required:
+    - policyName
+  log-retention-policy-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Log Retention Policy
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/log-retention-policy-properties'
+    required:
+    - id
+    - schemas
+  log-retention-policy-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/log-retention-policy-response'
+  log-retention-policy-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:log-retention-policy:time-limit"
+          - "urn:pingidentity:schemas:configuration:2.0:log-retention-policy:never-delete"
+          - "urn:pingidentity:schemas:configuration:2.0:log-retention-policy:file-count"
+          - "urn:pingidentity:schemas:configuration:2.0:log-retention-policy:free-disk-space"
+          - "urn:pingidentity:schemas:configuration:2.0:log-retention-policy:size-limit"
+      numberOfFiles:
+        type: integer
+        description: >-
+               Specifies the number of archived log files to retain before the oldest ones are cleaned.
+      diskSpaceUsed:
+        type: string
+        description: >-
+               Specifies the maximum total disk space used by the log files.
+      retainDuration:
+        type: string
+        description: >-
+               Specifies the desired minimum length of time that each log file should be retained.
+      description:
+        type: string
+        description: >-
+               A description for this Log Retention Policy
+      freeDiskSpace:
+        type: string
+        description: >-
+               Specifies the minimum amount of free disk space that should be available on the file system on which the archived log files are stored.
+
+

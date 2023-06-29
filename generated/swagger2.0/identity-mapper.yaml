@@ -1,0 +1,534 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /identity-mappers:
+    get:
+      summary: Returns a list of all Identity Mapper objects
+      operationId: list-identity-mappers
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/identity-mapper-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - identity-mapper
+    post:
+      summary: Add a new Identity Mapper to the config
+      operationId: add-identity-mapper
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-identity-mapper-request'
+        description: Create a new Identity Mapper in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/identity-mapper-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - identity-mapper
+  /identity-mappers/{identity-mapper-name}:
+    get:
+      operationId: get-identity-mapper
+      summary: Returns a single Identity Mapper
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Identity Mapper
+        in: path
+        name: identity-mapper-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/identity-mapper-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - identity-mapper
+    put:
+      operationId: put-identity-mapper
+      summary: Update an existing Identity Mapper by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Identity Mapper
+        in: path
+        name: identity-mapper-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/identity-mapper-properties'
+        description: Attributes to replace in the Identity Mapper
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/identity-mapper-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - identity-mapper
+    patch:
+      operationId: patch-identity-mapper
+      summary: Update an existing Identity Mapper by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Identity Mapper
+        in: path
+        name: identity-mapper-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Identity Mapper
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/identity-mapper-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - identity-mapper
+    delete:
+      summary: Delete a Identity Mapper
+      operationId: delete-identity-mapper
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Identity Mapper
+        in: path
+        name: identity-mapper-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - identity-mapper
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  identity-mapper-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/identity-mapper-response'
+    required:
+    - schemas
+    - totalResults
+  add-identity-mapper-request:
+    allOf:
+    - type: object
+      properties:
+        mapperName:
+          type: string
+          description: >-
+              Name of the new Identity Mapper
+    - $ref: '#/definitions/identity-mapper-properties'
+    required:
+    - mapperName
+  identity-mapper-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Identity Mapper
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/identity-mapper-properties'
+    required:
+    - id
+    - schemas
+  identity-mapper-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/identity-mapper-response'
+  identity-mapper-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:identity-mapper:exact-match"
+          - "urn:pingidentity:schemas:configuration:2.0:identity-mapper:groovy-scripted"
+          - "urn:pingidentity:schemas:configuration:2.0:identity-mapper:regular-expression"
+          - "urn:pingidentity:schemas:configuration:2.0:identity-mapper:aggregate"
+          - "urn:pingidentity:schemas:configuration:2.0:identity-mapper:third-party"
+      replacePattern:
+        type: string
+        description: >-
+               Specifies the replacement pattern that should be used for substrings in the ID string that match the provided regular expression pattern.
+      extensionClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Java class providing the logic for the Third Party Identity Mapper.
+      matchAttribute:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the attribute whose value should exactly match the ID string provided to this identity mapper.
+      description:
+        type: string
+        description: >-
+               A description for this Identity Mapper
+      scriptClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted Identity Mapper.
+      enabled:
+        type: boolean
+        description: >-
+               Indicates whether the Identity Mapper is enabled for use.
+      extensionArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Third Party Identity Mapper. Each configuration property should be given in the form 'name=value'.
+      allIncludedIdentityMapper:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of identity mappers that must all match the target entry. Each identity mapper must uniquely match the same target entry. If any of the identity mappers match multiple entries, if any of them match zero entries, or if any of them match different entries, then the mapping will fail.
+      anyIncludedIdentityMapper:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of identity mappers that will be used to identify the target entry. At least one identity mapper must uniquely match an entry. If multiple identity mappers match entries, then they must all uniquely match the same entry. If none of the identity mappers match any entries, if any of them match multiple entries, or if any of them match different entries, then the mapping will fail.
+      scriptArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Scripted Identity Mapper. Each configuration property should be given in the form 'name=value'.
+      matchFilter:
+        type: string
+        description: >-
+               An optional filter that mapped users must match.
+      matchPattern:
+        type: string
+        description: >-
+               Specifies the regular expression pattern that is used to identify portions of the ID string that will be replaced.
+      matchBaseDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the set of base DNs below which to search for users.
+
+

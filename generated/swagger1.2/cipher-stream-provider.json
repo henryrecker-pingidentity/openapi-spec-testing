@@ -1,0 +1,1315 @@
+{
+    "apiVersion": "9.2.0.0",
+    "swaggerVersion": "1.2",
+    "basePath": "https://localhost:1443/config",
+    "authorizations": {
+        "basic": {
+            "type": "basicAuth"
+        }
+    },
+    "apis": [
+        {
+            "path": "/cipher-stream-providers",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a list of all Cipher Stream Provider objects",
+                    "type": "cipher-stream-provider-list-response",
+                    "nickname": "list-cipher-stream-providers",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "filter",
+                            "description": "SCIM filter",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortBy",
+                            "description": "Specifies a property value by which to sort",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "sortOrder",
+                            "description": "Specifies either ascending or descending alphabetical order",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "ascending",
+                                "descending"
+                            ]
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "startIndex",
+                            "description": "1-based index of the first result to return",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "count",
+                            "description": "Indicates the number of results per page",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "POST",
+                    "summary": "Add a new Cipher Stream Provider to the config",
+                    "nickname": "add-cipher-stream-provider",
+                    "type": "cipher-stream-provider-response",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Cipher Stream Provider to add",
+                            "name": "add-cipher-stream-provider-request",
+                            "type": "add-cipher-stream-provider-request"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/cipher-stream-providers/{cipher-stream-provider-name}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Returns a single Cipher Stream Provider",
+                    "type": "cipher-stream-provider-response",
+                    "nickname": "get-cipher-stream-provider",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "cipher-stream-provider-name",
+                          "description": "Name of the Cipher Stream Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PUT",
+                    "summary": "Update an existing Cipher Stream Provider by name, replacing any attributes specified in the request body",
+                    "type": "cipher-stream-provider-response",
+                    "nickname": "put-cipher-stream-provider",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "cipher-stream-provider-name",
+                          "description": "Name of the Cipher Stream Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "Cipher Stream Provider attributes to update",
+                            "name": "cipher-stream-provider-properties",
+                            "type": "cipher-stream-provider-properties"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "PATCH",
+                    "summary": "Update an existing Cipher Stream Provider by name, using a SCIM patch request",
+                    "type": "cipher-stream-provider-response",
+                    "nickname": "patch-cipher-stream-provider",
+                    "parameters": [
+                        {
+                            "paramType": "query",
+                            "name": "attributes",
+                            "description": "Comma-separated list of attributes to include in the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "excludeAttributes",
+                            "description": "Comma-separated list of attributes to exclude from the response",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "applyChangeTo",
+                            "description": "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects",
+                            "required": false,
+                            "type": "string",
+                            "enum": [
+                                "singleServer",
+                                "serverGroup"
+                            ]
+                        },
+                        {
+                          "name": "cipher-stream-provider-name",
+                          "description": "Name of the Cipher Stream Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        },
+                        {
+                            "paramType": "body",
+                            "required": true,
+                            "description": "SCIM operations to apply to the Cipher Stream Provider",
+                            "name": "Operations",
+                            "type": "Operations"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                },
+                {
+                    "method": "DELETE",
+                    "summary": "Delete a Cipher Stream Provider",
+                    "nickname": "delete-cipher-stream-provider",
+                    "parameters": [
+                        {
+                          "name": "cipher-stream-provider-name",
+                          "description": "Name of the Cipher Stream Provider",
+                          "required": true,
+                          "type": "string",
+                          "paramType": "path"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "The requested operation succeeded"
+                        },
+                        {
+                            "code": 204,
+                            "message": "The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request contents are incorrectly formatted or the request was made for an invalid API version."
+                        },
+                        {
+                            "code": 401,
+                            "message": "The requester cannot be authenticated"
+                        },
+                        {
+                            "code": 403,
+                            "message": "The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object."
+                        },
+                        {
+                            "code": 404,
+                            "message": "The requested path does not refer to an existing object or object relation."
+                        },
+                        {
+                            "code": 409,
+                            "message": "The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object."
+                        },
+                        {
+                            "code": 415,
+                            "message": "The request is such that the Accept header does not indicate that JSON is an acceptable format for a response."
+                        },
+                        {
+                            "code": 500,
+                            "message": "The server encountered an unexpected error."
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ],
+    "models": {
+        "Meta": {
+            "id": "Meta",
+            "properties": {
+                "resourceType": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "Messages": {
+            "id": "Messages",
+            "properties": {
+                "notifications": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "requiredActions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "RequiredAction"
+                    }
+                }
+            }
+        },
+        "RequiredAction": {
+            "id": "RequiredAction",
+            "required": [
+                "type",
+                "synopsis"
+            ],
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "synopsis": {
+                    "type": "string"
+                }
+            }
+        },
+        "Operations": {
+            "id": "Operations",
+            "required": [
+                "operations"
+            ],
+            "properties": {
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Operation"
+                    }
+                }
+            }
+        },
+        "Operation": {
+            "id": "Operation",
+            "required": [
+                "op",
+                "path"
+            ],
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove",
+                        "replace"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cipher-stream-provider-list-response": {
+            "id": "cipher-stream-provider-list-response",
+            "description": "Cipher Stream Provider list response",
+            "required": [
+                "schemas",
+                "totalResults"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+                        ]
+                    }
+                },
+                "totalResults": {
+                    "type": "integer"
+                },
+                "Resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "cipher-stream-provider-response"
+                    }
+                }
+            }
+        },
+        "add-cipher-stream-provider-request": {
+            "id": "add-cipher-stream-provider-request",
+            "description": "A Cipher Stream Provider resource request",
+            "required": [
+                "providerName"
+            ],
+            "properties": {
+                "providerName": {
+                    "type": "string",
+                    "description": "Name of the new Cipher Stream Provider"
+                },
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:amazon-key-management-service"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:amazon-secrets-manager"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:azure-key-vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:file-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:wait-for-passphrase"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:conjur"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:pkcs11"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:third-party"
+                        ]
+                    }
+                },
+                "keyVaultURI": {
+                    "description": "The URI that identifies the Azure Key Vault from which the secret is to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "vaultServerBaseURI": {
+                    "description": "The base URL needed to access the Vault server. The base URL should consist of the protocol (\"http\" or \"https\"), the server address (resolvable name or IP address), and the port number. For example, \"https://vault.example.com:8200/\".",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "awsAccessKeyID": {
+                    "description": "The access key ID that will be used if this cipher stream provider will authenticate to the Amazon Key Management Service using an access key rather than an IAM role associated with an EC2 instance.",
+                    "type": "string"
+                }
+                ,
+                "azureAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "secretVersionStage": {
+                    "description": "The staging label for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePinEnvironmentVariable": {
+                    "description": "The name of an environment variable whose value is the user PIN needed to interact with the PKCS #11 token. The environment variable must be defined and must contain a clear-text representation of the PIN.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Cipher Stream Provider",
+                    "type": "string"
+                }
+                ,
+                "vaultExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Vault server.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Cipher Stream Provider is enabled for use in the Directory Server.",
+                    "type": "boolean"
+                }
+                ,
+                "secretVersionID": {
+                    "description": "The unique identifier for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Cipher Stream Provider. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "encryptionMetadataFile": {
+                    "description": "The path to a file that will hold metadata about the encryption performed by this Amazon Secrets Manager Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreFile": {
+                    "description": "The path to a file containing the information needed to trust the certificate presented by the Vault servers.",
+                    "type": "string"
+                }
+                ,
+                "awsExternalServer": {
+                    "description": "The external server with information to use when interacting with the Amazon Key Management Service.",
+                    "type": "string"
+                }
+                ,
+                "kmsEncryptionKeyArn": {
+                    "description": "The Amazon resource name (ARN) for the KMS key that will be used to encrypt the contents of the passphrase file. This key must exist, and the AWS client must have access to encrypt and decrypt data using this key.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretFieldName": {
+                    "description": "The name of the field in the Vault secret record that contains the passphrase to use to generate the encryption key.",
+                    "type": "string"
+                }
+                ,
+                "trustStorePin": {
+                    "description": "The passphrase needed to access the contents of the trust store. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "conjurSecretRelativePath": {
+                    "description": "The portion of the path that follows the account name in the URI needed to obtain the secret passphrase to use to generate the encryption key. Any special characters in the path must be URL-encoded.",
+                    "type": "string"
+                }
+                ,
+                "vaultAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Vault server.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePinFile": {
+                    "description": "The path to a file containing the user PIN needed to interact with the PKCS #11 token. The file must exist and must contain exactly one line with a clear-text representation of the PIN.",
+                    "type": "string"
+                }
+                ,
+                "pkcs11KeyStoreType": {
+                    "description": "The key store type to use when obtaining an instance of a key store for interacting with a PKCS #11 token.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreType": {
+                    "description": "The store type for the specified trust store file. The value should likely be one of \"JKS\" or \"PKCS12\".",
+                    "type": "string"
+                }
+                ,
+                "pkcs11ProviderConfigurationFile": {
+                    "description": "The path to the file to use to configure the security provider that implements support for interacting with PKCS #11 tokens.",
+                    "type": "string"
+                }
+                ,
+                "awsSecretAccessKey": {
+                    "description": "The secret access key that will be used if this cipher stream provider will authenticate to the Amazon Key Management Service using an access key rather than an IAM role associated with an EC2 instance.",
+                    "type": "string"
+                }
+                ,
+                "secretName": {
+                    "description": "The name of the secret to retrieve.",
+                    "type": "string"
+                }
+                ,
+                "awsRegionName": {
+                    "description": "The name of the Amazon Web Services region that holds the encryption key. This is optional, and if it is not provided, then the server will attempt to determine the region from the key ARN.",
+                    "type": "string"
+                }
+                ,
+                "secretFieldName": {
+                    "description": "The name of the JSON field whose value is the passphrase that will be used to generate the encryption key for protecting the contents of the encryption settings database.",
+                    "type": "string"
+                }
+                ,
+                "sslCertNickname": {
+                    "description": "The alias for the certificate in the PKCS #11 token that will be used to wrap the encryption key. The target certificate must exist in the PKCS #11 token, and it must have an RSA key pair because the JVM does not currently provide adequate key wrapping support for elliptic curve key pairs.  If you have also configured the server to use a PKCS #11 token for accessing listener certificates, we strongly recommend that you use a different certificate to protect the contents of the encryption settings database than you use for negotiating TLS sessions with clients. It is imperative that the certificate used by this PKCS11 Cipher Stream Provider remain constant for the life of the provider because if the certificate were to be replaced, then the contents of the encryption settings database could become inaccessible. Unlike with listener certificates used for TLS negotiation that need to be replaced on a regular basis, this PKCS11 Cipher Stream Provider does not consider the validity period for the associated certificate, and it will continue to function even after the certificate has expired.  If you need to rotate the certificate used to protect the server's encryption settings database, you should first install the desired new certificate in the PKCS #11 token under a different alias. Then, you should create a new instance of this PKCS11 Cipher Stream Provider that is configured to use that certificate, and that also uses a different value for the encryption-metadata-file because the information in that file is tied to the certificate used to generate it. Finally, you will need to update the global configuration so that the encryption-settings-cipher-stream-provider property references the new cipher stream provider rather than this one. The update to the global configuration must be done with the server online so that it can properly re-encrypt the contents of the encryption settings database with the correct key tied to the new certificate.",
+                    "type": "string"
+                }
+                ,
+                "secretID": {
+                    "description": "The Amazon Resource Name (ARN) or the user-friendly name of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretPath": {
+                    "description": "The path to the desired secret in the Vault service. This will be appended to the value of the base-url property for the associated Vault external server.",
+                    "type": "string"
+                }
+                ,
+                "conjurExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Conjur server.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePin": {
+                    "description": "The clear-text user PIN needed to interact with the PKCS #11 token.",
+                    "type": "string"
+                }
+                ,
+                "passwordFile": {
+                    "description": "The path to the file containing the password to use when generating ciphers.",
+                    "type": "string"
+                }
+                ,
+                "vaultEncryptionMetadataFile": {
+                    "description": "The path to a file that will hold metadata about the encryption performed by this Vault Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "encryptedPassphraseFile": {
+                    "description": "The path to a file that will hold the encrypted passphrase used by this cipher stream provider.",
+                    "type": "string"
+                }
+                ,
+                "waitForPasswordFile": {
+                    "description": "Indicates whether the server should wait for the password file to become available if it does not exist.",
+                    "type": "boolean"
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "pkcs11ProviderClass": {
+                    "description": "The fully-qualified name of the Java security provider class that implements support for interacting with PKCS #11 tokens.",
+                    "type": "string"
+                }
+            }
+        },
+        "cipher-stream-provider-response": {
+            "id": "cipher-stream-provider-response",
+            "description": "A Cipher Stream Provider resource response",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:amazon-key-management-service"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:amazon-secrets-manager"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:azure-key-vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:file-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:wait-for-passphrase"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:conjur"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:pkcs11"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:third-party"
+                        ]
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Name of the Cipher Stream Provider"
+                },
+                "meta": {
+                    "$ref": "Meta"
+                },
+                "urn:pingidentity:schemas:configuration:messages:2.0": {
+                    "$ref": "Messages"
+                },
+                "keyVaultURI": {
+                    "description": "The URI that identifies the Azure Key Vault from which the secret is to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "vaultServerBaseURI": {
+                    "description": "The base URL needed to access the Vault server. The base URL should consist of the protocol (\"http\" or \"https\"), the server address (resolvable name or IP address), and the port number. For example, \"https://vault.example.com:8200/\".",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "awsAccessKeyID": {
+                    "description": "The access key ID that will be used if this cipher stream provider will authenticate to the Amazon Key Management Service using an access key rather than an IAM role associated with an EC2 instance.",
+                    "type": "string"
+                }
+                ,
+                "azureAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "secretVersionStage": {
+                    "description": "The staging label for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePinEnvironmentVariable": {
+                    "description": "The name of an environment variable whose value is the user PIN needed to interact with the PKCS #11 token. The environment variable must be defined and must contain a clear-text representation of the PIN.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Cipher Stream Provider",
+                    "type": "string"
+                }
+                ,
+                "vaultExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Vault server.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Cipher Stream Provider is enabled for use in the Directory Server.",
+                    "type": "boolean"
+                }
+                ,
+                "secretVersionID": {
+                    "description": "The unique identifier for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Cipher Stream Provider. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "encryptionMetadataFile": {
+                    "description": "The path to a file that will hold metadata about the encryption performed by this Amazon Secrets Manager Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreFile": {
+                    "description": "The path to a file containing the information needed to trust the certificate presented by the Vault servers.",
+                    "type": "string"
+                }
+                ,
+                "awsExternalServer": {
+                    "description": "The external server with information to use when interacting with the Amazon Key Management Service.",
+                    "type": "string"
+                }
+                ,
+                "kmsEncryptionKeyArn": {
+                    "description": "The Amazon resource name (ARN) for the KMS key that will be used to encrypt the contents of the passphrase file. This key must exist, and the AWS client must have access to encrypt and decrypt data using this key.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretFieldName": {
+                    "description": "The name of the field in the Vault secret record that contains the passphrase to use to generate the encryption key.",
+                    "type": "string"
+                }
+                ,
+                "trustStorePin": {
+                    "description": "The passphrase needed to access the contents of the trust store. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "conjurSecretRelativePath": {
+                    "description": "The portion of the path that follows the account name in the URI needed to obtain the secret passphrase to use to generate the encryption key. Any special characters in the path must be URL-encoded.",
+                    "type": "string"
+                }
+                ,
+                "vaultAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Vault server.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePinFile": {
+                    "description": "The path to a file containing the user PIN needed to interact with the PKCS #11 token. The file must exist and must contain exactly one line with a clear-text representation of the PIN.",
+                    "type": "string"
+                }
+                ,
+                "pkcs11KeyStoreType": {
+                    "description": "The key store type to use when obtaining an instance of a key store for interacting with a PKCS #11 token.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreType": {
+                    "description": "The store type for the specified trust store file. The value should likely be one of \"JKS\" or \"PKCS12\".",
+                    "type": "string"
+                }
+                ,
+                "pkcs11ProviderConfigurationFile": {
+                    "description": "The path to the file to use to configure the security provider that implements support for interacting with PKCS #11 tokens.",
+                    "type": "string"
+                }
+                ,
+                "awsSecretAccessKey": {
+                    "description": "The secret access key that will be used if this cipher stream provider will authenticate to the Amazon Key Management Service using an access key rather than an IAM role associated with an EC2 instance.",
+                    "type": "string"
+                }
+                ,
+                "secretName": {
+                    "description": "The name of the secret to retrieve.",
+                    "type": "string"
+                }
+                ,
+                "awsRegionName": {
+                    "description": "The name of the Amazon Web Services region that holds the encryption key. This is optional, and if it is not provided, then the server will attempt to determine the region from the key ARN.",
+                    "type": "string"
+                }
+                ,
+                "secretFieldName": {
+                    "description": "The name of the JSON field whose value is the passphrase that will be used to generate the encryption key for protecting the contents of the encryption settings database.",
+                    "type": "string"
+                }
+                ,
+                "sslCertNickname": {
+                    "description": "The alias for the certificate in the PKCS #11 token that will be used to wrap the encryption key. The target certificate must exist in the PKCS #11 token, and it must have an RSA key pair because the JVM does not currently provide adequate key wrapping support for elliptic curve key pairs.  If you have also configured the server to use a PKCS #11 token for accessing listener certificates, we strongly recommend that you use a different certificate to protect the contents of the encryption settings database than you use for negotiating TLS sessions with clients. It is imperative that the certificate used by this PKCS11 Cipher Stream Provider remain constant for the life of the provider because if the certificate were to be replaced, then the contents of the encryption settings database could become inaccessible. Unlike with listener certificates used for TLS negotiation that need to be replaced on a regular basis, this PKCS11 Cipher Stream Provider does not consider the validity period for the associated certificate, and it will continue to function even after the certificate has expired.  If you need to rotate the certificate used to protect the server's encryption settings database, you should first install the desired new certificate in the PKCS #11 token under a different alias. Then, you should create a new instance of this PKCS11 Cipher Stream Provider that is configured to use that certificate, and that also uses a different value for the encryption-metadata-file because the information in that file is tied to the certificate used to generate it. Finally, you will need to update the global configuration so that the encryption-settings-cipher-stream-provider property references the new cipher stream provider rather than this one. The update to the global configuration must be done with the server online so that it can properly re-encrypt the contents of the encryption settings database with the correct key tied to the new certificate.",
+                    "type": "string"
+                }
+                ,
+                "secretID": {
+                    "description": "The Amazon Resource Name (ARN) or the user-friendly name of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretPath": {
+                    "description": "The path to the desired secret in the Vault service. This will be appended to the value of the base-url property for the associated Vault external server.",
+                    "type": "string"
+                }
+                ,
+                "conjurExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Conjur server.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePin": {
+                    "description": "The clear-text user PIN needed to interact with the PKCS #11 token.",
+                    "type": "string"
+                }
+                ,
+                "passwordFile": {
+                    "description": "The path to the file containing the password to use when generating ciphers.",
+                    "type": "string"
+                }
+                ,
+                "vaultEncryptionMetadataFile": {
+                    "description": "The path to a file that will hold metadata about the encryption performed by this Vault Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "encryptedPassphraseFile": {
+                    "description": "The path to a file that will hold the encrypted passphrase used by this cipher stream provider.",
+                    "type": "string"
+                }
+                ,
+                "waitForPasswordFile": {
+                    "description": "Indicates whether the server should wait for the password file to become available if it does not exist.",
+                    "type": "boolean"
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "pkcs11ProviderClass": {
+                    "description": "The fully-qualified name of the Java security provider class that implements support for interacting with PKCS #11 tokens.",
+                    "type": "string"
+                }
+            }
+        },
+        "cipher-stream-provider-properties": {
+            "id": "cipher-stream-provider-properties",
+            "description": "Cipher Stream Provider properties",
+            "properties": {
+                "schemas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:amazon-key-management-service"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:amazon-secrets-manager"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:azure-key-vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:file-based"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:wait-for-passphrase"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:conjur"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:pkcs11"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:vault"
+                            ,
+                            "urn:pingidentity:schemas:configuration:2.0:cipher-stream-provider:third-party"
+                        ]
+                    }
+                },
+                "keyVaultURI": {
+                    "description": "The URI that identifies the Azure Key Vault from which the secret is to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionClass": {
+                    "description": "The fully-qualified name of the Java class providing the logic for the Third Party Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "vaultServerBaseURI": {
+                    "description": "The base URL needed to access the Vault server. The base URL should consist of the protocol (\"http\" or \"https\"), the server address (resolvable name or IP address), and the port number. For example, \"https://vault.example.com:8200/\".",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "awsAccessKeyID": {
+                    "description": "The access key ID that will be used if this cipher stream provider will authenticate to the Amazon Key Management Service using an access key rather than an IAM role associated with an EC2 instance.",
+                    "type": "string"
+                }
+                ,
+                "azureAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "secretVersionStage": {
+                    "description": "The staging label for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePinEnvironmentVariable": {
+                    "description": "The name of an environment variable whose value is the user PIN needed to interact with the PKCS #11 token. The environment variable must be defined and must contain a clear-text representation of the PIN.",
+                    "type": "string"
+                }
+                ,
+                "description": {
+                    "description": "A description for this Cipher Stream Provider",
+                    "type": "string"
+                }
+                ,
+                "vaultExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Vault server.",
+                    "type": "string"
+                }
+                ,
+                "enabled": {
+                    "description": "Indicates whether this Cipher Stream Provider is enabled for use in the Directory Server.",
+                    "type": "boolean"
+                }
+                ,
+                "secretVersionID": {
+                    "description": "The unique identifier for the version of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "extensionArgument": {
+                    "description": "The set of arguments used to customize the behavior for the Third Party Cipher Stream Provider. Each configuration property should be given in the form 'name=value'.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+                ,
+                "encryptionMetadataFile": {
+                    "description": "The path to a file that will hold metadata about the encryption performed by this Amazon Secrets Manager Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreFile": {
+                    "description": "The path to a file containing the information needed to trust the certificate presented by the Vault servers.",
+                    "type": "string"
+                }
+                ,
+                "awsExternalServer": {
+                    "description": "The external server with information to use when interacting with the Amazon Key Management Service.",
+                    "type": "string"
+                }
+                ,
+                "kmsEncryptionKeyArn": {
+                    "description": "The Amazon resource name (ARN) for the KMS key that will be used to encrypt the contents of the passphrase file. This key must exist, and the AWS client must have access to encrypt and decrypt data using this key.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretFieldName": {
+                    "description": "The name of the field in the Vault secret record that contains the passphrase to use to generate the encryption key.",
+                    "type": "string"
+                }
+                ,
+                "trustStorePin": {
+                    "description": "The passphrase needed to access the contents of the trust store. This is only required if a trust store file is required, and if that trust store requires a PIN to access its contents.",
+                    "type": "string"
+                }
+                ,
+                "conjurSecretRelativePath": {
+                    "description": "The portion of the path that follows the account name in the URI needed to obtain the secret passphrase to use to generate the encryption key. Any special characters in the path must be URL-encoded.",
+                    "type": "string"
+                }
+                ,
+                "vaultAuthenticationMethod": {
+                    "description": "The mechanism used to authenticate to the Vault server.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePinFile": {
+                    "description": "The path to a file containing the user PIN needed to interact with the PKCS #11 token. The file must exist and must contain exactly one line with a clear-text representation of the PIN.",
+                    "type": "string"
+                }
+                ,
+                "pkcs11KeyStoreType": {
+                    "description": "The key store type to use when obtaining an instance of a key store for interacting with a PKCS #11 token.",
+                    "type": "string"
+                }
+                ,
+                "trustStoreType": {
+                    "description": "The store type for the specified trust store file. The value should likely be one of \"JKS\" or \"PKCS12\".",
+                    "type": "string"
+                }
+                ,
+                "pkcs11ProviderConfigurationFile": {
+                    "description": "The path to the file to use to configure the security provider that implements support for interacting with PKCS #11 tokens.",
+                    "type": "string"
+                }
+                ,
+                "awsSecretAccessKey": {
+                    "description": "The secret access key that will be used if this cipher stream provider will authenticate to the Amazon Key Management Service using an access key rather than an IAM role associated with an EC2 instance.",
+                    "type": "string"
+                }
+                ,
+                "secretName": {
+                    "description": "The name of the secret to retrieve.",
+                    "type": "string"
+                }
+                ,
+                "awsRegionName": {
+                    "description": "The name of the Amazon Web Services region that holds the encryption key. This is optional, and if it is not provided, then the server will attempt to determine the region from the key ARN.",
+                    "type": "string"
+                }
+                ,
+                "secretFieldName": {
+                    "description": "The name of the JSON field whose value is the passphrase that will be used to generate the encryption key for protecting the contents of the encryption settings database.",
+                    "type": "string"
+                }
+                ,
+                "sslCertNickname": {
+                    "description": "The alias for the certificate in the PKCS #11 token that will be used to wrap the encryption key. The target certificate must exist in the PKCS #11 token, and it must have an RSA key pair because the JVM does not currently provide adequate key wrapping support for elliptic curve key pairs.  If you have also configured the server to use a PKCS #11 token for accessing listener certificates, we strongly recommend that you use a different certificate to protect the contents of the encryption settings database than you use for negotiating TLS sessions with clients. It is imperative that the certificate used by this PKCS11 Cipher Stream Provider remain constant for the life of the provider because if the certificate were to be replaced, then the contents of the encryption settings database could become inaccessible. Unlike with listener certificates used for TLS negotiation that need to be replaced on a regular basis, this PKCS11 Cipher Stream Provider does not consider the validity period for the associated certificate, and it will continue to function even after the certificate has expired.  If you need to rotate the certificate used to protect the server's encryption settings database, you should first install the desired new certificate in the PKCS #11 token under a different alias. Then, you should create a new instance of this PKCS11 Cipher Stream Provider that is configured to use that certificate, and that also uses a different value for the encryption-metadata-file because the information in that file is tied to the certificate used to generate it. Finally, you will need to update the global configuration so that the encryption-settings-cipher-stream-provider property references the new cipher stream provider rather than this one. The update to the global configuration must be done with the server online so that it can properly re-encrypt the contents of the encryption settings database with the correct key tied to the new certificate.",
+                    "type": "string"
+                }
+                ,
+                "secretID": {
+                    "description": "The Amazon Resource Name (ARN) or the user-friendly name of the secret to be retrieved.",
+                    "type": "string"
+                }
+                ,
+                "vaultSecretPath": {
+                    "description": "The path to the desired secret in the Vault service. This will be appended to the value of the base-url property for the associated Vault external server.",
+                    "type": "string"
+                }
+                ,
+                "conjurExternalServer": {
+                    "description": "An external server definition with information needed to connect and authenticate to the Conjur server.",
+                    "type": "string"
+                }
+                ,
+                "keyStorePin": {
+                    "description": "The clear-text user PIN needed to interact with the PKCS #11 token.",
+                    "type": "string"
+                }
+                ,
+                "passwordFile": {
+                    "description": "The path to the file containing the password to use when generating ciphers.",
+                    "type": "string"
+                }
+                ,
+                "vaultEncryptionMetadataFile": {
+                    "description": "The path to a file that will hold metadata about the encryption performed by this Vault Cipher Stream Provider.",
+                    "type": "string"
+                }
+                ,
+                "encryptedPassphraseFile": {
+                    "description": "The path to a file that will hold the encrypted passphrase used by this cipher stream provider.",
+                    "type": "string"
+                }
+                ,
+                "waitForPasswordFile": {
+                    "description": "Indicates whether the server should wait for the password file to become available if it does not exist.",
+                    "type": "boolean"
+                }
+                ,
+                "httpProxyExternalServer": {
+                    "description": "A reference to an HTTP proxy server that should be used for requests sent to the Azure service.",
+                    "type": "string"
+                }
+                ,
+                "pkcs11ProviderClass": {
+                    "description": "The fully-qualified name of the Java security provider class that implements support for interacting with PKCS #11 tokens.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

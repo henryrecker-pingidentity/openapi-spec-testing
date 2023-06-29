@@ -1,0 +1,829 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /connection-criteria:
+    get:
+      summary: Returns a list of all Connection Criteria objects
+      operationId: list-connection-criteria
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/connection-criteria-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - connection-criteria
+    post:
+      summary: Add a new Connection Criteria to the config
+      operationId: add-connection-criteria
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-connection-criteria-request'
+        description: Create a new Connection Criteria in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/connection-criteria-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - connection-criteria
+  /connection-criteria/{connection-criteria-name}:
+    get:
+      operationId: get-connection-criteria
+      summary: Returns a single Connection Criteria
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Connection Criteria
+        in: path
+        name: connection-criteria-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/connection-criteria-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - connection-criteria
+    put:
+      operationId: put-connection-criteria
+      summary: Update an existing Connection Criteria by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Connection Criteria
+        in: path
+        name: connection-criteria-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/connection-criteria-properties'
+        description: Attributes to replace in the Connection Criteria
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/connection-criteria-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - connection-criteria
+    patch:
+      operationId: patch-connection-criteria
+      summary: Update an existing Connection Criteria by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Connection Criteria
+        in: path
+        name: connection-criteria-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Connection Criteria
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/connection-criteria-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - connection-criteria
+    delete:
+      summary: Delete a Connection Criteria
+      operationId: delete-connection-criteria
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Connection Criteria
+        in: path
+        name: connection-criteria-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - connection-criteria
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  connection-criteria-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/connection-criteria-response'
+    required:
+    - schemas
+    - totalResults
+  add-connection-criteria-request:
+    allOf:
+    - type: object
+      properties:
+        criteriaName:
+          type: string
+          description: >-
+              Name of the new Connection Criteria
+    - $ref: '#/definitions/connection-criteria-properties'
+    required:
+    - criteriaName
+  connection-criteria-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Connection Criteria
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/connection-criteria-properties'
+    required:
+    - id
+    - schemas
+  connection-criteria-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/connection-criteria-response'
+  connection-criteria-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:connection-criteria:simple"
+          - "urn:pingidentity:schemas:configuration:2.0:connection-criteria:aggregate"
+          - "urn:pingidentity:schemas:configuration:2.0:connection-criteria:third-party"
+      extensionClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Java class providing the logic for the Third Party Connection Criteria.
+      includedClientAddress:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies an address mask that may be used to specify a set of clients that should be included in this Simple Connection Criteria.
+      excludedClientAddress:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies an address mask that may be used to specify a set of clients that should be excluded from this Simple Connection Criteria.
+      includedUserSASLMechanism:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the name of a SASL mechanism that should be used by clients included in this Simple Connection Criteria. This will only be taken into account for client connections that have authenticated to the server using a SASL mechanism and will be ignored for unauthenticated client connections and for client connections that authenticated using some other method (e.g., those performing simple or internal authentication).
+      description:
+        type: string
+        description: >-
+               A description for this Connection Criteria
+      includedUserBaseDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a base DN below which authenticated user entries may exist for clients included in this Simple Connection Criteria. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections. Refer to the authz version of this property in Simple Result Criteria if operations are being proxied (performed using proxied authorization), and you need to match the originating user of the operation rather than the proxy user (the user the proxy authenticated as).
+      authenticationSecurityLevel:
+        type: string
+        enum:
+        - "any"
+        - "secure-only"
+        - "insecure-only"
+        description: >-
+               Indicates whether this Simple Connection Criteria should require or allow clients that authenticated using a secure manner. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      noneIncludedUserGroupDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the DN of a group in which authenticated users must not exist for clients included in this Simple Connection Criteria. If any group DNs are provided, then the authenticated user must not be a member any of those groups. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections. Refer to the authz version of this property in Simple Result Criteria if operations are being proxied (performed using proxied authorization), and you need to match the originating user of the operation rather than the proxy user (the user the proxy authenticated as).
+      noneIncludedConnectionCriteria:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a connection criteria object that must not match the associated client connection in order to match the aggregate connection criteria. If one or more none-included connection criteria objects are provided, then a client connection must not match any of them in order to match the aggregate connection criteria.
+      extensionArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Third Party Connection Criteria. Each configuration property should be given in the form 'name=value'.
+      excludedProtocol:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the name of a communication protocol that should be used by clients excluded from this Simple Connection Criteria.
+      allIncludedUserFilter:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a search filter that must match the entry of the authenticated user for clients included in this Simple Connection Criteria. If any filters are provided, then all of those filters must match the authenticated user entry. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      anyIncludedUserPrivilege:
+        type: array
+        items:
+          type: string
+          enum:
+          - "audit-data-security"
+          - "bypass-acl"
+          - "bypass-read-acl"
+          - "modify-acl"
+          - "config-read"
+          - "config-write"
+          - "jmx-read"
+          - "jmx-write"
+          - "jmx-notify"
+          - "ldif-import"
+          - "ldif-export"
+          - "backend-backup"
+          - "backend-restore"
+          - "server-shutdown"
+          - "server-restart"
+          - "proxied-auth"
+          - "disconnect-client"
+          - "password-reset"
+          - "update-schema"
+          - "privilege-change"
+          - "unindexed-search"
+          - "unindexed-search-with-control"
+          - "bypass-pw-policy"
+          - "lockdown-mode"
+          - "stream-values"
+          - "third-party-task"
+          - "use-admin-session"
+          - "soft-delete-read"
+          - "metrics-read"
+          - "remote-log-read"
+          - "manage-topology"
+          - "permit-get-password-policy-state-issues"
+          - "permit-proxied-mschapv2-details"
+          - "permit-externally-processed-authentication"
+          - "permit-export-reversible-passwords"
+          - "permit-forwarding-client-connection-policy"
+          - "exec-task"
+          - "collect-support-data"
+          - "file-servlet-access"
+          - "permit-replace-certificate-request"
+        description: >-
+               Specifies the name of a privilege that may be held by the authenticated user for clients included in this Simple Connection Criteria. If any privilege names are provided, then the authenticated user must have at least one of those privileges. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      communicationSecurityLevel:
+        type: string
+        enum:
+        - "any"
+        - "secure-only"
+        - "insecure-only"
+        description: >-
+               Indicates whether this Simple Connection Criteria should require or allow clients using a secure communication channel.
+      anyIncludedUserGroupDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the DN of a group in which authenticated users may exist for clients included in this Simple Connection Criteria. If any group DNs are provided, then the authenticated user must be a member of at least one of those groups. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections. Refer to the authz version of this property in Simple Result Criteria if operations are being proxied (performed using proxied authorization), and you need to match the originating user of the operation rather than the proxy user (the user the proxy authenticated as).
+      notAllIncludedUserFilter:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a search filter that should not match the entry of the authenticated user for clients included in this Simple Connection Criteria. If any filters are provided, then at least one of those filters must not match the authenticated user entry (that is, the user entry may match zero or more of those filters, but not all of them). This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      notAllIncludedUserPrivilege:
+        type: array
+        items:
+          type: string
+          enum:
+          - "audit-data-security"
+          - "bypass-acl"
+          - "bypass-read-acl"
+          - "modify-acl"
+          - "config-read"
+          - "config-write"
+          - "jmx-read"
+          - "jmx-write"
+          - "jmx-notify"
+          - "ldif-import"
+          - "ldif-export"
+          - "backend-backup"
+          - "backend-restore"
+          - "server-shutdown"
+          - "server-restart"
+          - "proxied-auth"
+          - "disconnect-client"
+          - "password-reset"
+          - "update-schema"
+          - "privilege-change"
+          - "unindexed-search"
+          - "unindexed-search-with-control"
+          - "bypass-pw-policy"
+          - "lockdown-mode"
+          - "stream-values"
+          - "third-party-task"
+          - "use-admin-session"
+          - "soft-delete-read"
+          - "metrics-read"
+          - "remote-log-read"
+          - "manage-topology"
+          - "permit-get-password-policy-state-issues"
+          - "permit-proxied-mschapv2-details"
+          - "permit-externally-processed-authentication"
+          - "permit-export-reversible-passwords"
+          - "permit-forwarding-client-connection-policy"
+          - "exec-task"
+          - "collect-support-data"
+          - "file-servlet-access"
+          - "permit-replace-certificate-request"
+        description: >-
+               Specifies the name of a privilege that should not be held by the authenticated user for clients included in this Simple Connection Criteria. If any privilege names are provided, then the authenticated user must not have at least one of those privileges (that is, the user may hold zero or more of those privileges, but not all of them). This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      allIncludedConnectionCriteria:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a connection criteria object that must match the associated client connection in order to match the aggregate connection criteria. If one or more all-included connection criteria objects are provided, then a client connection must match all of them in order to match the aggregate connection criteria.
+      anyIncludedConnectionCriteria:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a connection criteria object that may match the associated client connection in order to match the aggregate connection criteria. If one or more any-included connection criteria objects are provided, then a client connection must match at least one of them in order to match the aggregate connection criteria.
+      noneIncludedUserPrivilege:
+        type: array
+        items:
+          type: string
+          enum:
+          - "audit-data-security"
+          - "bypass-acl"
+          - "bypass-read-acl"
+          - "modify-acl"
+          - "config-read"
+          - "config-write"
+          - "jmx-read"
+          - "jmx-write"
+          - "jmx-notify"
+          - "ldif-import"
+          - "ldif-export"
+          - "backend-backup"
+          - "backend-restore"
+          - "server-shutdown"
+          - "server-restart"
+          - "proxied-auth"
+          - "disconnect-client"
+          - "password-reset"
+          - "update-schema"
+          - "privilege-change"
+          - "unindexed-search"
+          - "unindexed-search-with-control"
+          - "bypass-pw-policy"
+          - "lockdown-mode"
+          - "stream-values"
+          - "third-party-task"
+          - "use-admin-session"
+          - "soft-delete-read"
+          - "metrics-read"
+          - "remote-log-read"
+          - "manage-topology"
+          - "permit-get-password-policy-state-issues"
+          - "permit-proxied-mschapv2-details"
+          - "permit-externally-processed-authentication"
+          - "permit-export-reversible-passwords"
+          - "permit-forwarding-client-connection-policy"
+          - "exec-task"
+          - "collect-support-data"
+          - "file-servlet-access"
+          - "permit-replace-certificate-request"
+        description: >-
+               Specifies the name of a privilege that must not be held by the authenticated user for clients included in this Simple Connection Criteria. If any privilege names are provided, then the authenticated user must not have any of those privileges. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      allIncludedUserGroupDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the DN of a group in which authenticated users must exist for clients included in this Simple Connection Criteria. If any group DNs are provided, then the authenticated user must be a member of all of those groups. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections. Refer to the authz version of this property in Simple Result Criteria if operations are being proxied (performed using proxied authorization), and you need to match the originating user of the operation rather than the proxy user (the user the proxy authenticated as).
+      notAllIncludedUserGroupDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the DN of a group in which authenticated users should not exist for clients included in this Simple Connection Criteria. If any group DNs are provided, then the authenticated user must not be a member of at least one of those groups (that is, the user may be a member of zero or more of those groups, but not of all of them). This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections. Refer to the authz version of this property in Simple Result Criteria if operations are being proxied (performed using proxied authorization), and you need to match the originating user of the operation rather than the proxy user (the user the proxy authenticated as).
+      excludedUserSASLMechanism:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the name of a SASL mechanism that should be used by clients excluded from this Simple Connection Criteria. This will only be taken into account for client connections that have authenticated to the server using a SASL mechanism and will be ignored for unauthenticated client connections and for client connections that authenticated using some other method (e.g., those performing simple or internal authentication).
+      allIncludedUserPrivilege:
+        type: array
+        items:
+          type: string
+          enum:
+          - "audit-data-security"
+          - "bypass-acl"
+          - "bypass-read-acl"
+          - "modify-acl"
+          - "config-read"
+          - "config-write"
+          - "jmx-read"
+          - "jmx-write"
+          - "jmx-notify"
+          - "ldif-import"
+          - "ldif-export"
+          - "backend-backup"
+          - "backend-restore"
+          - "server-shutdown"
+          - "server-restart"
+          - "proxied-auth"
+          - "disconnect-client"
+          - "password-reset"
+          - "update-schema"
+          - "privilege-change"
+          - "unindexed-search"
+          - "unindexed-search-with-control"
+          - "bypass-pw-policy"
+          - "lockdown-mode"
+          - "stream-values"
+          - "third-party-task"
+          - "use-admin-session"
+          - "soft-delete-read"
+          - "metrics-read"
+          - "remote-log-read"
+          - "manage-topology"
+          - "permit-get-password-policy-state-issues"
+          - "permit-proxied-mschapv2-details"
+          - "permit-externally-processed-authentication"
+          - "permit-export-reversible-passwords"
+          - "permit-forwarding-client-connection-policy"
+          - "exec-task"
+          - "collect-support-data"
+          - "file-servlet-access"
+          - "permit-replace-certificate-request"
+        description: >-
+               Specifies the name of a privilege that must be held by the authenticated user for clients included in this Simple Connection Criteria. If any privilege names are provided, then the authenticated user must have all of those privileges. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      noneIncludedUserFilter:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a search filter that must not match the entry of the authenticated user for clients included in this Simple Connection Criteria. If any filters are provided, then none of those filters may match the authenticated user entry. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      anyIncludedUserFilter:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a search filter that may match the entry of the authenticated user for clients included in this Simple Connection Criteria. If any filters are provided, then at least one of those filters must match the authenticated user entry. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections.
+      includedProtocol:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the name of a communication protocol that should be used by clients included in this Simple Connection Criteria.
+      excludedConnectionHandler:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a connection handler for clients that should be excluded from this Simple Connection Criteria.
+      userAuthType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "none"
+          - "simple"
+          - "sasl"
+          - "internal"
+        description: >-
+               Specifies the authentication types for client connections that may be included in this Simple Connection Criteria.
+      includedConnectionHandler:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a connection handler for clients that should be included in this Simple Connection Criteria.
+      notAllIncludedConnectionCriteria:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a connection criteria object that should not match the associated client connection in order to match the aggregate connection criteria. If one or more not-all-included connection criteria objects are provided, then a client connection must not match all of them (that is, it may match zero or more of them, but it must not match all of them) in order to match the aggregate connection criteria.
+      excludedUserBaseDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies a base DN below which authenticated user entries may exist for clients excluded from this Simple Connection Criteria. This will only be taken into account for client connections that have authenticated to the server and will be ignored for unauthenticated client connections. Refer to the authz version of this property in Simple Result Criteria if operations are being proxied (performed using proxied authorization), and you need to match the originating user of the operation rather than the proxy user (the user the proxy authenticated as).
+
+

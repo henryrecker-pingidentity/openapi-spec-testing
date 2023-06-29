@@ -1,0 +1,440 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /ldap-sdk-debug-logger:
+    get:
+      operationId: get-ldap-sdk-debug-logger
+      summary: Returns the LDAP SDK Debug Logger
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-sdk-debug-logger-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-sdk-debug-logger
+    put:
+      operationId: put-ldap-sdk-debug-logger
+      summary: Update the LDAP SDK Debug Logger, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/ldap-sdk-debug-logger-properties'
+        description: Attributes to replace in the LDAP SDK Debug Logger
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-sdk-debug-logger-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-sdk-debug-logger
+    patch:
+      operationId: patch-ldap-sdk-debug-logger
+      summary: Update an existing LDAP SDK Debug Logger by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the LDAP SDK Debug Logger
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ldap-sdk-debug-logger-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - ldap-sdk-debug-logger
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  ldap-sdk-debug-logger-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the LDAP SDK Debug Logger
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/ldap-sdk-debug-logger-properties'
+    required:
+    - id
+    - schemas
+  ldap-sdk-debug-logger-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/ldap-sdk-debug-logger-response'
+  ldap-sdk-debug-logger-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:ldap-sdk-debug-logger"
+      debugType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "asn1"
+          - "coding-error"
+          - "connect"
+          - "exception"
+          - "ldap"
+          - "ldif"
+          - "monitor"
+          - "other"
+        description: >-
+               The types of debug messages that should be logged.
+      queueSize:
+        type: integer
+        description: >-
+               The maximum number of log records that can be stored in the asynchronous queue.
+      rotationPolicy:
+        type: array
+        items:
+          type: string
+        description: >-
+               The rotation policy to use for the LDAP SDK Debug Logger .
+      compressionMechanism:
+        type: string
+        enum:
+        - "none"
+        - "gzip"
+        description: >-
+               Specifies the type of compression (if any) to use for log files that are written.
+      encryptionSettingsDefinitionID:
+        type: string
+        description: >-
+               Specifies the ID of the encryption settings definition that should be used to encrypt the data. If this is not provided, the server's preferred encryption settings definition will be used. The "encryption-settings list" command can be used to obtain a list of the encryption settings definitions available in the server.
+      description:
+        type: string
+        description: >-
+               A description for this LDAP SDK Debug Logger
+      encryptLog:
+        type: boolean
+        description: >-
+               Indicates whether log files should be encrypted so that their content is not available to unauthorized users.
+      rotationListener:
+        type: array
+        items:
+          type: string
+        description: >-
+               A listener that should be notified whenever a log file is rotated out of service.
+      enabled:
+        type: boolean
+        description: >-
+               Indicates whether this LDAP SDK Debug Logger is enabled.
+      debugLevel:
+        type: string
+        enum:
+        - "severe"
+        - "warning"
+        - "info"
+        - "config"
+        - "fine"
+        - "finer"
+        - "finest"
+        description: >-
+               The minimum debug level that should be used for messages to be logged.
+      autoFlush:
+        type: boolean
+        description: >-
+               Specifies whether to flush the writer after every log record.
+      asynchronous:
+        type: boolean
+        description: >-
+               Indicates whether the LDAP SDK Debug Logger will publish records asynchronously.
+      logFile:
+        type: string
+        description: >-
+               The path and base name of the file to use for log files generated by this LDAP SDK Debug Logger. The path may be either absolute or relative to the server root.
+      logFilePermissions:
+        type: string
+        description: >-
+               The UNIX permissions of the log files created by this LDAP SDK Debug Logger.
+      timestampPrecision:
+        type: string
+        enum:
+        - "seconds"
+        - "milliseconds"
+        description: >-
+               Specifies the smallest time unit to be included in timestamps.
+      timeInterval:
+        type: string
+        description: >-
+               Specifies the interval at which to check whether the log files need to be rotated.
+      includeStackTrace:
+        type: boolean
+        description: >-
+               Indicates whether a stack trace of the thread which called the debug method should be included in debug log messages.
+      retentionPolicy:
+        type: array
+        items:
+          type: string
+        description: >-
+               The retention policy to use for the LDAP SDK Debug Logger .
+      loggingErrorBehavior:
+        type: string
+        enum:
+        - "standard-error"
+        - "lockdown-mode"
+        description: >-
+               Specifies the behavior that the server should exhibit if an error occurs during logging processing.
+      append:
+        type: boolean
+        description: >-
+               Specifies whether to append to existing log files.
+      bufferSize:
+        type: string
+        description: >-
+               Specifies the log file buffer size.
+      signLog:
+        type: boolean
+        description: >-
+               Indicates whether the log should be cryptographically signed so that the log content cannot be altered in an undetectable manner.
+
+

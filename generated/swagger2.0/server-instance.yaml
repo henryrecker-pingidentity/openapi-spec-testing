@@ -1,0 +1,1574 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /server-instances:
+    get:
+      summary: Returns a list of all Server Instance objects
+      operationId: list-server-instances
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance
+  /server-instances/{server-instance-name}:
+    get:
+      operationId: get-server-instance
+      summary: Returns a single Server Instance
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance
+    put:
+      operationId: put-server-instance
+      summary: Update an existing Server Instance by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/server-instance-properties'
+        description: Attributes to replace in the Server Instance
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance
+    patch:
+      operationId: patch-server-instance
+      summary: Update an existing Server Instance by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Server Instance
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance
+
+  /server-instances/{server-instance-name}/server-instance-listeners:
+    get:
+      summary: Returns a list of all Server Instance Listener objects
+      operationId: list-server-instance-listeners
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-listener-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance-listener
+  /server-instances/{server-instance-name}/server-instance-listeners/{server-instance-listener-name}:
+    get:
+      operationId: get-server-instance-listener
+      summary: Returns a single Server Instance Listener
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Server Instance Listener
+        in: path
+        name: server-instance-listener-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-listener-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance-listener
+    put:
+      operationId: put-server-instance-listener
+      summary: Update an existing Server Instance Listener by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Server Instance Listener
+        in: path
+        name: server-instance-listener-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/server-instance-listener-properties'
+        description: Attributes to replace in the Server Instance Listener
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-listener-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance-listener
+    patch:
+      operationId: patch-server-instance-listener
+      summary: Update an existing Server Instance Listener by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Server Instance Listener
+        in: path
+        name: server-instance-listener-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Server Instance Listener
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/server-instance-listener-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - server-instance-listener
+
+  /server-instances/{server-instance-name}/mac-secret-keys:
+    get:
+      summary: Returns a list of all Mac Secret Key objects
+      operationId: list-mac-secret-keys
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/mac-secret-key-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - mac-secret-key
+  /server-instances/{server-instance-name}/mac-secret-keys/{mac-secret-key-name}:
+    get:
+      operationId: get-mac-secret-key
+      summary: Returns a single Mac Secret Key
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Mac Secret Key
+        in: path
+        name: mac-secret-key-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/mac-secret-key-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - mac-secret-key
+    put:
+      operationId: put-mac-secret-key
+      summary: Update an existing Mac Secret Key by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Mac Secret Key
+        in: path
+        name: mac-secret-key-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/mac-secret-key-properties'
+        description: Attributes to replace in the Mac Secret Key
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/mac-secret-key-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - mac-secret-key
+    patch:
+      operationId: patch-mac-secret-key
+      summary: Update an existing Mac Secret Key by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Mac Secret Key
+        in: path
+        name: mac-secret-key-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Mac Secret Key
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/mac-secret-key-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - mac-secret-key
+
+  /server-instances/{server-instance-name}/cipher-secret-keys:
+    get:
+      summary: Returns a list of all Cipher Secret Key objects
+      operationId: list-cipher-secret-keys
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/cipher-secret-key-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - cipher-secret-key
+  /server-instances/{server-instance-name}/cipher-secret-keys/{cipher-secret-key-name}:
+    get:
+      operationId: get-cipher-secret-key
+      summary: Returns a single Cipher Secret Key
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Cipher Secret Key
+        in: path
+        name: cipher-secret-key-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/cipher-secret-key-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - cipher-secret-key
+    put:
+      operationId: put-cipher-secret-key
+      summary: Update an existing Cipher Secret Key by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Cipher Secret Key
+        in: path
+        name: cipher-secret-key-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/cipher-secret-key-properties'
+        description: Attributes to replace in the Cipher Secret Key
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/cipher-secret-key-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - cipher-secret-key
+    patch:
+      operationId: patch-cipher-secret-key
+      summary: Update an existing Cipher Secret Key by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Cipher Secret Key
+        in: path
+        name: cipher-secret-key-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Cipher Secret Key
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/cipher-secret-key-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - cipher-secret-key
+
+  /server-instances/{server-instance-name}/server-instance-listeners/{server-instance-listener-name}/inter-server-authentication-info:
+    get:
+      summary: Returns a list of all Inter Server Authentication Info objects
+      operationId: list-inter-server-authentication-info
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Server Instance Listener
+        in: path
+        name: server-instance-listener-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/inter-server-authentication-info-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - inter-server-authentication-info
+  /server-instances/{server-instance-name}/server-instance-listeners/{server-instance-listener-name}/inter-server-authentication-info/{inter-server-authentication-info-name}:
+    get:
+      operationId: get-inter-server-authentication-info
+      summary: Returns a single Inter Server Authentication Info
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Inter Server Authentication Info
+        in: path
+        name: inter-server-authentication-info-name
+        required: true
+        type: string
+      - description: Name of the Server Instance Listener
+        in: path
+        name: server-instance-listener-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/inter-server-authentication-info-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - inter-server-authentication-info
+    put:
+      operationId: put-inter-server-authentication-info
+      summary: Update an existing Inter Server Authentication Info by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Inter Server Authentication Info
+        in: path
+        name: inter-server-authentication-info-name
+        required: true
+        type: string
+      - description: Name of the Server Instance Listener
+        in: path
+        name: server-instance-listener-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/inter-server-authentication-info-properties'
+        description: Attributes to replace in the Inter Server Authentication Info
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/inter-server-authentication-info-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - inter-server-authentication-info
+    patch:
+      operationId: patch-inter-server-authentication-info
+      summary: Update an existing Inter Server Authentication Info by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Inter Server Authentication Info
+        in: path
+        name: inter-server-authentication-info-name
+        required: true
+        type: string
+      - description: Name of the Server Instance Listener
+        in: path
+        name: server-instance-listener-name
+        required: true
+        type: string
+      - description: Name of the Server Instance
+        in: path
+        name: server-instance-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Inter Server Authentication Info
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/inter-server-authentication-info-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - inter-server-authentication-info
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  server-instance-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/server-instance-response'
+    required:
+    - schemas
+    - totalResults
+  add-server-instance-request:
+    allOf:
+    - type: object
+      properties:
+        instanceName:
+          type: string
+          description: >-
+              Name of the new Server Instance
+    - $ref: '#/definitions/server-instance-properties'
+    required:
+    - instanceName
+  server-instance-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Server Instance
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/server-instance-properties'
+    required:
+    - id
+    - schemas
+  server-instance-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/server-instance-response'
+  server-instance-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:server-instance:proxy"
+          - "urn:pingidentity:schemas:configuration:2.0:server-instance:metrics-engine"
+          - "urn:pingidentity:schemas:configuration:2.0:server-instance:authorize"
+          - "urn:pingidentity:schemas:configuration:2.0:server-instance:directory"
+          - "urn:pingidentity:schemas:configuration:2.0:server-instance:sync"
+      replicationServerID:
+        type: integer
+        description: >-
+               Specifies a unique identifier for the replication server on this server instance.
+      serverVersion:
+        type: string
+        description: >-
+               The version of the server.
+      serverInstanceType:
+        type: string
+        enum:
+        - "ds"
+        - "proxy"
+        - "authorize"
+        - "metrics"
+        - "sync"
+        description: >-
+               Specifies the type of server installation.
+      jmxPort:
+        type: integer
+        description: >-
+               The TCP port on which this server is listening for JMX connections.
+      memberOfServerGroup:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of groups of which this server is a member.
+      interServerCertificate:
+        type: string
+        description: >-
+               The public component of the certificate used by this instance to protect inter-server communication and to perform server-specific encryption. This will generally be managed by the server and should only be altered by administrators under explicit direction from Ping Identity support personnel.
+      replicationSetName:
+        type: string
+        description: >-
+               The name of the replication set assigned to this Directory Server. Restricted domains are only replicated within instances using the same replication set name.
+      httpPort:
+        type: integer
+        description: >-
+               The TCP port on which this server is listening for HTTP connections.
+      ldapsPort:
+        type: integer
+        description: >-
+               The TCP port on which this server is listening for LDAP secure connections.
+      replicationDomainServerID:
+        type: array
+        items:
+          type: integer
+        description: >-
+               Specifies a unique identifier for the Directory Server within the replication domain.
+      serverRoot:
+        type: string
+        description: >-
+               The file system path where this Server Instance is installed.
+      ldapPort:
+        type: integer
+        description: >-
+               The TCP port on which this server is listening for LDAP connections.
+      serverInstanceName:
+        type: string
+        description: >-
+               The name of this Server Instance. The instance name needs to be unique if this server will be part of a topology of servers that are connected to each other. Once set, it may not be changed.
+      httpsPort:
+        type: integer
+        description: >-
+               The TCP port on which this server is listening for HTTPS connections.
+      startTLSEnabled:
+        type: boolean
+        description: >-
+               Indicates whether StartTLS is enabled on this server.
+      loadBalancingAlgorithmName:
+        type: array
+        items:
+          type: string
+        description: >-
+               The name of the configuration object for a load-balancing algorithm that should include this server.
+      hostname:
+        type: string
+        description: >-
+               The name of the host where this Server Instance is installed.
+      serverInstanceLocation:
+        type: string
+        description: >-
+               Specifies the location for the Server Instance.
+      clusterName:
+        type: string
+        description: >-
+               The name of the cluster to which this Server Instance belongs. Server instances within the same cluster will share the same cluster-wide configuration.
+      preferredSecurity:
+        type: string
+        enum:
+        - "none"
+        - "ssl"
+        - "starttls"
+        description: >-
+               Specifies the preferred mechanism to use for securing connections to the server.
+      replicationPort:
+        type: integer
+        description: >-
+               The replication TCP port.
+      jmxsPort:
+        type: integer
+        description: >-
+               The TCP port on which this server is listening for JMX secure connections.
+      baseDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of base DNs under the root DSE.
+
+  server-instance-listener-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/server-instance-listener-response'
+    required:
+    - schemas
+    - totalResults
+  add-server-instance-listener-request:
+    allOf:
+    - type: object
+      properties:
+        listenerName:
+          type: string
+          description: >-
+              Name of the new Server Instance Listener
+    - $ref: '#/definitions/server-instance-listener-properties'
+    required:
+    - listenerName
+  server-instance-listener-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Server Instance Listener
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/server-instance-listener-properties'
+    required:
+    - id
+    - schemas
+  server-instance-listener-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/server-instance-listener-response'
+  server-instance-listener-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:server-instance-listener:ldap"
+          - "urn:pingidentity:schemas:configuration:2.0:server-instance-listener:http"
+      listenerCertificate:
+        type: string
+        description: >-
+               The public component of the certificate that the listener is expected to present to clients. When establishing a connection to this server, only the certificate(s) listed here will be trusted.
+      connectionSecurity:
+        type: string
+        enum:
+        - "none"
+        - "ssl"
+        - "starttls"
+        description: >-
+               Specifies the mechanism to use for securing connections to the server.
+      purpose:
+        type: array
+        items:
+          type: string
+          enum:
+          - "mirrored-config"
+        description: >-
+               Identifies the purpose of this Server Instance Listener.
+      listenAddress:
+        type: string
+        description: >-
+               If the server is listening on a particular address different from the hostname, then this property may be used to specify the address on which to listen for connections from HTTP clients.
+      serverHTTPPort:
+        type: integer
+        description: >-
+               The TCP port number on which the HTTP server is listening.
+      serverLDAPPort:
+        type: integer
+        description: >-
+               The TCP port number on which the LDAP server is listening.
+
+  mac-secret-key-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/mac-secret-key-response'
+    required:
+    - schemas
+    - totalResults
+  add-mac-secret-key-request:
+    allOf:
+    - type: object
+      properties:
+        keyName:
+          type: string
+          description: >-
+              Name of the new Mac Secret Key
+    - $ref: '#/definitions/mac-secret-key-properties'
+    required:
+    - keyName
+  mac-secret-key-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Mac Secret Key
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/mac-secret-key-properties'
+    required:
+    - id
+    - schemas
+  mac-secret-key-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/mac-secret-key-response'
+  mac-secret-key-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:mac-secret-key"
+      macAlgorithmName:
+        type: string
+        description: >-
+               The algorithm name used to generate this MAC key, e.g. HmacMD5, HmacSHA1, HMacSHA256, etc.
+      keyLengthBits:
+        type: integer
+        description: >-
+               The length of the key in bits.
+      isCompromised:
+        type: boolean
+        description: >-
+               If the key is compromised, an administrator may set this flag to immediately trigger the creation of a new secret key. After the new key is generated, the value of this property will be reset to false.
+      keyID:
+        type: string
+        description: >-
+               The unique system-generated identifier for the Secret Key.
+      symmetricKey:
+        type: array
+        items:
+          type: string
+        description: >-
+               The symmetric key that is used for both encryption of plain text and decryption of cipher text. This stores the secret key for each server instance encrypted with that server's inter-server certificate.
+
+  cipher-secret-key-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/cipher-secret-key-response'
+    required:
+    - schemas
+    - totalResults
+  add-cipher-secret-key-request:
+    allOf:
+    - type: object
+      properties:
+        keyName:
+          type: string
+          description: >-
+              Name of the new Cipher Secret Key
+    - $ref: '#/definitions/cipher-secret-key-properties'
+    required:
+    - keyName
+  cipher-secret-key-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Cipher Secret Key
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/cipher-secret-key-properties'
+    required:
+    - id
+    - schemas
+  cipher-secret-key-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/cipher-secret-key-response'
+  cipher-secret-key-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:cipher-secret-key"
+      cipherTransformationName:
+        type: string
+        description: >-
+               The algorithm name used to produce this cipher, e.g. AES/CBC/PKCS5Padding.
+      keyLengthBits:
+        type: integer
+        description: >-
+               The length of the key in bits.
+      isCompromised:
+        type: boolean
+        description: >-
+               If the key is compromised, an administrator may set this flag to immediately trigger the creation of a new secret key. After the new key is generated, the value of this property will be reset to false.
+      keyID:
+        type: string
+        description: >-
+               The unique system-generated identifier for the Secret Key.
+      initializationVectorLengthBits:
+        type: integer
+        description: >-
+               The initialization vector length of the cipher in bits.
+      symmetricKey:
+        type: array
+        items:
+          type: string
+        description: >-
+               The symmetric key that is used for both encryption of plain text and decryption of cipher text. This stores the secret key for each server instance encrypted with that server's inter-server certificate.
+
+  inter-server-authentication-info-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/inter-server-authentication-info-response'
+    required:
+    - schemas
+    - totalResults
+  add-inter-server-authentication-info-request:
+    allOf:
+    - type: object
+      properties:
+        infoName:
+          type: string
+          description: >-
+              Name of the new Inter Server Authentication Info
+    - $ref: '#/definitions/inter-server-authentication-info-properties'
+    required:
+    - infoName
+  inter-server-authentication-info-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Inter Server Authentication Info
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/inter-server-authentication-info-properties'
+    required:
+    - id
+    - schemas
+  inter-server-authentication-info-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/inter-server-authentication-info-response'
+  inter-server-authentication-info-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:inter-server-authentication-info:password"
+          - "urn:pingidentity:schemas:configuration:2.0:inter-server-authentication-info:certificate"
+      bindDN:
+        type: string
+        description: >-
+               A DN of the username that should be used for the bind request.
+      password:
+        type: string
+        description: >-
+               The password for the username or bind-dn.
+      purpose:
+        type: array
+        items:
+          type: string
+          enum:
+          - "mirrored-config"
+        description: >-
+               Identifies the purpose of this Inter Server Authentication Info.
+      authenticationType:
+        type: string
+        enum:
+        - "simple"
+        - "sasl-plain"
+        description: >-
+               Identifies the type of password authentication that will be used.
+      username:
+        type: string
+        description: >-
+               The username that should be used for the bind request.
+
+

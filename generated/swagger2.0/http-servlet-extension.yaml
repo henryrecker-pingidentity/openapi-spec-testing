@@ -1,0 +1,1913 @@
+swagger: "2.0"
+info:
+  description: PingData Configuration API - OpenAPI 3.0
+  title: PingData Configuration API
+  version: "9.2.0.0"
+externalDocs:
+  description: PingDirectory Configuration API Docs
+  url: https://docs.pingidentity.com/r/en-us/pingdirectory-92/pd_ds_use_config_api
+basePath: /config
+securityDefinitions:
+  basicAuth:
+    type: "basic"
+security:
+- basicAuth: []
+produces:
+- application/json
+paths:
+  /ResourceTypes:
+    get:
+      summary: List all sub-paths for the Configuration API
+      operationId: get-resource-types
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/get-resource-types-response'
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - list-resource-types
+  /http-servlet-extensions:
+    get:
+      summary: Returns a list of all HTTP Servlet Extension objects
+      operationId: list-http-servlet-extensions
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/http-servlet-extension-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - http-servlet-extension
+    post:
+      summary: Add a new HTTP Servlet Extension to the config
+      operationId: add-http-servlet-extension
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-http-servlet-extension-request'
+        description: Create a new HTTP Servlet Extension in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/http-servlet-extension-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - http-servlet-extension
+  /http-servlet-extensions/{http-servlet-extension-name}:
+    get:
+      operationId: get-http-servlet-extension
+      summary: Returns a single HTTP Servlet Extension
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/http-servlet-extension-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - http-servlet-extension
+    put:
+      operationId: put-http-servlet-extension
+      summary: Update an existing HTTP Servlet Extension by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/http-servlet-extension-properties'
+        description: Attributes to replace in the HTTP Servlet Extension
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/http-servlet-extension-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - http-servlet-extension
+    patch:
+      operationId: patch-http-servlet-extension
+      summary: Update an existing HTTP Servlet Extension by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the HTTP Servlet Extension
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/http-servlet-extension-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - http-servlet-extension
+    delete:
+      summary: Delete a HTTP Servlet Extension
+      operationId: delete-http-servlet-extension
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - http-servlet-extension
+
+  /http-servlet-extensions/{http-servlet-extension-name}/prometheus-monitor-attribute-metrics:
+    get:
+      summary: Returns a list of all Prometheus Monitor Attribute Metric objects
+      operationId: list-prometheus-monitor-attribute-metrics
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/prometheus-monitor-attribute-metric-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - prometheus-monitor-attribute-metric
+    post:
+      summary: Add a new Prometheus Monitor Attribute Metric to the config
+      operationId: add-prometheus-monitor-attribute-metric
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-prometheus-monitor-attribute-metric-request'
+        description: Create a new Prometheus Monitor Attribute Metric in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/prometheus-monitor-attribute-metric-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - prometheus-monitor-attribute-metric
+  /http-servlet-extensions/{http-servlet-extension-name}/prometheus-monitor-attribute-metrics/{prometheus-monitor-attribute-metric-name}:
+    get:
+      operationId: get-prometheus-monitor-attribute-metric
+      summary: Returns a single Prometheus Monitor Attribute Metric
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Prometheus Monitor Attribute Metric
+        in: path
+        name: prometheus-monitor-attribute-metric-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/prometheus-monitor-attribute-metric-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - prometheus-monitor-attribute-metric
+    put:
+      operationId: put-prometheus-monitor-attribute-metric
+      summary: Update an existing Prometheus Monitor Attribute Metric by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Prometheus Monitor Attribute Metric
+        in: path
+        name: prometheus-monitor-attribute-metric-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/prometheus-monitor-attribute-metric-properties'
+        description: Attributes to replace in the Prometheus Monitor Attribute Metric
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/prometheus-monitor-attribute-metric-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - prometheus-monitor-attribute-metric
+    patch:
+      operationId: patch-prometheus-monitor-attribute-metric
+      summary: Update an existing Prometheus Monitor Attribute Metric by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Prometheus Monitor Attribute Metric
+        in: path
+        name: prometheus-monitor-attribute-metric-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Prometheus Monitor Attribute Metric
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/prometheus-monitor-attribute-metric-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - prometheus-monitor-attribute-metric
+    delete:
+      summary: Delete a Prometheus Monitor Attribute Metric
+      operationId: delete-prometheus-monitor-attribute-metric
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Prometheus Monitor Attribute Metric
+        in: path
+        name: prometheus-monitor-attribute-metric-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - prometheus-monitor-attribute-metric
+
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-context-providers:
+    get:
+      summary: Returns a list of all Velocity Context Provider objects
+      operationId: list-velocity-context-providers
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-context-provider-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-context-provider
+    post:
+      summary: Add a new Velocity Context Provider to the config
+      operationId: add-velocity-context-provider
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-velocity-context-provider-request'
+        description: Create a new Velocity Context Provider in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-context-provider-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-context-provider
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-context-providers/{velocity-context-provider-name}:
+    get:
+      operationId: get-velocity-context-provider
+      summary: Returns a single Velocity Context Provider
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Velocity Context Provider
+        in: path
+        name: velocity-context-provider-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-context-provider-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-context-provider
+    put:
+      operationId: put-velocity-context-provider
+      summary: Update an existing Velocity Context Provider by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Velocity Context Provider
+        in: path
+        name: velocity-context-provider-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/velocity-context-provider-properties'
+        description: Attributes to replace in the Velocity Context Provider
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-context-provider-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-context-provider
+    patch:
+      operationId: patch-velocity-context-provider
+      summary: Update an existing Velocity Context Provider by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Velocity Context Provider
+        in: path
+        name: velocity-context-provider-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Velocity Context Provider
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-context-provider-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-context-provider
+    delete:
+      summary: Delete a Velocity Context Provider
+      operationId: delete-velocity-context-provider
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Velocity Context Provider
+        in: path
+        name: velocity-context-provider-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-context-provider
+
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-template-loaders:
+    get:
+      summary: Returns a list of all Velocity Template Loader objects
+      operationId: list-velocity-template-loaders
+      parameters:
+      - $ref: '#/parameters/filter'
+      - $ref: '#/parameters/sortBy'
+      - $ref: '#/parameters/sortOrder'
+      - $ref: '#/parameters/startIndex'
+      - $ref: '#/parameters/count'
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-template-loader-list-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-template-loader
+    post:
+      summary: Add a new Velocity Template Loader to the config
+      operationId: add-velocity-template-loader
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/add-velocity-template-loader-request'
+        description: Create a new Velocity Template Loader in the config
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-template-loader-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-template-loader
+  /http-servlet-extensions/{http-servlet-extension-name}/velocity-template-loaders/{velocity-template-loader-name}:
+    get:
+      operationId: get-velocity-template-loader
+      summary: Returns a single Velocity Template Loader
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - description: Name of the Velocity Template Loader
+        in: path
+        name: velocity-template-loader-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-template-loader-response'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-template-loader
+    put:
+      operationId: put-velocity-template-loader
+      summary: Update an existing Velocity Template Loader by name, replacing any attributes specified in the request body
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Velocity Template Loader
+        in: path
+        name: velocity-template-loader-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/velocity-template-loader-properties'
+        description: Attributes to replace in the Velocity Template Loader
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-template-loader-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-template-loader
+    patch:
+      operationId: patch-velocity-template-loader
+      summary: Update an existing Velocity Template Loader by name, using a SCIM patch request
+      parameters:
+      - $ref: '#/parameters/attributes'
+      - $ref: '#/parameters/excludeAttributes'
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Velocity Template Loader
+        in: path
+        name: velocity-template-loader-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/patch-request'
+        description: SCIM operations to apply to the Velocity Template Loader
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/velocity-template-loader-response-with-messages'
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-template-loader
+    delete:
+      summary: Delete a Velocity Template Loader
+      operationId: delete-velocity-template-loader
+      parameters:
+      - $ref: '#/parameters/applyChangeTo'
+      - description: Name of the Velocity Template Loader
+        in: path
+        name: velocity-template-loader-name
+        required: true
+        type: string
+      - description: Name of the HTTP Servlet Extension
+        in: path
+        name: http-servlet-extension-name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Successful operation
+        "204":
+          description: The requested operation succeeded and no further information has been provided, such as in the case of a DELETE operation.
+        "400":
+          description: The request contents are incorrectly formatted or the request was made for an invalid API version.
+        "401":
+          description: The requester cannot be authenticated
+        "403":
+          description: The requester does not have the required privileges or another constraint failed, such as attempting to delete an edit-only object.
+        "404":
+          description: The requested path does not refer to an existing object or object relation.
+        "409":
+          description: The requested operation could not be performed due to the current state of the configuration. For example, an attempt was made to create an object that already exists or an attempt was made to delete an object that is referred to by another object.
+        "415":
+          description: The request is such that the Accept header does not indicate that JSON is an acceptable format for a response.
+        "500":
+          description: The server encountered an unexpected error.
+      tags:
+      - velocity-template-loader
+
+parameters:
+  filter:
+    in: query
+    name: filter
+    description: "SCIM filter"
+    required: false
+    type: string
+  sortBy:
+    in: query
+    name: sortBy
+    description: "Specifies a property value by which to sort"
+    required: false
+    type: string
+  sortOrder:
+    in: query
+    name: sortOrder
+    description: "Specifies either ascending or descending alphabetical order"
+    required: false
+    type: string
+    enum:
+    - "ascending"
+    - "descending"
+  startIndex:
+    in: query
+    name: startIndex
+    description: "1-based index of the first result to return"
+    required: false
+    type: number
+  count:
+    in: query
+    name: count
+    description: "Indicates the number of results per page"
+    required: false
+    type: number
+  attributes:
+    in: query
+    name: attributes
+    description: "Comma-separated list of attributes to include in the response"
+    required: false
+    type: string
+  excludeAttributes:
+    in: query
+    name: excludeAttributes
+    description: "Comma-separated list of attributes to exclude from the response"
+    required: false
+    type: string
+  applyChangeTo:
+    in: query
+    name: applyChangeTo
+    description: "Specify whether to apply this configuration change to a single server or the whole server group. This does not apply to mirrored subtree objects"
+    required: false
+    type: string
+    enum:
+    - "singleServer"
+    - "serverGroup"
+definitions:
+  get-resource-types-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          allOf:
+          - type: object
+            properties:
+              schemas:
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              endpoint:
+                type: string
+          - $ref: '#/definitions/meta'
+  meta:
+    type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          resourceType:
+            type: string
+          location:
+            type: string
+  messages:
+    type: object
+    properties:
+      "urn:pingidentity:schemas:configuration:messages:2.0":
+        type: object
+        properties:
+          notifications:
+            type: array
+            items:
+              type: string
+          requiredActions:
+            type: array
+            items:
+              type: object
+              properties:
+                property:
+                  type: string
+                type:
+                  type: string
+                synopsis:
+                  type: string
+              required:
+              - type
+              - synopsis
+  patch-request:
+    type: object
+    properties:
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/operation'
+    required:
+    - operations
+  operation:
+    type: object
+    properties:
+      op:
+        type: string
+        enum:
+        - "add"
+        - "remove"
+        - "replace"
+      path:
+        type: string
+      value:
+        type: string
+    required:
+    - op
+    - path
+  http-servlet-extension-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/http-servlet-extension-response'
+    required:
+    - schemas
+    - totalResults
+  add-http-servlet-extension-request:
+    allOf:
+    - type: object
+      properties:
+        extensionName:
+          type: string
+          description: >-
+              Name of the new HTTP Servlet Extension
+    - $ref: '#/definitions/http-servlet-extension-properties'
+    required:
+    - extensionName
+  http-servlet-extension-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the HTTP Servlet Extension
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/http-servlet-extension-properties'
+    required:
+    - id
+    - schemas
+  http-servlet-extension-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/http-servlet-extension-response'
+  http-servlet-extension-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:delegated-admin"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:quickstart"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:availability-state"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:prometheus-monitoring"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:velocity"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:consent"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:ldap-mapped-scim"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:groovy-scripted"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:file-server"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:config"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:scim2"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:directory-rest-api"
+          - "urn:pingidentity:schemas:configuration:2.0:http-servlet-extension:third-party"
+      debugType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "coding-error"
+          - "exception"
+          - "other"
+        description: >-
+               The types of debug messages that should be logged.
+      includeMonitorAttributeNameLabel:
+        type: boolean
+        description: >-
+               Indicates whether generated metrics should include a "monitor_attribute" label whose value is the name of the monitor attribute from which the metric was obtained.
+      responseHeader:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies HTTP header fields and values added to response headers for all requests.
+      debugEnabled:
+        type: boolean
+        description: >-
+               Enables debug logging of the SCIM SDK. Debug messages will be forwarded to the Directory Server debug logger with the scope of com.unboundid.directory.server.extensions.scim.SCIMHTTPServletExtension.
+      excludeLDAPObjectclass:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the LDAP object classes that should be not be exposed directly as SCIM resources.
+      includeInstanceNameLabel:
+        type: boolean
+        description: >-
+               Indicates whether generated metrics should include an "instance" label whose value is the instance name for this Directory Server instance.
+      bulkMaxOperations:
+        type: integer
+        description: >-
+               The maximum number of operations that are permitted in a bulk request.
+      extensionArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Third Party HTTP Servlet Extension. Each configuration property should be given in the form 'name=value'.
+      accessTokenScope:
+        type: string
+        description: >-
+               The name of a scope that must be present in an access token accepted by the Delegated Admin HTTP Servlet Extension.
+      includeMonitorObjectClassNameLabel:
+        type: boolean
+        description: >-
+               Indicates whether generated metrics should include a "monitor_object_class" label whose value is the name of the object class for the monitor entry from which the metric was obtained.
+      maxResults:
+        type: integer
+        description: >-
+               The maximum number of resources that are returned in a response.
+      basicAuthEnabled:
+        type: boolean
+        description: >-
+               Enables HTTP Basic authentication, using a username and password. The Identity Mapper specified by the identity-mapper property will be used to map the username to a DN.
+      unavailableStatusCode:
+        type: integer
+        description: >-
+               Specifies the HTTP status code that the servlet should return if the server considers itself to be unavailable.
+      staticContentDirectory:
+        type: string
+        description: >-
+               Specifies the base directory in which static, non-template content such as images, CSS, and Javascript files are stored on the filesystem.
+      includeLocationNameLabel:
+        type: boolean
+        description: >-
+               Indicates whether generated metrics should include a "location" label whose value is the location name for this Directory Server instance.
+      allowContextOverride:
+        type: boolean
+        description: >-
+               Indicates whether context providers may override existing context objects with new values.
+      idTokenValidator:
+        type: array
+        items:
+          type: string
+        description: >-
+               The ID token validators that may be used to verify the authenticity of an of an OpenID Connect ID token.
+      swaggerEnabled:
+        type: boolean
+        description: >-
+               Indicates whether the SCIM2 HTTP Servlet Extension will generate a Swagger specification document.
+      additionalResponseContents:
+        type: string
+        description: >-
+               A JSON-formatted string containing additional fields to be returned in the response body. For example, an additional-response-contents value of '{ "key": "value" }' would add the key and value to the root of the JSON response body.
+      audience:
+        type: string
+        description: >-
+               A string or URI that identifies the Delegated Admin HTTP Servlet Extension in the context of OAuth2 authorization.
+      baseContextPath:
+        type: string
+        description: >-
+               Specifies the base context path that HTTP clients should use to access this servlet. The value must start with a forward slash and must represent a valid HTTP context path.
+      OAuthTokenHandler:
+        type: string
+        description: >-
+               Specifies the OAuth Token Handler implementation that should be used to validate OAuth 2.0 bearer tokens when they are included in a SCIM request.
+      alwaysIncludeMonitorEntryNameLabel:
+        type: boolean
+        description: >-
+               Indicates whether generated metrics should always include a "monitor_entry" label whose value is the name of the monitor entry from which the metric was obtained.
+      mimeTypesFile:
+        type: string
+        description: >-
+               Specifies the path to a file that contains MIME type mappings that will be used to determine the appropriate value to return for the Content-Type header based on the extension of the requested static content file.
+      templateDirectory:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies an ordered list of directories in which to search for the template files.
+      temporaryDirectory:
+        type: string
+        description: >-
+               Specifies the location of the directory that is used to create temporary files containing SCIM request data.
+      schemasEndpointObjectclass:
+        type: array
+        items:
+          type: string
+        description: >-
+               The list of object classes which will be returned by the schemas endpoint.
+      resourceMappingFile:
+        type: string
+        description: >-
+               The path to an XML file defining the resources supported by the SCIM interface and the SCIM-to-LDAP attribute mappings to use.
+      bulkMaxConcurrentRequests:
+        type: integer
+        description: >-
+               The maximum number of bulk requests that may be processed concurrently by the server. Any bulk request that would cause this limit to be exceeded is rejected with HTTP status code 503.
+      defaultOperationalAttribute:
+        type: array
+        items:
+          type: string
+        description: >-
+               A set of operational attributes that will be returned with entries by default.
+      defaultMIMEType:
+        type: string
+        description: >-
+               Specifies the default value that will be used in the response's Content-Type header that indicates the type of content to return.
+      includeResponseBody:
+        type: boolean
+        description: >-
+               Indicates whether the response should include a body that is a JSON object.
+      indexFile:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the name of a file whose contents may be returned to the client if the requested path refers to a directory rather than a file.
+      identityMapper:
+        type: string
+        description: >-
+               Specifies the Identity Mapper that is to be used for associating user entries with basic authentication user names.
+      includeLDAPObjectclass:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the LDAP object classes that should be exposed directly as SCIM resources.
+      includeStackTrace:
+        type: boolean
+        description: >-
+               Indicates whether a stack trace of the thread which called the debug method should be included in debug log messages.
+      exposeServerContext:
+        type: boolean
+        description: >-
+               Specifies whether a server context will be exposed under context key 'ubid_server' for all template contexts.
+      characterEncoding:
+        type: string
+        description: >-
+               Specifies the value that will be used for all responses' Content-Type headers' charset parameter that indicates the character encoding of the document.
+      rejectExpansionAttribute:
+        type: array
+        items:
+          type: string
+        description: >-
+               A set of attributes which the client is not allowed to provide for the expand query parameters. This should be used for attributes that could either have a large number of values or that reference entries that are very large like groups.
+      server:
+        type: string
+        description: >-
+               Specifies the PingFederate server to be configured.
+      staticCustomDirectory:
+        type: string
+        description: >-
+               Specifies the base directory in which custom static, non-template content such as images, CSS, and Javascript files are stored on the filesystem. Files in this directory will override those with the same name in the directory specified by the static-content-directory property.
+      extensionClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Java class providing the logic for the Third Party HTTP Servlet Extension.
+      requireAuthentication:
+        type: boolean
+        description: >-
+               Require authentication when accessing Velocity templates.
+      includeLDAPBaseDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the base DNs for the branches of the DIT that should be exposed via the Identity Access API.
+      description:
+        type: string
+        description: >-
+               A description for this HTTP Servlet Extension
+      bearerTokenAuthEnabled:
+        type: boolean
+        description: >-
+               Enables HTTP bearer token authentication.
+      labelNameValuePair:
+        type: array
+        items:
+          type: string
+        description: >-
+               A set of name-value pairs for labels that should be included in all metrics exposed by this Directory Server instance.
+      debugLevel:
+        type: string
+        enum:
+        - "severe"
+        - "warning"
+        - "info"
+        - "config"
+        - "fine"
+        - "finer"
+        - "finest"
+        description: >-
+               The minimum debug level that should be used for messages to be logged.
+      degradedStatusCode:
+        type: integer
+        description: >-
+               Specifies the HTTP status code that the servlet should return if the server considers itself to be degraded.
+      includeProductNameLabel:
+        type: boolean
+        description: >-
+               Indicates whether generated metrics should include a "product" label whose value is the product name for this Directory Server instance.
+      correlationIDResponseHeader:
+        type: string
+        description: >-
+               Specifies the name of the HTTP response header that will contain a correlation ID value. Example values are "Correlation-Id", "X-Amzn-Trace-Id", and "X-Request-Id".
+      availableStatusCode:
+        type: integer
+        description: >-
+               Specifies the HTTP status code that the servlet should return if the server considers itself to be available.
+      allowedAuthenticationType:
+        type: array
+        items:
+          type: string
+          enum:
+          - "basic"
+          - "access-token"
+          - "id-token"
+        description: >-
+               The types of authentication that may be used to authenticate to the file servlet.
+      scriptArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Scripted HTTP Servlet Extension. Each configuration property should be given in the form 'name=value'.
+      bulkMaxPayloadSize:
+        type: string
+        description: >-
+               The maximum payload size in bytes of a bulk request.
+      exposeRequestAttributes:
+        type: boolean
+        description: >-
+               Specifies whether the HTTP request will be exposed to templates.
+      allowedControl:
+        type: array
+        items:
+          type: string
+          enum:
+          - "assertion"
+          - "assured-replication"
+          - "exclude-branch"
+          - "generate-password"
+          - "get-effective-rights"
+          - "ignore-no-user-modification"
+          - "intermediate-client"
+          - "join"
+          - "manage-dsa-it"
+          - "matched-values"
+          - "matching-entry-count"
+          - "name-with-entryuuid"
+          - "no-op"
+          - "operation-purpose"
+          - "password-update-behavior"
+          - "password-validation-details"
+          - "permissive-modify"
+          - "permit-unindexed-search"
+          - "post-read"
+          - "pre-read"
+          - "proxied-authorization-v1"
+          - "proxied-authorization-v2"
+          - "purge-password"
+          - "real-attributes-only"
+          - "reject-unindexed-search"
+          - "retire-password"
+          - "suppress-referential-integrity"
+          - "uniqueness"
+          - "virtual-attributes-only"
+        description: >-
+               Specifies the names of any request controls that should be allowed by the Directory REST API. Any request that contains a critical control not in this list will be rejected. Any non-critical request control which is not supported by the Directory REST API will be removed from the request.
+      exposeSessionAttributes:
+        type: boolean
+        description: >-
+               Specifies whether the HTTP session will be exposed to templates.
+      enableDirectoryIndexing:
+        type: boolean
+        description: >-
+               Indicates whether to generate a default HTML page with a listing of available files if the requested path refers to a directory rather than a file, and that directory does not contain an index file.
+      requireFileServletAccessPrivilege:
+        type: boolean
+        description: >-
+               Indicates whether the servlet extension should only accept requests from authenticated clients that have the file-servlet-access privilege.
+      staticContextPath:
+        type: string
+        description: >-
+               The path below the base context path by which static, non-template content such as images, CSS, and Javascript files are accessible.
+      maxPageSize:
+        type: integer
+        description: >-
+               The maximum number of entries to be returned in one page of search results.
+      overrideStatusCode:
+        type: integer
+        description: >-
+               Specifies a HTTP status code that the servlet should always return, regardless of the server's availability. If this value is defined, it will override the availability-based return codes.
+      crossOriginPolicy:
+        type: string
+        description: >-
+               The cross-origin request policy to use for the HTTP Servlet Extension.
+      excludeLDAPBaseDN:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the base DNs for the branches of the DIT that should not be exposed via the Identity Access API.
+      scriptClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Groovy class providing the logic for the Groovy Scripted HTTP Servlet Extension.
+      mapAccessTokensToLocalUsers:
+        type: string
+        enum:
+        - "disabled"
+        - "optional"
+        - "required"
+        description: >-
+               Indicates whether the SCIM2 servlet should attempt to map the presented access token to a local user.
+      documentRootDirectory:
+        type: string
+        description: >-
+               Specifies the path to the directory on the local filesystem containing the files to be served by this File Server HTTP Servlet Extension. The path must exist, and it must be a directory.
+      entityTagLDAPAttribute:
+        type: string
+        description: >-
+               Specifies the LDAP attribute whose value should be used as the entity tag value to enable SCIM resource versioning support.
+      temporaryDirectoryPermissions:
+        type: string
+        description: >-
+               Specifies the permissions that should be applied to the directory that is used to create temporary files.
+      accessTokenValidator:
+        type: array
+        items:
+          type: string
+        description: >-
+               If specified, the Access Token Validator(s) that may be used to validate access tokens for requests submitted to this Delegated Admin HTTP Servlet Extension.
+      requireGroup:
+        type: array
+        items:
+          type: string
+        description: >-
+               The DN of a group whose members will be permitted to access to the associated files. If multiple group DNs are configured, then anyone who is a member of at least one of those groups will be granted access.
+      staticResponseHeader:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies HTTP header fields and values added to response headers for static content requests such as images and scripts.
+
+  prometheus-monitor-attribute-metric-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/prometheus-monitor-attribute-metric-response'
+    required:
+    - schemas
+    - totalResults
+  add-prometheus-monitor-attribute-metric-request:
+    allOf:
+    - type: object
+      properties:
+        metricName:
+          type: string
+          description: >-
+              Name of the new Prometheus Monitor Attribute Metric
+    - $ref: '#/definitions/prometheus-monitor-attribute-metric-properties'
+    required:
+    - metricName
+  prometheus-monitor-attribute-metric-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Prometheus Monitor Attribute Metric
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/prometheus-monitor-attribute-metric-properties'
+    required:
+    - id
+    - schemas
+  prometheus-monitor-attribute-metric-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/prometheus-monitor-attribute-metric-response'
+  prometheus-monitor-attribute-metric-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:prometheus-monitor-attribute-metric"
+      filter:
+        type: string
+        description: >-
+               A filter that may be used to restrict the set of monitor entries for which the metric should be generated.
+      metricType:
+        type: string
+        enum:
+        - "counter"
+        - "gauge"
+        description: >-
+               The metric type that should be used for the value of the specified monitor attribute.
+      metricName:
+        type: string
+        description: >-
+               The name that will be used in the metric to be consumed by Prometheus.
+      metricDescription:
+        type: string
+        description: >-
+               A human-readable description that should be published as part of the metric definition.
+      monitorObjectClassName:
+        type: string
+        description: >-
+               The name of the object class for monitor entries that contain the monitor attribute.
+      monitorAttributeName:
+        type: string
+        description: >-
+               The name of the monitor attribute that contains the numeric value to be published.
+      labelNameValuePair:
+        type: array
+        items:
+          type: string
+        description: >-
+               A set of name-value pairs for labels that should be included in the published metric for the target attribute.
+
+  velocity-context-provider-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/velocity-context-provider-response'
+    required:
+    - schemas
+    - totalResults
+  add-velocity-context-provider-request:
+    allOf:
+    - type: object
+      properties:
+        providerName:
+          type: string
+          description: >-
+              Name of the new Velocity Context Provider
+    - $ref: '#/definitions/velocity-context-provider-properties'
+    required:
+    - providerName
+  velocity-context-provider-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Velocity Context Provider
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/velocity-context-provider-properties'
+    required:
+    - id
+    - schemas
+  velocity-context-provider-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/velocity-context-provider-response'
+  velocity-context-provider-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:velocity-context-provider:velocity-tools"
+          - "urn:pingidentity:schemas:configuration:2.0:velocity-context-provider:custom"
+          - "urn:pingidentity:schemas:configuration:2.0:velocity-context-provider:third-party"
+      applicationTool:
+        type: array
+        items:
+          type: string
+        description: >-
+               The fully-qualified name of a Velocity Tool class that will be initialized once for the life of the server. May optionally include a path to a properties file used to configure this tool separated from the class name by a semi-colon (;). The path may absolute or relative to the server root.
+      extensionClass:
+        type: string
+        description: >-
+               The fully-qualified name of the Java class providing the logic for the Third Party Velocity Context Provider.
+      includedView:
+        type: array
+        items:
+          type: string
+        description: >-
+               The name of a view for which this Velocity Context Provider will contribute content.
+      excludedView:
+        type: array
+        items:
+          type: string
+        description: >-
+               The name of a view for which this Velocity Context Provider will not contribute content.
+      sessionTool:
+        type: array
+        items:
+          type: string
+        description: >-
+               The fully-qualified name of a Velocity Tool class that will be initialized for each session. May optionally include a path to a properties file used to configure this tool separated from the class name by a semi-colon (;). The path may absolute or relative to the server root.
+      responseHeader:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies HTTP header fields and values added to response headers for template page requests to which this Velocity Context Provider contributes content.
+      requestTool:
+        type: array
+        items:
+          type: string
+        description: >-
+               The fully-qualified name of a Velocity Tool class that will be initialized for each request. May optionally include a path to a properties file used to configure this tool separated from the class name by a semi-colon (;). The path may absolute or relative to the server root.
+      objectScope:
+        type: string
+        enum:
+        - "application"
+        - "session"
+        - "request"
+        description: >-
+               Scope for context objects contributed by this Velocity Context Provider. Must be either 'request' or 'session' or 'application'.
+      httpMethod:
+        type: array
+        items:
+          type: string
+        description: >-
+               Specifies the set of HTTP methods handled by this Velocity Context Provider, which will perform actions necessary to fulfill the request before updating the context for the response. The values of this property are not case-sensitive.
+      enabled:
+        type: boolean
+        description: >-
+               Indicates whether this Velocity Context Provider is enabled. If set to 'false' this Velocity Context Provider will not contribute context content for any requests.
+      extensionArgument:
+        type: array
+        items:
+          type: string
+        description: >-
+               The set of arguments used to customize the behavior for the Third Party Velocity Context Provider. Each configuration property should be given in the form 'name=value'.
+
+  velocity-template-loader-list-response:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+      totalResults:
+        type: number
+      Resources:
+        type: array
+        items:
+          $ref: '#/definitions/velocity-template-loader-response'
+    required:
+    - schemas
+    - totalResults
+  add-velocity-template-loader-request:
+    allOf:
+    - type: object
+      properties:
+        loaderName:
+          type: string
+          description: >-
+              Name of the new Velocity Template Loader
+    - $ref: '#/definitions/velocity-template-loader-properties'
+    required:
+    - loaderName
+  velocity-template-loader-response:
+    allOf:
+    - type: object
+      properties:
+        id:
+          type: string
+          description: >-
+              Name of the Velocity Template Loader
+    - $ref: '#/definitions/meta'
+    - $ref: '#/definitions/velocity-template-loader-properties'
+    required:
+    - id
+    - schemas
+  velocity-template-loader-response-with-messages:
+    allOf:
+    - $ref: '#/definitions/messages'
+    - $ref: '#/definitions/velocity-template-loader-response'
+  velocity-template-loader-properties:
+    type: object
+    properties:
+      schemas:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: string
+          enum:
+          - "urn:pingidentity:schemas:configuration:2.0:velocity-template-loader"
+      mimeTypeMatcher:
+        type: string
+        description: >-
+               Specifies a media type for matching Accept request-header values.
+      templateSuffix:
+        type: string
+        description: >-
+               Specifies the suffix to append to the requested resource name when searching for the template file with which to form a response.
+      evaluationOrderIndex:
+        type: integer
+        description: >-
+               This property determines the evaluation order for determining the correct Velocity Template Loader to load a template for generating content for a particular request.
+      mimeType:
+        type: string
+        description: >-
+               Specifies a the value that will be used in the response's Content-Type header that indicates the type of content to return.
+      enabled:
+        type: boolean
+        description: >-
+               Indicates whether this Velocity Template Loader is enabled.
+      templateDirectory:
+        type: string
+        description: >-
+               Specifies the directory in which to search for the template files.
+
+
